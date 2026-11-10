@@ -2,6 +2,8 @@ import React from 'react';
 import { CmsService } from '@/modules/cms';
 import { PricingView } from '@/components/public/pricing-view';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'Pricing & Plans | QuickPostly AI Social Media Management',
   description:

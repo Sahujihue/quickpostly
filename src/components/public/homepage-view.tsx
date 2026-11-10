@@ -89,7 +89,11 @@ export function HomepageView({ content }: HomepageViewProps) {
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 pt-4 text-xs font-medium text-slate-500 dark:text-slate-400">
-              {hero.trustPoints.map((point, i) => (
+              {(Array.isArray(hero?.trustPoints) ? hero.trustPoints : [
+                'No credit card required',
+                '14-day full feature trial',
+                'Cancel anytime with 1 click',
+              ]).map((point, i) => (
                 <div key={i} className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                   <span>{point}</span>
