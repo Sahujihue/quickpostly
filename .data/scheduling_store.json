@@ -1,0 +1,786 @@
+{
+  "posts": [
+    {
+      "id": "post_1794217358812_d900d7",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "content": "�Ys? Verified Live Broadcast: Scale your B2B SaaS pipeline with SocialHive automated queues!",
+      "mediaUrls": [
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1080"
+      ],
+      "postType": "IMAGE",
+      "status": "PUBLISHED",
+      "platforms": [
+        "instagram"
+      ],
+      "accountIds": [
+        "acc_instagram_peak"
+      ],
+      "scheduledAt": "2026-11-09T09:42:38.809Z",
+      "timezone": "UTC",
+      "hashtags": [],
+      "isRecurring": false,
+      "recurrenceRule": "NONE",
+      "evergreen": false,
+      "evergreenRecycles": 0,
+      "queuePosition": 18,
+      "createdAt": "2026-11-09T09:42:38.812Z",
+      "updatedAt": "2026-11-09T09:42:38.825Z",
+      "publishedAt": "2026-11-09T09:42:38.825Z",
+      "platformPostIds": {
+        "instagram": "instagram_post_1794217358821_47c6ea02"
+      }
+    },
+    {
+      "id": "post_1794217350641_917006",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "content": "Bulk post #2: Why carousel retention outperforms static carousels by 3.4x.",
+      "mediaUrls": [],
+      "postType": "TEXT",
+      "status": "SCHEDULED",
+      "platforms": "instagram twitter",
+      "accountIds": "acc_instagram_peak acc_twitter_peak",
+      "scheduledAt": "2026-11-14T15:12:00Z",
+      "timezone": "UTC",
+      "hashtags": [],
+      "isRecurring": false,
+      "recurrenceRule": "NONE",
+      "evergreen": false,
+      "evergreenRecycles": 0,
+      "queuePosition": 17,
+      "createdAt": "2026-11-09T09:42:30.641Z",
+      "updatedAt": "2026-11-09T09:42:32.652Z"
+    },
+    {
+      "id": "post_1794217348632_6cb2e0",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "content": "Bulk post #1: Organic video distribution tips for high-growth tech brands.",
+      "mediaUrls": [],
+      "postType": "TEXT",
+      "status": "SCHEDULED",
+      "platforms": "linkedin",
+      "accountIds": "acc_linkedin_peak",
+      "scheduledAt": "2026-11-13T15:12:00Z",
+      "timezone": "UTC",
+      "hashtags": [],
+      "isRecurring": false,
+      "recurrenceRule": "NONE",
+      "evergreen": false,
+      "evergreenRecycles": 0,
+      "queuePosition": 16,
+      "createdAt": "2026-11-09T09:42:28.632Z",
+      "updatedAt": "2026-11-09T09:42:30.636Z"
+    },
+    {
+      "id": "post_1794217346594_8e428a",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "content": "�s� Masterclass Announcement: Advanced social media attribution across 8 channels. Register now!",
+      "mediaUrls": [
+        "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1080"
+      ],
+      "postType": "IMAGE",
+      "status": "CANCELLED",
+      "platforms": [
+        "twitter",
+        "linkedin"
+      ],
+      "accountIds": [
+        "acc_twitter_peak",
+        "acc_linkedin_peak"
+      ],
+      "scheduledAt": "2026-11-16T15:12:00Z",
+      "timezone": "UTC",
+      "hashtags": [],
+      "callToAction": "Sign Up",
+      "isRecurring": true,
+      "recurrenceRule": "WEEKLY",
+      "recurrenceInterval": 1,
+      "evergreen": true,
+      "evergreenRecycles": 0,
+      "maxRecycles": 5,
+      "categoryId": "cat_promotional",
+      "categoryName": "Promotional & Product Updates",
+      "categoryColor": "#6366f1",
+      "queuePosition": 15,
+      "createdAt": "2026-11-09T09:42:26.594Z",
+      "updatedAt": "2026-11-09T09:42:38.784Z"
+    },
+    {
+      "id": "post_1794217346545_8e7b49",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "content": "Draft copy: 7 frameworks for scaling agency retention without founder burn-out.",
+      "mediaUrls": [],
+      "postType": "TEXT",
+      "status": "DRAFT",
+      "platforms": [
+        "linkedin"
+      ],
+      "accountIds": [],
+      "timezone": "UTC",
+      "hashtags": [
+        "AgencyOps",
+        "Founders"
+      ],
+      "isRecurring": false,
+      "recurrenceRule": "NONE",
+      "evergreen": false,
+      "evergreenRecycles": 0,
+      "queuePosition": 14,
+      "createdAt": "2026-11-09T09:42:26.545Z",
+      "updatedAt": "2026-11-09T09:42:26.545Z"
+    },
+    {
+      "id": "post_1794217311978_4357d8",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "content": "Scale SaaS",
+      "mediaUrls": [],
+      "postType": "TEXT",
+      "status": "FAILED",
+      "platforms": [
+        "linkedin"
+      ],
+      "accountIds": [
+        "acc_linkedin_peak"
+      ],
+      "scheduledAt": "2026-11-09T09:41:51.976Z",
+      "timezone": "UTC",
+      "hashtags": [],
+      "isRecurring": false,
+      "recurrenceRule": "NONE",
+      "evergreen": false,
+      "evergreenRecycles": 0,
+      "queuePosition": 13,
+      "createdAt": "2026-11-09T09:41:51.978Z",
+      "updatedAt": "2026-11-09T09:41:51.988Z",
+      "failureReason": "Social account 'acc_linkedin_peak' not found in workspace."
+    },
+    {
+      "id": "post_1794217305627_359864",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "content": "Scale your B2B SaaS pipeline with SocialHive automated queues!",
+      "mediaUrls": [
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1080"
+      ],
+      "postType": "IMAGE",
+      "status": "FAILED",
+      "platforms": [
+        "linkedin"
+      ],
+      "accountIds": [
+        "acc_linkedin_peak"
+      ],
+      "scheduledAt": "2026-11-09T09:41:45.625Z",
+      "timezone": "UTC",
+      "hashtags": [],
+      "isRecurring": false,
+      "recurrenceRule": "NONE",
+      "evergreen": false,
+      "evergreenRecycles": 0,
+      "queuePosition": 12,
+      "createdAt": "2026-11-09T09:41:45.627Z",
+      "updatedAt": "2026-11-09T09:41:45.633Z",
+      "failureReason": "Social account 'acc_linkedin_peak' not found in workspace."
+    },
+    {
+      "id": "post_1794217284675_8bcd61",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "content": "�Ys? Verified Live Broadcast: Scale your B2B SaaS pipeline with SocialHive automated queues!",
+      "mediaUrls": [
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1080"
+      ],
+      "postType": "IMAGE",
+      "status": "FAILED",
+      "platforms": [
+        "linkedin"
+      ],
+      "accountIds": [
+        "acc_linkedin_peak"
+      ],
+      "scheduledAt": "2026-11-09T09:41:24.673Z",
+      "timezone": "UTC",
+      "hashtags": [],
+      "isRecurring": false,
+      "recurrenceRule": "NONE",
+      "evergreen": false,
+      "evergreenRecycles": 0,
+      "queuePosition": 11,
+      "createdAt": "2026-11-09T09:41:24.675Z",
+      "updatedAt": "2026-11-09T09:41:24.687Z",
+      "failureReason": "Social account 'acc_linkedin_peak' not found in workspace."
+    },
+    {
+      "id": "post_1794217276501_22227f",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "content": "Bulk post #2: Why carousel retention outperforms static carousels by 3.4x.",
+      "mediaUrls": [],
+      "postType": "TEXT",
+      "status": "SCHEDULED",
+      "platforms": "instagram twitter",
+      "accountIds": "acc_instagram_peak acc_twitter_peak",
+      "scheduledAt": "2026-11-14T15:11:00Z",
+      "timezone": "UTC",
+      "hashtags": [],
+      "isRecurring": false,
+      "recurrenceRule": "NONE",
+      "evergreen": false,
+      "evergreenRecycles": 0,
+      "queuePosition": 10,
+      "createdAt": "2026-11-09T09:41:16.501Z",
+      "updatedAt": "2026-11-09T09:41:18.509Z"
+    },
+    {
+      "id": "post_1794217274492_2986b4",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "content": "Bulk post #1: Organic video distribution tips for high-growth tech brands.",
+      "mediaUrls": [],
+      "postType": "TEXT",
+      "status": "SCHEDULED",
+      "platforms": "linkedin",
+      "accountIds": "acc_linkedin_peak",
+      "scheduledAt": "2026-11-13T15:11:00Z",
+      "timezone": "UTC",
+      "hashtags": [],
+      "isRecurring": false,
+      "recurrenceRule": "NONE",
+      "evergreen": false,
+      "evergreenRecycles": 0,
+      "queuePosition": 9,
+      "createdAt": "2026-11-09T09:41:14.492Z",
+      "updatedAt": "2026-11-09T09:41:16.498Z"
+    },
+    {
+      "id": "post_1794217272456_89ff43",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "content": "�s� Masterclass Announcement: Advanced social media attribution across 8 channels. Register now!",
+      "mediaUrls": [
+        "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1080"
+      ],
+      "postType": "IMAGE",
+      "status": "CANCELLED",
+      "platforms": [
+        "twitter",
+        "linkedin"
+      ],
+      "accountIds": [
+        "acc_twitter_peak",
+        "acc_linkedin_peak"
+      ],
+      "scheduledAt": "2026-11-16T15:11:00Z",
+      "timezone": "UTC",
+      "hashtags": [],
+      "callToAction": "Sign Up",
+      "isRecurring": true,
+      "recurrenceRule": "WEEKLY",
+      "recurrenceInterval": 1,
+      "evergreen": true,
+      "evergreenRecycles": 0,
+      "maxRecycles": 5,
+      "categoryId": "cat_promotional",
+      "categoryName": "Promotional & Product Updates",
+      "categoryColor": "#6366f1",
+      "queuePosition": 8,
+      "createdAt": "2026-11-09T09:41:12.456Z",
+      "updatedAt": "2026-11-09T09:41:24.661Z"
+    },
+    {
+      "id": "post_1794217272404_b6f7a8",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "content": "Draft copy: 7 frameworks for scaling agency retention without founder burn-out.",
+      "mediaUrls": [],
+      "postType": "TEXT",
+      "status": "DRAFT",
+      "platforms": [
+        "linkedin"
+      ],
+      "accountIds": [],
+      "timezone": "UTC",
+      "hashtags": [
+        "AgencyOps",
+        "Founders"
+      ],
+      "isRecurring": false,
+      "recurrenceRule": "NONE",
+      "evergreen": false,
+      "evergreenRecycles": 0,
+      "queuePosition": 7,
+      "createdAt": "2026-11-09T09:41:12.404Z",
+      "updatedAt": "2026-11-09T09:41:12.404Z"
+    },
+    {
+      "id": "post_sched_1",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "content": "🚀 Consistency beats intensity in organic B2B audience building. 3 habits top founders swear by: 1) Block 45 mins daily for authentic outreach. 2) Document your daily experiments instead of manufacturing opinions. 3) Engage with 5 peers before hitting publish.",
+      "mediaUrls": [
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1080"
+      ],
+      "postType": "IMAGE",
+      "status": "SCHEDULED",
+      "platforms": [
+        "linkedin",
+        "twitter"
+      ],
+      "accountIds": [
+        "acc_linkedin_peak",
+        "acc_twitter_peak"
+      ],
+      "scheduledAt": "2026-11-09T12:41:11.851Z",
+      "timezone": "UTC",
+      "hashtags": [
+        "B2BGrowth",
+        "FounderJourney",
+        "SaaSScale"
+      ],
+      "callToAction": "Learn More",
+      "isRecurring": false,
+      "recurrenceRule": "NONE",
+      "evergreen": true,
+      "evergreenRecycles": 2,
+      "maxRecycles": 10,
+      "categoryId": "cat_evergreen",
+      "categoryName": "Evergreen Insights",
+      "categoryColor": "#f59e0b",
+      "queuePosition": 1,
+      "jobId": "job_post_sched_1",
+      "createdAt": "2026-11-07T09:41:11.851Z",
+      "updatedAt": "2026-11-09T09:41:11.851Z"
+    },
+    {
+      "id": "post_sched_2",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "content": "🎉 Exclusive Masterclass: How we automated social distribution across 8 channels using SocialHive enterprise queues. Reserve your seat below!",
+      "mediaUrls": [
+        "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1080"
+      ],
+      "postType": "IMAGE",
+      "status": "SCHEDULED",
+      "platforms": [
+        "instagram",
+        "facebook",
+        "linkedin"
+      ],
+      "accountIds": [
+        "acc_instagram_peak",
+        "acc_linkedin_peak"
+      ],
+      "scheduledAt": "2026-11-10T11:41:11.851Z",
+      "timezone": "America/New_York",
+      "hashtags": [
+        "SocialMediaStrategy",
+        "AgencyScaling",
+        "SocialHive"
+      ],
+      "callToAction": "Sign Up",
+      "isRecurring": true,
+      "recurrenceRule": "WEEKLY",
+      "recurrenceInterval": 1,
+      "recurrenceDays": [
+        2,
+        4
+      ],
+      "evergreen": false,
+      "evergreenRecycles": 0,
+      "categoryId": "cat_promotional",
+      "categoryName": "Promotional & Product Updates",
+      "categoryColor": "#6366f1",
+      "queuePosition": 2,
+      "jobId": "job_post_sched_2",
+      "createdAt": "2026-11-08T09:41:11.851Z",
+      "updatedAt": "2026-11-09T09:41:11.852Z"
+    },
+    {
+      "id": "post_sched_3",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "content": "The new algorithm updates reward dwell time and conversational comments over raw click-throughs. Here is what this means for your agency client campaigns in Q4.",
+      "mediaUrls": [],
+      "postType": "TEXT",
+      "status": "SCHEDULED",
+      "platforms": [
+        "twitter",
+        "linkedin"
+      ],
+      "accountIds": [
+        "acc_twitter_peak",
+        "acc_linkedin_peak"
+      ],
+      "scheduledAt": "2026-11-11T09:41:11.851Z",
+      "timezone": "UTC",
+      "hashtags": [
+        "MarketingTrends",
+        "AgencyLife"
+      ],
+      "callToAction": "Read More",
+      "isRecurring": false,
+      "recurrenceRule": "NONE",
+      "evergreen": false,
+      "evergreenRecycles": 0,
+      "categoryId": "cat_curated_news",
+      "categoryName": "Industry News & Trends",
+      "categoryColor": "#10b981",
+      "queuePosition": 3,
+      "createdAt": "2026-11-09T06:41:11.851Z",
+      "updatedAt": "2026-11-09T09:41:11.852Z"
+    },
+    {
+      "id": "post_pub_1",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "content": "Proud to announce our agency surpassed 100M organic impressions this year for our client roster! A tribute to our relentless team and modern automation.",
+      "mediaUrls": [
+        "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1080"
+      ],
+      "postType": "IMAGE",
+      "status": "PUBLISHED",
+      "platforms": [
+        "linkedin",
+        "twitter"
+      ],
+      "accountIds": [
+        "acc_linkedin_peak",
+        "acc_twitter_peak"
+      ],
+      "scheduledAt": "2026-11-08T09:41:11.851Z",
+      "publishedAt": "2026-11-08T09:41:13.851Z",
+      "timezone": "UTC",
+      "hashtags": [
+        "Milestone",
+        "AgencyGrowth",
+        "TeamSuccess"
+      ],
+      "isRecurring": false,
+      "recurrenceRule": "NONE",
+      "evergreen": false,
+      "evergreenRecycles": 0,
+      "categoryId": "cat_culture_bts",
+      "categoryName": "Behind The Scenes & Culture",
+      "categoryColor": "#a855f7",
+      "platformPostIds": {
+        "linkedin": "li_post_confirmed_9928174",
+        "twitter": "tw_status_confirmed_182910482"
+      },
+      "createdAt": "2026-11-07T09:41:11.851Z",
+      "updatedAt": "2026-11-08T09:41:11.851Z"
+    },
+    {
+      "id": "post_draft_1",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "content": "Draft: 5 common mistakes agencies make when delegating social inbox management to junior staff.",
+      "mediaUrls": [],
+      "postType": "TEXT",
+      "status": "DRAFT",
+      "platforms": [
+        "linkedin"
+      ],
+      "accountIds": [
+        "acc_linkedin_peak"
+      ],
+      "timezone": "UTC",
+      "hashtags": [
+        "AgencyTips",
+        "Productivity"
+      ],
+      "isRecurring": false,
+      "recurrenceRule": "NONE",
+      "evergreen": false,
+      "evergreenRecycles": 0,
+      "createdAt": "2026-11-09T04:41:11.851Z",
+      "updatedAt": "2026-11-09T09:41:11.852Z"
+    },
+    {
+      "id": "post_failed_1",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "content": "Quick agency sprint clip recap. Checking video upload dimensions.",
+      "mediaUrls": [
+        "https://storage.googleapis.com/test-bucket/clip_1sec.mp4"
+      ],
+      "postType": "VIDEO",
+      "status": "FAILED",
+      "platforms": [
+        "instagram"
+      ],
+      "accountIds": [
+        "acc_instagram_peak"
+      ],
+      "scheduledAt": "2026-11-08T21:41:11.851Z",
+      "timezone": "UTC",
+      "hashtags": [
+        "VideoUpdate"
+      ],
+      "isRecurring": false,
+      "recurrenceRule": "NONE",
+      "evergreen": false,
+      "evergreenRecycles": 0,
+      "failureReason": "Instagram video duration (1.2s) does not meet minimum duration requirement of 3.0 seconds.",
+      "createdAt": "2026-11-08T19:41:11.851Z",
+      "updatedAt": "2026-11-08T21:41:11.851Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": "cat_evergreen",
+      "workspaceId": "ws_peak_scale",
+      "name": "Evergreen Insights",
+      "color": "#f59e0b",
+      "description": "High-value foundational frameworks, case studies and timeless wisdom.",
+      "isEvergreen": true,
+      "timeSlots": [
+        {
+          "dayOfWeek": 1,
+          "timeString": "09:30",
+          "timezone": "UTC"
+        },
+        {
+          "dayOfWeek": 3,
+          "timeString": "14:00",
+          "timezone": "UTC"
+        },
+        {
+          "dayOfWeek": 5,
+          "timeString": "10:00",
+          "timezone": "UTC"
+        }
+      ],
+      "order": 1,
+      "isPaused": false,
+      "createdAt": "2026-11-09T09:41:11.851Z",
+      "updatedAt": "2026-11-09T09:41:11.851Z"
+    },
+    {
+      "id": "cat_promotional",
+      "workspaceId": "ws_peak_scale",
+      "name": "Promotional & Product Updates",
+      "color": "#6366f1",
+      "description": "Feature launches, client onboarding openings, and exclusive masterclasses.",
+      "isEvergreen": false,
+      "timeSlots": [
+        {
+          "dayOfWeek": 2,
+          "timeString": "16:00",
+          "timezone": "UTC"
+        },
+        {
+          "dayOfWeek": 4,
+          "timeString": "15:30",
+          "timezone": "UTC"
+        }
+      ],
+      "order": 2,
+      "isPaused": false,
+      "createdAt": "2026-11-09T09:41:11.851Z",
+      "updatedAt": "2026-11-09T09:41:11.851Z"
+    },
+    {
+      "id": "cat_curated_news",
+      "workspaceId": "ws_peak_scale",
+      "name": "Industry News & Trends",
+      "color": "#10b981",
+      "description": "Commentary on algorithm shifts, breaking industry announcements, and market data.",
+      "isEvergreen": false,
+      "timeSlots": [
+        {
+          "dayOfWeek": 1,
+          "timeString": "12:00",
+          "timezone": "UTC"
+        },
+        {
+          "dayOfWeek": 4,
+          "timeString": "11:00",
+          "timezone": "UTC"
+        }
+      ],
+      "order": 3,
+      "isPaused": false,
+      "createdAt": "2026-11-09T09:41:11.851Z",
+      "updatedAt": "2026-11-09T09:41:11.851Z"
+    },
+    {
+      "id": "cat_culture_bts",
+      "workspaceId": "ws_peak_scale",
+      "name": "Behind The Scenes & Culture",
+      "color": "#a855f7",
+      "description": "Team retrospectives, office banter, fail-forward lessons, and executive journals.",
+      "isEvergreen": true,
+      "timeSlots": [
+        {
+          "dayOfWeek": 5,
+          "timeString": "17:00",
+          "timezone": "UTC"
+        }
+      ],
+      "order": 4,
+      "isPaused": false,
+      "createdAt": "2026-11-09T09:41:11.851Z",
+      "updatedAt": "2026-11-09T09:41:11.851Z"
+    },
+    {
+      "workspaceId": "ws_peak_scale",
+      "name": "Agency Case Studies",
+      "color": "#ec4899",
+      "description": "High-performing agency campaign breakdowns and ROI metrics.",
+      "isEvergreen": true,
+      "timeSlots": [
+        {
+          "timeString": "15:00",
+          "timezone": "UTC",
+          "dayOfWeek": 2
+        }
+      ],
+      "order": 5,
+      "isPaused": false,
+      "id": "cat_1794217272241_3051",
+      "createdAt": "2026-11-09T09:41:12.244Z",
+      "updatedAt": "2026-11-09T09:41:12.244Z"
+    },
+    {
+      "workspaceId": "ws_peak_scale",
+      "name": "Agency Case Studies",
+      "color": "#ec4899",
+      "description": "High-performing agency campaign breakdowns and ROI metrics.",
+      "isEvergreen": true,
+      "timeSlots": [
+        {
+          "timeString": "15:00",
+          "timezone": "UTC",
+          "dayOfWeek": 2
+        }
+      ],
+      "order": 6,
+      "isPaused": false,
+      "id": "cat_1794217346527_f504",
+      "createdAt": "2026-11-09T09:42:26.527Z",
+      "updatedAt": "2026-11-09T09:42:26.527Z"
+    }
+  ],
+  "notifications": [
+    {
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "type": "PUBLISHING_SUCCESS",
+      "title": "Post Published Successfully",
+      "message": "Your post was successfully confirmed and published to INSTAGRAM.",
+      "isRead": true,
+      "entityId": "post_1794217358812_d900d7",
+      "metadata": {
+        "channels": [
+          "instagram"
+        ],
+        "postType": "IMAGE",
+        "platformPostIds": {
+          "instagram": "instagram_post_1794217358821_47c6ea02"
+        }
+      },
+      "id": "notif_1794217358828_839684",
+      "createdAt": "2026-11-09T09:42:38.828Z"
+    },
+    {
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "type": "PUBLISHING_FAILURE",
+      "title": "Publishing Job Failed",
+      "message": "Scheduled post failed to publish: Social account 'acc_linkedin_peak' not found in workspace.",
+      "isRead": false,
+      "entityId": "post_1794217311978_4357d8",
+      "metadata": {
+        "failureReason": "Social account 'acc_linkedin_peak' not found in workspace.",
+        "attemptedPlatforms": [
+          "linkedin"
+        ]
+      },
+      "id": "notif_1794217311991_a9be59",
+      "createdAt": "2026-11-09T09:41:51.991Z"
+    },
+    {
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "type": "PUBLISHING_FAILURE",
+      "title": "Publishing Job Failed",
+      "message": "Scheduled post failed to publish: Social account 'acc_linkedin_peak' not found in workspace.",
+      "isRead": false,
+      "entityId": "post_1794217305627_359864",
+      "metadata": {
+        "failureReason": "Social account 'acc_linkedin_peak' not found in workspace.",
+        "attemptedPlatforms": [
+          "linkedin"
+        ]
+      },
+      "id": "notif_1794217305637_5bac25",
+      "createdAt": "2026-11-09T09:41:45.637Z"
+    },
+    {
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "type": "PUBLISHING_FAILURE",
+      "title": "Publishing Job Failed",
+      "message": "Scheduled post failed to publish: Social account 'acc_linkedin_peak' not found in workspace.",
+      "isRead": true,
+      "entityId": "post_1794217284675_8bcd61",
+      "metadata": {
+        "failureReason": "Social account 'acc_linkedin_peak' not found in workspace.",
+        "attemptedPlatforms": [
+          "linkedin"
+        ]
+      },
+      "id": "notif_1794217284690_8f7484",
+      "createdAt": "2026-11-09T09:41:24.690Z"
+    },
+    {
+      "id": "notif_1",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "type": "PUBLISHING_SUCCESS",
+      "title": "Post Published Successfully",
+      "message": "Your milestone announcement post was successfully published to LinkedIn and X (Twitter).",
+      "isRead": false,
+      "entityId": "post_pub_1",
+      "createdAt": "2026-11-08T09:41:11.851Z"
+    },
+    {
+      "id": "notif_2",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "type": "UPCOMING_POST",
+      "title": "Upcoming Post in 3 Hours",
+      "message": "Your evergreen post \"Consistency beats intensity in organic B2B...\" is scheduled for publishing at 12:30 PM UTC.",
+      "isRead": false,
+      "entityId": "post_sched_1",
+      "createdAt": "2026-11-09T08:41:11.851Z"
+    },
+    {
+      "id": "notif_3",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "type": "TOKEN_EXPIRATION",
+      "title": "Instagram Token Health Warning",
+      "message": "Meta Graph API token for @peakscale.agency will expire in 15 days. Please click to refresh in Connected Accounts.",
+      "isRead": false,
+      "entityId": "acc_instagram_peak",
+      "createdAt": "2026-11-09T03:41:11.851Z"
+    },
+    {
+      "id": "notif_4",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "type": "PUBLISHING_FAILURE",
+      "title": "Publishing Job Failed",
+      "message": "Instagram video post failed validation: duration under 3.0s minimum. Action required to reschedule.",
+      "isRead": true,
+      "entityId": "post_failed_1",
+      "createdAt": "2026-11-08T21:41:11.851Z"
+    }
+  ]
+}

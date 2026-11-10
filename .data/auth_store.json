@@ -1,0 +1,1456 @@
+{
+  "users": [
+    {
+      "id": "usr_superadmin_01",
+      "email": "admin@socialhive.io",
+      "passwordHash": "$2a$12$c72qcL/nSOB40jpjWMz4ueF0w7d4K6JY724uce6EqHHyEei5PMdpW",
+      "name": "Alex Rivera (Super Admin)",
+      "role": "SUPER_ADMIN",
+      "status": "ACTIVE",
+      "emailVerified": "2026-11-08T20:28:48.450Z",
+      "image": null,
+      "twoFactorEnabled": false,
+      "twoFactorSecret": null,
+      "twoFactorRecoveryCodes": null,
+      "failedLoginAttempts": 0,
+      "lockoutUntil": null,
+      "lastLoginAt": "2026-11-10T12:34:15.643Z",
+      "createdAt": "2026-11-08T20:28:48.450Z",
+      "updatedAt": "2026-11-10T12:34:32.644Z"
+    },
+    {
+      "id": "usr_support_02",
+      "email": "support@socialhive.io",
+      "passwordHash": "$2a$12$iIAj4WRztI7HiYSoqLnVQuMTU9BHc2ATQe10e5dmUr28AvVi82qRi",
+      "name": "Sarah Chen (Support Staff)",
+      "role": "SUPPORT",
+      "status": "ACTIVE",
+      "emailVerified": "2026-11-08T20:28:48.450Z",
+      "image": null,
+      "twoFactorEnabled": false,
+      "twoFactorSecret": null,
+      "twoFactorRecoveryCodes": null,
+      "failedLoginAttempts": 0,
+      "lockoutUntil": null,
+      "lastLoginAt": "2026-11-08T20:28:48.450Z",
+      "createdAt": "2026-11-08T20:28:48.450Z",
+      "updatedAt": "2026-11-08T20:28:48.450Z"
+    },
+    {
+      "id": "usr_client_03",
+      "email": "user@socialhive.io",
+      "passwordHash": "$2a$12$11FbKuqkRKE9Ab8qKr5l3O0OOY68bJ0nYkBiUgUxzj/JM.eBQOZYq",
+      "name": "Jordan Miller",
+      "role": "USER",
+      "status": "ACTIVE",
+      "emailVerified": "2026-11-08T20:28:48.450Z",
+      "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80",
+      "twoFactorEnabled": false,
+      "twoFactorSecret": null,
+      "twoFactorRecoveryCodes": null,
+      "failedLoginAttempts": 0,
+      "lockoutUntil": null,
+      "lastLoginAt": "2026-11-10T12:34:41.556Z",
+      "createdAt": "2026-11-08T20:28:48.450Z",
+      "updatedAt": "2026-11-10T12:34:57.938Z"
+    },
+    {
+      "id": "usr_1794169746051_uiwyc",
+      "email": "marketer.1794169741@example.com",
+      "passwordHash": "$2a$12$R95ohFPW/gHAAn84VFY1ieSD3BNyLu86GUYsr8FuGMJVcW37b86Jq",
+      "name": "Sarah Marketer",
+      "role": "USER",
+      "status": "ACTIVE",
+      "emailVerified": "2026-11-08T20:29:14.241Z",
+      "image": null,
+      "twoFactorEnabled": false,
+      "twoFactorSecret": null,
+      "twoFactorRecoveryCodes": null,
+      "failedLoginAttempts": 0,
+      "lockoutUntil": null,
+      "lastLoginAt": "2026-11-08T20:29:22.632Z",
+      "createdAt": "2026-11-08T20:29:06.051Z",
+      "updatedAt": "2026-11-08T20:29:22.632Z"
+    },
+    {
+      "id": "usr_1794169991981_zjhy2",
+      "email": "marketer_1794169987@example.com",
+      "passwordHash": "$2a$12$NgSgvub0u82VL0v3Mw3jz.rJvn2KI28ZQNgRJJYYSwvYDxIRfUpQC",
+      "name": "Sarah Connor",
+      "role": "USER",
+      "status": "ACTIVE",
+      "emailVerified": null,
+      "image": null,
+      "twoFactorEnabled": false,
+      "twoFactorSecret": null,
+      "twoFactorRecoveryCodes": null,
+      "failedLoginAttempts": 0,
+      "lockoutUntil": null,
+      "lastLoginAt": "2026-11-08T20:33:20.486Z",
+      "createdAt": "2026-11-08T20:33:11.981Z",
+      "updatedAt": "2026-11-08T20:33:53.143Z"
+    },
+    {
+      "id": "usr_1794170118416_zrzy2",
+      "email": "marketer_1794170113@example.com",
+      "passwordHash": "$2a$12$8/CwEGXW6UNMIB.mjTvzmOSKMBF2ktw9VnCKHfW1HkH9BbcwS/b3m",
+      "name": "Sarah Connor",
+      "role": "USER",
+      "status": "ACTIVE",
+      "emailVerified": null,
+      "image": null,
+      "twoFactorEnabled": false,
+      "twoFactorSecret": null,
+      "twoFactorRecoveryCodes": null,
+      "failedLoginAttempts": 0,
+      "lockoutUntil": null,
+      "lastLoginAt": "2026-11-08T20:35:26.949Z",
+      "createdAt": "2026-11-08T20:35:18.416Z",
+      "updatedAt": "2026-11-08T20:35:59.695Z"
+    },
+    {
+      "id": "usr_1794309882635_g4s87",
+      "email": "google.verified@socialhive.io",
+      "passwordHash": "",
+      "name": "Google Verified Marketer",
+      "role": "USER",
+      "status": "ACTIVE",
+      "emailVerified": "2026-11-10T11:24:42.635Z",
+      "image": null,
+      "twoFactorEnabled": false,
+      "twoFactorSecret": null,
+      "twoFactorRecoveryCodes": null,
+      "failedLoginAttempts": 0,
+      "lockoutUntil": null,
+      "lastLoginAt": null,
+      "createdAt": "2026-11-10T11:24:42.635Z",
+      "updatedAt": "2026-11-10T11:24:42.635Z"
+    }
+  ],
+  "profiles": [
+    {
+      "id": "prof_01",
+      "userId": "usr_superadmin_01",
+      "bio": "Platform Administrator & Chief Security Officer",
+      "company": "QuickPostly Global Operations",
+      "phone": "+1 (555) 888-9999",
+      "country": "United States",
+      "timezone": "America/New_York",
+      "language": "en",
+      "currency": "USD",
+      "avatarUrl": null,
+      "socialLinks": {
+        "twitter": "https://twitter.com/socialhive"
+      },
+      "onboardingCompleted": true,
+      "createdAt": "2026-11-08T20:28:48.450Z",
+      "updatedAt": "2026-11-10T12:34:36.722Z"
+    },
+    {
+      "id": "prof_02",
+      "userId": "usr_support_02",
+      "bio": "Customer Success & Tier 2 Technical Support",
+      "company": "SocialHive Support",
+      "phone": "+1 (555) 018-7291",
+      "country": "United Kingdom",
+      "timezone": "Europe/London",
+      "language": "en",
+      "currency": "GBP",
+      "avatarUrl": null,
+      "socialLinks": null,
+      "onboardingCompleted": true,
+      "createdAt": "2026-11-08T20:28:48.450Z",
+      "updatedAt": "2026-11-08T20:28:48.450Z"
+    },
+    {
+      "id": "prof_03",
+      "userId": "usr_client_03",
+      "bio": "Social media strategist and digital creator",
+      "company": "Growth Viral Agency",
+      "phone": "+1 (555) 444-2211",
+      "country": "Canada",
+      "timezone": "America/Toronto",
+      "language": "en",
+      "currency": "USD",
+      "avatarUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80",
+      "socialLinks": null,
+      "onboardingCompleted": true,
+      "createdAt": "2026-11-08T20:28:48.450Z",
+      "updatedAt": "2026-11-10T12:35:02.006Z"
+    },
+    {
+      "id": "prof_1794169750128",
+      "userId": "usr_1794169746051_uiwyc",
+      "bio": null,
+      "company": null,
+      "phone": null,
+      "country": null,
+      "timezone": "UTC",
+      "language": "en",
+      "currency": "USD",
+      "avatarUrl": null,
+      "socialLinks": null,
+      "onboardingCompleted": false,
+      "createdAt": "2026-11-08T20:29:06.051Z",
+      "updatedAt": "2026-11-08T20:29:06.051Z"
+    },
+    {
+      "id": "prof_1794169996076",
+      "userId": "usr_1794169991981_zjhy2",
+      "bio": null,
+      "company": null,
+      "phone": null,
+      "country": null,
+      "timezone": "UTC",
+      "language": "en",
+      "currency": "USD",
+      "avatarUrl": null,
+      "socialLinks": null,
+      "onboardingCompleted": false,
+      "createdAt": "2026-11-08T20:33:11.981Z",
+      "updatedAt": "2026-11-08T20:33:11.981Z"
+    },
+    {
+      "id": "prof_1794170122493",
+      "userId": "usr_1794170118416_zrzy2",
+      "bio": null,
+      "company": null,
+      "phone": null,
+      "country": null,
+      "timezone": "UTC",
+      "language": "en",
+      "currency": "USD",
+      "avatarUrl": null,
+      "socialLinks": null,
+      "onboardingCompleted": false,
+      "createdAt": "2026-11-08T20:35:18.416Z",
+      "updatedAt": "2026-11-08T20:35:18.416Z"
+    },
+    {
+      "id": "prof_1794309886744",
+      "userId": "usr_1794309882635_g4s87",
+      "bio": null,
+      "company": null,
+      "phone": null,
+      "country": null,
+      "timezone": "UTC",
+      "language": "en",
+      "currency": "USD",
+      "avatarUrl": null,
+      "socialLinks": null,
+      "onboardingCompleted": false,
+      "createdAt": "2026-11-10T11:24:42.635Z",
+      "updatedAt": "2026-11-10T11:24:42.635Z"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "sess_1794169741265_spfxd",
+      "userId": "usr_client_03",
+      "token": "e8cb85e501def58a66a487f0fcd5a619d26a208538a1081f80a7ee3ed44bb233158420822e3c273a",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-15T20:29:01.265Z",
+      "lastActiveAt": "2026-11-08T20:29:01.265Z",
+      "createdAt": "2026-11-08T20:29:01.265Z"
+    },
+    {
+      "id": "sess_1794169766675_vdzuh",
+      "userId": "usr_1794169746051_uiwyc",
+      "token": "f4248e838c75be230ca7348543cdbea277f6b2feb0c5cd3acd3d324e9d20cb553968f30533eaded6",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-15T20:29:26.674Z",
+      "lastActiveAt": "2026-11-08T20:29:26.674Z",
+      "createdAt": "2026-11-08T20:29:26.674Z"
+    },
+    {
+      "id": "sess_1794169818885_03n8o",
+      "userId": "usr_superadmin_01",
+      "token": "220dc82930b404a779cf76ca3af0ca1bb47085621e56c40fedacac35019ac70742e28897b4093a15",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-15T20:30:18.884Z",
+      "lastActiveAt": "2026-11-08T20:30:18.885Z",
+      "createdAt": "2026-11-08T20:30:18.885Z"
+    },
+    {
+      "id": "sess_1794169958267_83iiq",
+      "userId": "usr_superadmin_01",
+      "token": "471a903865010652fca588b9bb3a7341f69d9d3f8c7c008f5f403bc3edc950f7351ff2f633302a87",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-15T20:32:38.267Z",
+      "lastActiveAt": "2026-11-08T20:32:38.267Z",
+      "createdAt": "2026-11-08T20:32:38.267Z"
+    },
+    {
+      "id": "sess_1794170004546_p4igf",
+      "userId": "usr_1794169991981_zjhy2",
+      "token": "f93678727e5000d884c9f5c0d7451cdd5d1a9d1355b6dae718c9681bb467eec17ddf6e3181fe63bf",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": true,
+      "expiresAt": "2026-11-15T20:33:24.546Z",
+      "lastActiveAt": "2026-11-08T20:33:24.546Z",
+      "createdAt": "2026-11-08T20:33:24.546Z"
+    },
+    {
+      "id": "sess_1794170080958_zd945",
+      "userId": "usr_superadmin_01",
+      "token": "b9cf423b4109e6d41efbcbee0f3fa654e657d80b450fa74052ce1cb6a9fa2ec92dccf9f516e06f27",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-15T20:34:40.958Z",
+      "lastActiveAt": "2026-11-08T20:34:40.958Z",
+      "createdAt": "2026-11-08T20:34:40.958Z"
+    },
+    {
+      "id": "sess_1794170131022_g237n",
+      "userId": "usr_1794170118416_zrzy2",
+      "token": "0380773657554e619b6e2fa53b95d7ad92ac2ea6b9ef4a2c54d896efd2a0c238f280471902f6e8b1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": true,
+      "expiresAt": "2026-11-15T20:35:31.022Z",
+      "lastActiveAt": "2026-11-08T20:35:31.022Z",
+      "createdAt": "2026-11-08T20:35:31.022Z"
+    },
+    {
+      "id": "sess_1794171233834_tm7sg",
+      "userId": "usr_superadmin_01",
+      "token": "65a7db7b830ec1302d48a978287009b7206ddd671a3b637d1d1d636b1ae8813f8ad9cb2cd64f21b1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-15T20:53:53.833Z",
+      "lastActiveAt": "2026-11-08T20:53:53.834Z",
+      "createdAt": "2026-11-08T20:53:53.834Z"
+    },
+    {
+      "id": "sess_1794211318722_akng5",
+      "userId": "usr_superadmin_01",
+      "token": "398fe28964a17d805cc53fa7b7a562d01e9866685ad1f1df5a01143c35ba3a6e23f2f2719da3c8fd",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-16T08:01:58.722Z",
+      "lastActiveAt": "2026-11-09T08:01:58.722Z",
+      "createdAt": "2026-11-09T08:01:58.722Z"
+    },
+    {
+      "id": "sess_1794211366357_1tbjk",
+      "userId": "usr_superadmin_01",
+      "token": "01e37f5275d504d2e17fc0e1a58ac28510319d867cd1b0478f98f3a9545257350887bfc1b6aad99b",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-16T08:02:46.357Z",
+      "lastActiveAt": "2026-11-09T08:02:46.357Z",
+      "createdAt": "2026-11-09T08:02:46.357Z"
+    },
+    {
+      "id": "sess_1794212837391_zfrae",
+      "userId": "usr_superadmin_01",
+      "token": "a339304015f6d45fbf0553b3bd7400be03db46e173a9e7482624c8c8595bbdcec89079177ab509bd",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-16T08:27:17.390Z",
+      "lastActiveAt": "2026-11-09T08:27:17.391Z",
+      "createdAt": "2026-11-09T08:27:17.391Z"
+    },
+    {
+      "id": "sess_1794213669227_88eyl",
+      "userId": "usr_superadmin_01",
+      "token": "848a9adbfdd9a5ab38065985a709c6660bd47b55b532f2a51ff6c88c96c0cd29f2eef0296027cd38",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-16T08:41:09.226Z",
+      "lastActiveAt": "2026-11-09T08:41:09.227Z",
+      "createdAt": "2026-11-09T08:41:09.227Z"
+    },
+    {
+      "id": "sess_1794213823205_081bj",
+      "userId": "usr_superadmin_01",
+      "token": "1d675e1fd420b29448b1bedb8eefbe69d1a5b87821c3a411542c33276e115403cdb9de17338bf77f",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-16T08:43:43.204Z",
+      "lastActiveAt": "2026-11-09T08:43:43.205Z",
+      "createdAt": "2026-11-09T08:43:43.205Z"
+    },
+    {
+      "id": "sess_1794213931261_cei2a",
+      "userId": "usr_superadmin_01",
+      "token": "8f0f6b93bff68dc38cb3a869f7a64dbafa142f9e68730c0cbf9b1c416a0ad35126a2570728264ca3",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-16T08:45:31.261Z",
+      "lastActiveAt": "2026-11-09T08:45:31.261Z",
+      "createdAt": "2026-11-09T08:45:31.261Z"
+    },
+    {
+      "id": "sess_1794214847293_aex1n",
+      "userId": "usr_superadmin_01",
+      "token": "282686d185c4c2c63004bd336e0960f3fa75c5321fd1802f180a8e0de6c2bdfc810c132594e64777",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-16T09:00:47.293Z",
+      "lastActiveAt": "2026-11-09T09:00:47.293Z",
+      "createdAt": "2026-11-09T09:00:47.293Z"
+    },
+    {
+      "id": "sess_1794214903241_vvdwt",
+      "userId": "usr_superadmin_01",
+      "token": "8d82e7a79fb8d1460c39e37aed8d2146f53448942d717510357eb983e96f6123752205e5d020fd46",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-16T09:01:43.240Z",
+      "lastActiveAt": "2026-11-09T09:01:43.241Z",
+      "createdAt": "2026-11-09T09:01:43.241Z"
+    },
+    {
+      "id": "sess_1794219052128_5q0i6",
+      "userId": "usr_superadmin_01",
+      "token": "8fe69ce8a07e3a7411234a2c5c916c238c2b15740cf569a4388e8a67fcf4c2fb080dacbaa0ac76cc",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-16T10:10:52.128Z",
+      "lastActiveAt": "2026-11-09T10:10:52.128Z",
+      "createdAt": "2026-11-09T10:10:52.128Z"
+    },
+    {
+      "id": "sess_1794219187412_42uyz",
+      "userId": "usr_client_03",
+      "token": "c8722b1d6823a98b421acef390e7292fbc85e5ad8d874ae1730dc94b858b96a3d7c691323245edf7",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-16T10:13:07.412Z",
+      "lastActiveAt": "2026-11-09T10:13:07.412Z",
+      "createdAt": "2026-11-09T10:13:07.412Z"
+    },
+    {
+      "id": "sess_1794231074987_9xwdr",
+      "userId": "usr_superadmin_01",
+      "token": "9e872ba0953b8a51e9b55ae5307a14d58a8b28cbfeacdbc790ea0ca64787dc19102c97c89bcaca16",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-16T13:31:14.987Z",
+      "lastActiveAt": "2026-11-09T13:31:14.987Z",
+      "createdAt": "2026-11-09T13:31:14.987Z"
+    },
+    {
+      "id": "sess_1794231095999_et2a0",
+      "userId": "usr_superadmin_01",
+      "token": "47846840a7754429507ac82a796e87dd4dfe1c673d15f15930ddafaffb5239e8cf1ed32e43b8e580",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-16T13:31:35.999Z",
+      "lastActiveAt": "2026-11-09T13:31:35.999Z",
+      "createdAt": "2026-11-09T13:31:35.999Z"
+    },
+    {
+      "id": "sess_1794309751070_xoguk",
+      "userId": "usr_superadmin_01",
+      "token": "73b187030cd186bdbf8ada1f83108ae96bd4683a940b31aba06c7bf3bdff71e54c5bdc422b3621b2",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-17T11:22:31.070Z",
+      "lastActiveAt": "2026-11-10T11:22:31.070Z",
+      "createdAt": "2026-11-10T11:22:31.070Z"
+    },
+    {
+      "id": "sess_1794309886746_odkqz",
+      "userId": "usr_1794309882635_g4s87",
+      "token": "6df02ed9b416965b9f3984d57bc138d8e72b038e84e53e0fcf02594961d7f8585124b1dfabe805a4",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.29.0 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36",
+      "ipAddress": "::1",
+      "deviceInfo": "Google OAuth Session",
+      "isRevoked": false,
+      "expiresAt": "2026-11-17T11:24:46.745Z",
+      "lastActiveAt": "2026-11-10T11:24:46.746Z",
+      "createdAt": "2026-11-10T11:24:46.746Z"
+    },
+    {
+      "id": "sess_1794310711333_hf3y8",
+      "userId": "usr_superadmin_01",
+      "token": "a52fe2f5bc1d48b6bb19211831ef230b121749be90c5a0c648a3c93a7275c67f6fe0290206114d38",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-17T11:38:31.333Z",
+      "lastActiveAt": "2026-11-10T11:38:31.333Z",
+      "createdAt": "2026-11-10T11:38:31.333Z"
+    },
+    {
+      "id": "sess_1794311130668_1bljl",
+      "userId": "usr_superadmin_01",
+      "token": "dd4c21a9ddbab1b795a491052348ee34e66cb786d27365c1806ab2150aec4a697bba6f7b922c0eff",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.29.0 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-12-10T11:45:30.668Z",
+      "lastActiveAt": "2026-11-10T11:45:30.668Z",
+      "createdAt": "2026-11-10T11:45:30.668Z"
+    },
+    {
+      "id": "sess_1794311754197_4hein",
+      "userId": "usr_superadmin_01",
+      "token": "0945997e16012277bb4e5b92a967e89e03251d57ec49d9842fb3c3b20b841b9077322ea13444fdda",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.29.0 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-17T11:55:54.196Z",
+      "lastActiveAt": "2026-11-10T11:55:54.197Z",
+      "createdAt": "2026-11-10T11:55:54.197Z"
+    },
+    {
+      "id": "sess_1794311794731_kkcoj",
+      "userId": "usr_superadmin_01",
+      "token": "4344bf62d7e3f03ef3fed392f65e5b6ccb0ed8a98e30415776e202f09ebe46b3f119986d556fa39d",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-17T11:56:34.731Z",
+      "lastActiveAt": "2026-11-10T11:56:34.731Z",
+      "createdAt": "2026-11-10T11:56:34.731Z"
+    },
+    {
+      "id": "sess_1794312736065_anhir",
+      "userId": "usr_superadmin_01",
+      "token": "228ae6588f6b927aff09759604cc5fe28f5e423da710f24f3ad7802b0954058514a40066dd545bc4",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-17T12:12:16.065Z",
+      "lastActiveAt": "2026-11-10T12:12:16.065Z",
+      "createdAt": "2026-11-10T12:12:16.065Z"
+    },
+    {
+      "id": "sess_1794313644613_0qkvg",
+      "userId": "usr_superadmin_01",
+      "token": "99eb2ba9f424062904a2e9d31732c1bc455dea267afefb7ec3f326dc896fd4ffae47de403cac1c23",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-17T12:27:24.612Z",
+      "lastActiveAt": "2026-11-10T12:27:24.613Z",
+      "createdAt": "2026-11-10T12:27:24.613Z"
+    },
+    {
+      "id": "sess_1794314059727_k9m2b",
+      "userId": "usr_superadmin_01",
+      "token": "787805eaea220db6e35f8b80ef97fb58f0b584c812c65e033ac9c7fab43823b9062ae992f8ae47a1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-17T12:34:19.727Z",
+      "lastActiveAt": "2026-11-10T12:34:19.727Z",
+      "createdAt": "2026-11-10T12:34:19.727Z"
+    },
+    {
+      "id": "sess_1794314085661_alq1k",
+      "userId": "usr_client_03",
+      "token": "8df227f011337160fad61ff2a630c6161a7c8b7b593fcc8a448922d4e0e190ce3992bcbb8f3a1569",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "ipAddress": "::1",
+      "deviceInfo": "Desktop Browser",
+      "isRevoked": false,
+      "expiresAt": "2026-11-17T12:34:45.661Z",
+      "lastActiveAt": "2026-11-10T12:34:45.661Z",
+      "createdAt": "2026-11-10T12:34:45.661Z"
+    }
+  ],
+  "verificationTokens": [
+    {
+      "id": "tok_1794169996078",
+      "identifier": "marketer_1794169987@example.com",
+      "token": "690ef88489dc7641e50ebe7ae8e19a7e4c86f3fec5be8f8a9a636269b8d39a78",
+      "type": "EMAIL_VERIFICATION",
+      "expiresAt": "2026-11-09T20:33:16.078Z",
+      "createdAt": "2026-11-08T20:33:16.078Z",
+      "userId": "usr_1794169991981_zjhy2"
+    },
+    {
+      "id": "tok_1794170122494",
+      "identifier": "marketer_1794170113@example.com",
+      "token": "cf4b4f585956ab8dd699a119b6fe051016d851079c3aec5efc99cb113065ce96",
+      "type": "EMAIL_VERIFICATION",
+      "expiresAt": "2026-11-09T20:35:22.494Z",
+      "createdAt": "2026-11-08T20:35:22.494Z",
+      "userId": "usr_1794170118416_zrzy2"
+    }
+  ],
+  "activityLogs": [
+    {
+      "id": "act_1794314102007_wqvk",
+      "userId": "usr_client_03",
+      "workspaceId": null,
+      "action": "PROFILE_UPDATED",
+      "entityType": "UserProfile",
+      "entityId": "usr_client_03",
+      "metadata": null,
+      "ipAddress": null,
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-10T12:35:02.007Z"
+    },
+    {
+      "id": "act_1794314085663_6n0e",
+      "userId": "usr_client_03",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_client_03",
+      "metadata": {
+        "role": "USER",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-10T12:34:45.663Z"
+    },
+    {
+      "id": "act_1794314076723_yrkw",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "PROFILE_UPDATED",
+      "entityType": "UserProfile",
+      "entityId": "usr_superadmin_01",
+      "metadata": null,
+      "ipAddress": null,
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-10T12:34:36.723Z"
+    },
+    {
+      "id": "act_1794314059731_slhq",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "role": "SUPER_ADMIN",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-10T12:34:19.731Z"
+    },
+    {
+      "id": "act_1794313692197_1mr4",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "ADMIN_STAFF_DELETED",
+      "entityType": "User",
+      "entityId": "usr_1794313657977_5bgyx",
+      "metadata": {
+        "deletedStaffId": "usr_1794313657977_5bgyx",
+        "deletedStaffEmail": "staff_727990394@quickpostly.com",
+        "deletedStaffRole": "ADMIN"
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-10T12:28:12.197Z"
+    },
+    {
+      "id": "act_1794313675692_n32f",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "ADMIN_STAFF_UPDATED",
+      "entityType": "User",
+      "entityId": "usr_1794313657977_5bgyx",
+      "metadata": {
+        "updatedStaffId": "usr_1794313657977_5bgyx",
+        "fieldsChanged": [
+          "name",
+          "role",
+          "department",
+          "status",
+          "password"
+        ]
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-10T12:27:55.692Z"
+    },
+    {
+      "id": "act_1794313662072_5ztm",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "ADMIN_STAFF_CREATED",
+      "entityType": "User",
+      "entityId": "usr_1794313657977_5bgyx",
+      "metadata": {
+        "createdStaffId": "usr_1794313657977_5bgyx",
+        "createdStaffEmail": "staff_727990394@quickpostly.com",
+        "assignedRole": "ADMIN",
+        "department": "Platform Infrastructure"
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-10T12:27:42.072Z"
+    },
+    {
+      "id": "act_1794313644616_qiuo",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "role": "SUPER_ADMIN",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-10T12:27:24.616Z"
+    },
+    {
+      "id": "act_1794312775507_5puh",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "ADMIN_USER_DELETED",
+      "entityType": "User",
+      "entityId": "usr_1794312745193_9yig7",
+      "metadata": {
+        "deletedEmail": "testuser_1628806332@quickpostly.com",
+        "deletedName": "Updated QA Tester"
+      },
+      "ipAddress": null,
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-10T12:12:55.507Z"
+    },
+    {
+      "id": "act_1794312763191_lxpt",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "ADMIN_USER_UPDATED",
+      "entityType": "User",
+      "entityId": "usr_1794312745193_9yig7",
+      "metadata": {
+        "targetEmail": "testuser_1628806332@quickpostly.com",
+        "updates": {
+          "name": "Updated QA Tester",
+          "email": "testuser_1628806332@quickpostly.com",
+          "password": "NewResetPassword123!",
+          "role": "USER",
+          "status": "ACTIVE",
+          "phone": "+1 (555) 999-8888"
+        }
+      },
+      "ipAddress": null,
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-10T12:12:43.191Z"
+    },
+    {
+      "id": "act_1794312749269_9ns2",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "ADMIN_USER_CREATED",
+      "entityType": "User",
+      "entityId": "usr_1794312745193_9yig7",
+      "metadata": {
+        "createdEmail": "testuser_1628806332@quickpostly.com",
+        "role": "USER"
+      },
+      "ipAddress": null,
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-10T12:12:29.269Z"
+    },
+    {
+      "id": "act_1794312736068_4q70",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "role": "SUPER_ADMIN",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-10T12:12:16.068Z"
+    },
+    {
+      "id": "act_1794311794735_a2qg",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "role": "SUPER_ADMIN",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-10T11:56:34.735Z"
+    },
+    {
+      "id": "act_1794311754200_3m2s",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "role": "SUPER_ADMIN",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.29.0 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36",
+      "createdAt": "2026-11-10T11:55:54.200Z"
+    },
+    {
+      "id": "act_1794311130671_v53h",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "role": "SUPER_ADMIN",
+        "rememberMe": true
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.29.0 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36",
+      "createdAt": "2026-11-10T11:45:30.671Z"
+    },
+    {
+      "id": "act_1794310711336_dmvs",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "role": "SUPER_ADMIN",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "createdAt": "2026-11-10T11:38:31.336Z"
+    },
+    {
+      "id": "act_1794310694740_52ik",
+      "userId": "usr_client_03",
+      "workspaceId": null,
+      "action": "USER_LOGOUT",
+      "entityType": "User",
+      "entityId": "usr_client_03",
+      "metadata": null,
+      "ipAddress": null,
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "createdAt": "2026-11-10T11:38:14.740Z"
+    },
+    {
+      "id": "act_1794310627951_kdfl",
+      "userId": "usr_1794309882635_g4s87",
+      "workspaceId": null,
+      "action": "USER_LOGOUT",
+      "entityType": "User",
+      "entityId": "usr_1794309882635_g4s87",
+      "metadata": null,
+      "ipAddress": null,
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.29.0 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36",
+      "createdAt": "2026-11-10T11:37:07.951Z"
+    },
+    {
+      "id": "act_1794309886748_yynq",
+      "userId": "usr_1794309882635_g4s87",
+      "workspaceId": null,
+      "action": "OAUTH_LOGIN_GOOGLE",
+      "entityType": "User",
+      "entityId": "usr_1794309882635_g4s87",
+      "metadata": null,
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.29.0 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36",
+      "createdAt": "2026-11-10T11:24:46.748Z"
+    },
+    {
+      "id": "act_1794309751084_k930",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "role": "SUPER_ADMIN",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-10T11:22:31.084Z"
+    },
+    {
+      "id": "act_1794231096001_345s",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "role": "SUPER_ADMIN",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-09T13:31:36.001Z"
+    },
+    {
+      "id": "act_1794231075032_ilvz",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "role": "SUPER_ADMIN",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-09T13:31:15.032Z"
+    },
+    {
+      "id": "act_1794219187415_kuyb",
+      "userId": "usr_client_03",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_client_03",
+      "metadata": {
+        "role": "USER",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "createdAt": "2026-11-09T10:13:07.415Z"
+    },
+    {
+      "id": "act_1794219172835_6trh",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGOUT",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": null,
+      "ipAddress": null,
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "createdAt": "2026-11-09T10:12:52.835Z"
+    },
+    {
+      "id": "act_1794219052133_fts6",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "role": "SUPER_ADMIN",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "createdAt": "2026-11-09T10:10:52.133Z"
+    },
+    {
+      "id": "act_1794214903243_ze4u",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "role": "SUPER_ADMIN",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-09T09:01:43.243Z"
+    },
+    {
+      "id": "act_1794214847299_vm64",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "role": "SUPER_ADMIN",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-09T09:00:47.299Z"
+    },
+    {
+      "id": "act_1794213931263_j2rg",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "role": "SUPER_ADMIN",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-09T08:45:31.263Z"
+    },
+    {
+      "id": "act_1794213823220_4qqg",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "role": "SUPER_ADMIN",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-09T08:43:43.220Z"
+    },
+    {
+      "id": "act_1794213669231_38vj",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "role": "SUPER_ADMIN",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-09T08:41:09.231Z"
+    },
+    {
+      "id": "act_1794213546281_z762",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "FAILED_LOGIN_ATTEMPT",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "ip": "::1",
+        "remainingAttempts": 4
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-09T08:39:06.281Z"
+    },
+    {
+      "id": "act_1794212837394_70hq",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "role": "SUPER_ADMIN",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-09T08:27:17.394Z"
+    },
+    {
+      "id": "act_1794211366359_r58z",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "role": "SUPER_ADMIN",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-09T08:02:46.359Z"
+    },
+    {
+      "id": "act_1794211318768_u9qh",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "role": "SUPER_ADMIN",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-09T08:01:58.768Z"
+    },
+    {
+      "id": "act_1794211268021_ueca",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "FAILED_LOGIN_ATTEMPT",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "ip": "::1",
+        "remainingAttempts": 4
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-09T08:01:08.021Z"
+    },
+    {
+      "id": "act_1794171233838_ylr8",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "role": "SUPER_ADMIN",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-08T20:53:53.838Z"
+    },
+    {
+      "id": "act_1794170167850_vxd4",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGOUT",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": null,
+      "ipAddress": null,
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-08T20:36:07.850Z"
+    },
+    {
+      "id": "act_1794170163771_th0r",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "ADMIN_USER_ACTIVATED",
+      "entityType": "User",
+      "entityId": "usr_1794170118416_zrzy2",
+      "metadata": {
+        "targetEmail": "marketer_1794170113@example.com",
+        "newStatus": "ACTIVE"
+      },
+      "ipAddress": null,
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-08T20:36:03.771Z"
+    },
+    {
+      "id": "act_1794170147483_vr4s",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "ADMIN_USER_SUSPENDED",
+      "entityType": "User",
+      "entityId": "usr_1794170118416_zrzy2",
+      "metadata": {
+        "targetEmail": "marketer_1794170113@example.com",
+        "newStatus": "SUSPENDED"
+      },
+      "ipAddress": null,
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-08T20:35:47.484Z"
+    },
+    {
+      "id": "act_1794170131024_syet",
+      "userId": "usr_1794170118416_zrzy2",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_1794170118416_zrzy2",
+      "metadata": {
+        "role": "USER",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-08T20:35:31.024Z"
+    },
+    {
+      "id": "act_1794170122495_lorc",
+      "userId": "usr_1794170118416_zrzy2",
+      "workspaceId": null,
+      "action": "USER_REGISTERED",
+      "entityType": "User",
+      "entityId": "usr_1794170118416_zrzy2",
+      "metadata": {
+        "email": "marketer_1794170113@example.com",
+        "workspaceName": "Cyberdyne Marketing"
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-08T20:35:22.495Z"
+    },
+    {
+      "id": "act_1794170101575_muk7",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "PROFILE_UPDATED",
+      "entityType": "UserProfile",
+      "entityId": "usr_superadmin_01",
+      "metadata": null,
+      "ipAddress": null,
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-08T20:35:01.575Z"
+    },
+    {
+      "id": "act_1794170080960_ioic",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "role": "SUPER_ADMIN",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-08T20:34:40.960Z"
+    },
+    {
+      "id": "act_1794170041316_fpjx",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGOUT",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": null,
+      "ipAddress": null,
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-08T20:34:01.316Z"
+    },
+    {
+      "id": "act_1794170037189_hegd",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "ADMIN_USER_ACTIVATED",
+      "entityType": "User",
+      "entityId": "usr_1794169991981_zjhy2",
+      "metadata": {
+        "targetEmail": "marketer_1794169987@example.com",
+        "newStatus": "ACTIVE"
+      },
+      "ipAddress": null,
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-08T20:33:57.189Z"
+    },
+    {
+      "id": "act_1794170020965_dh49",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "ADMIN_USER_SUSPENDED",
+      "entityType": "User",
+      "entityId": "usr_1794169991981_zjhy2",
+      "metadata": {
+        "targetEmail": "marketer_1794169987@example.com",
+        "newStatus": "SUSPENDED"
+      },
+      "ipAddress": null,
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-08T20:33:40.965Z"
+    },
+    {
+      "id": "act_1794170004547_xcbs",
+      "userId": "usr_1794169991981_zjhy2",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_1794169991981_zjhy2",
+      "metadata": {
+        "role": "USER",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-08T20:33:24.547Z"
+    },
+    {
+      "id": "act_1794169996079_2yyw",
+      "userId": "usr_1794169991981_zjhy2",
+      "workspaceId": null,
+      "action": "USER_REGISTERED",
+      "entityType": "User",
+      "entityId": "usr_1794169991981_zjhy2",
+      "metadata": {
+        "email": "marketer_1794169987@example.com",
+        "workspaceName": "Cyberdyne Marketing"
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-08T20:33:16.079Z"
+    },
+    {
+      "id": "act_1794169958271_7oh8",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "role": "SUPER_ADMIN",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-08T20:32:38.271Z"
+    },
+    {
+      "id": "act_1794169818887_wuod",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_superadmin_01",
+      "metadata": {
+        "role": "SUPER_ADMIN",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-08T20:30:18.887Z"
+    },
+    {
+      "id": "act_1794169766676_4mi9",
+      "userId": "usr_1794169746051_uiwyc",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_1794169746051_uiwyc",
+      "metadata": {
+        "role": "USER",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-08T20:29:26.676Z"
+    },
+    {
+      "id": "act_1794169758293_ciee",
+      "userId": "usr_1794169746051_uiwyc",
+      "workspaceId": null,
+      "action": "EMAIL_VERIFIED",
+      "entityType": "User",
+      "entityId": "usr_1794169746051_uiwyc",
+      "metadata": null,
+      "ipAddress": null,
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-08T20:29:18.293Z"
+    },
+    {
+      "id": "act_1794169750130_kn8b",
+      "userId": "usr_1794169746051_uiwyc",
+      "workspaceId": null,
+      "action": "USER_REGISTERED",
+      "entityType": "User",
+      "entityId": "usr_1794169746051_uiwyc",
+      "metadata": {
+        "email": "marketer.1794169741@example.com",
+        "workspaceName": "Growth Catalyst"
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-08T20:29:10.130Z"
+    },
+    {
+      "id": "act_1794169741268_y3d2",
+      "userId": "usr_client_03",
+      "workspaceId": null,
+      "action": "USER_LOGIN",
+      "entityType": "User",
+      "entityId": "usr_client_03",
+      "metadata": {
+        "role": "USER",
+        "rememberMe": false
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-08T20:29:01.268Z"
+    },
+    {
+      "id": "act_1794169732764_gbw0",
+      "userId": "usr_client_03",
+      "workspaceId": null,
+      "action": "FAILED_LOGIN_ATTEMPT",
+      "entityType": "User",
+      "entityId": "usr_client_03",
+      "metadata": {
+        "ip": "::1",
+        "remainingAttempts": 4
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.2161",
+      "createdAt": "2026-11-08T20:28:52.764Z"
+    },
+    {
+      "id": "act_01",
+      "userId": "usr_superadmin_01",
+      "workspaceId": null,
+      "action": "SYSTEM_INITIALIZED",
+      "entityType": "System",
+      "entityId": "socialhive_core",
+      "metadata": {
+        "version": "1.0.0",
+        "rbacConfigured": true
+      },
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Internal System Boot",
+      "createdAt": "2026-11-08T20:28:48.450Z"
+    }
+  ]
+}

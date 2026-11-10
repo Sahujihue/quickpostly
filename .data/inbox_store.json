@@ -1,0 +1,201 @@
+{
+  "conversations": [
+    {
+      "id": "conv_ig_lead",
+      "workspaceId": "ws_peak_scale",
+      "socialAccountId": "acc_instagram_peak",
+      "platform": "instagram",
+      "type": "COMMENT",
+      "authorName": "Marcus Sterling",
+      "authorHandle": "@marcus.sterling",
+      "authorAvatarUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100",
+      "postTitle": "Consistency beats intensity in organic B2B audience building...",
+      "postPermalink": "https://www.instagram.com/p/C9wK81xM9pL/",
+      "snippet": "Do you have case studies for B2B cybersecurity startups? Looking to implement this for our 40-person team.",
+      "isUnread": false,
+      "isArchived": false,
+      "sentiment": "LEAD",
+      "assignedToUserId": "usr_sarah",
+      "assignedToName": "Sarah Miller",
+      "canReply": true,
+      "lastActivityAt": "2026-11-09T09:54:58.794Z",
+      "messages": [
+        {
+          "id": "msg_ig_1",
+          "conversationId": "conv_ig_lead",
+          "senderType": "CUSTOMER",
+          "senderName": "Marcus Sterling",
+          "content": "Do you have case studies for B2B cybersecurity startups? Looking to implement this for our 40-person team.",
+          "isInternalNote": false,
+          "createdAt": "2026-11-09T09:19:58.716Z"
+        },
+        {
+          "id": "msg_1794218098792_19c4",
+          "conversationId": "conv_ig_lead",
+          "senderType": "AGENT",
+          "senderName": "SocialHive Agent",
+          "content": "Hi Marcus! Yes, we have 3 case studies for B2B security startups. Sharing link shortly!",
+          "isInternalNote": false,
+          "createdAt": "2026-11-09T09:54:58.794Z"
+        }
+      ],
+      "createdAt": "2026-11-09T09:19:58.716Z",
+      "updatedAt": "2026-11-09T09:54:58.925Z"
+    },
+    {
+      "id": "conv_li_question",
+      "workspaceId": "ws_peak_scale",
+      "socialAccountId": "acc_linkedin_peak",
+      "platform": "linkedin",
+      "type": "COMMENT",
+      "authorName": "Elena Rostova",
+      "authorHandle": "elena-rostova-growth",
+      "authorAvatarUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100",
+      "postTitle": "Proud to announce our agency surpassed 100M organic impressions...",
+      "postPermalink": "https://www.linkedin.com/feed/update/urn:li:share:99182748102",
+      "snippet": "Incredible milestone! What was the single biggest contributor to that retention lift?",
+      "isUnread": true,
+      "isArchived": false,
+      "sentiment": "QUESTION",
+      "assignedToUserId": "usr_sarah",
+      "assignedToName": "Sarah Miller",
+      "canReply": true,
+      "lastActivityAt": "2026-11-09T07:54:58.716Z",
+      "messages": [
+        {
+          "id": "msg_li_1",
+          "conversationId": "conv_li_question",
+          "senderType": "CUSTOMER",
+          "senderName": "Elena Rostova",
+          "content": "Incredible milestone! What was the single biggest contributor to that retention lift?",
+          "isInternalNote": false,
+          "createdAt": "2026-11-09T07:54:58.716Z"
+        },
+        {
+          "id": "msg_sys_1794218098903",
+          "conversationId": "conv_li_question",
+          "senderType": "SYSTEM",
+          "senderName": "System",
+          "content": "Conversation assigned to Sarah Miller.",
+          "isInternalNote": true,
+          "createdAt": "2026-11-09T09:54:58.903Z"
+        }
+      ],
+      "createdAt": "2026-11-09T07:54:58.716Z",
+      "updatedAt": "2026-11-09T09:54:58.903Z"
+    },
+    {
+      "id": "conv_fb_expired_window",
+      "workspaceId": "ws_peak_scale",
+      "socialAccountId": "acc_facebook_peak",
+      "platform": "facebook",
+      "type": "DIRECT_MESSAGE",
+      "authorName": "David Kim",
+      "authorHandle": "@davidkim91",
+      "snippet": "Hi, I sent an email to support 3 days ago regarding workspace team seats upgrade.",
+      "isUnread": false,
+      "isArchived": false,
+      "sentiment": "QUESTION",
+      "canReply": false,
+      "replyRestrictionReason": "Meta Graph API 24-hour customer care messaging window has expired. The customer must send an inbound message to reopen direct communication.",
+      "lastActivityAt": "2026-11-09T09:54:58.890Z",
+      "messages": [
+        {
+          "id": "msg_fb_1",
+          "conversationId": "conv_fb_expired_window",
+          "senderType": "CUSTOMER",
+          "senderName": "David Kim",
+          "content": "Hi, I sent an email to support 3 days ago regarding workspace team seats upgrade.",
+          "isInternalNote": false,
+          "createdAt": "2026-11-07T09:54:58.716Z"
+        },
+        {
+          "id": "msg_fb_note_1",
+          "conversationId": "conv_fb_expired_window",
+          "senderType": "NOTE",
+          "senderName": "Sarah Miller",
+          "content": "Internal note: Reached out via Zendesk ticket #4810 to avoid Meta 24h restriction.",
+          "isInternalNote": true,
+          "createdAt": "2026-11-07T10:54:58.716Z"
+        },
+        {
+          "id": "msg_1794218098890_40a3",
+          "conversationId": "conv_fb_expired_window",
+          "senderType": "NOTE",
+          "senderName": "Sarah Miller",
+          "content": "Internal note: Customer contacted via email ticket #99182.",
+          "isInternalNote": true,
+          "createdAt": "2026-11-09T09:54:58.890Z"
+        }
+      ],
+      "createdAt": "2026-11-07T09:54:58.716Z",
+      "updatedAt": "2026-11-09T09:54:58.890Z"
+    },
+    {
+      "id": "conv_tw_mention",
+      "workspaceId": "ws_peak_scale",
+      "socialAccountId": "acc_twitter_peak",
+      "platform": "twitter",
+      "type": "MENTION",
+      "authorName": "Devon Hayes",
+      "authorHandle": "@devonhayes_tech",
+      "snippet": "Hey @socialhivehq does your scheduler support BullMQ queue monitoring with custom retry backoffs?",
+      "isUnread": false,
+      "isArchived": false,
+      "sentiment": "QUESTION",
+      "canReply": true,
+      "lastActivityAt": "2026-11-09T05:54:58.716Z",
+      "messages": [
+        {
+          "id": "msg_tw_1",
+          "conversationId": "conv_tw_mention",
+          "senderType": "CUSTOMER",
+          "senderName": "Devon Hayes",
+          "content": "Hey @socialhivehq does your scheduler support BullMQ queue monitoring with custom retry backoffs?",
+          "isInternalNote": false,
+          "createdAt": "2026-11-09T05:54:58.716Z"
+        },
+        {
+          "id": "msg_tw_2",
+          "conversationId": "conv_tw_mention",
+          "senderType": "AGENT",
+          "senderName": "SocialHive Support",
+          "content": "Yes! All delayed jobs include 3 automatic exponential retries and live telemetry reporting.",
+          "isInternalNote": false,
+          "createdAt": "2026-11-09T06:54:58.716Z"
+        }
+      ],
+      "createdAt": "2026-11-09T05:54:58.716Z",
+      "updatedAt": "2026-11-09T06:54:58.716Z"
+    },
+    {
+      "id": "conv_yt_positive",
+      "workspaceId": "ws_peak_scale",
+      "socialAccountId": "acc_youtube_peak",
+      "platform": "youtube",
+      "type": "COMMENT",
+      "authorName": "DevStudio Pro",
+      "authorHandle": "@devstudiopro",
+      "postTitle": "Automating Social Distribution Across 8 Channels",
+      "snippet": "Great walkthrough! Subscribed. Can we trigger custom webhooks when posts publish?",
+      "isUnread": true,
+      "isArchived": true,
+      "sentiment": "POSITIVE",
+      "canReply": true,
+      "lastActivityAt": "2026-11-09T01:54:58.716Z",
+      "messages": [
+        {
+          "id": "msg_yt_1",
+          "conversationId": "conv_yt_positive",
+          "senderType": "CUSTOMER",
+          "senderName": "DevStudio Pro",
+          "content": "Great walkthrough! Subscribed. Can we trigger custom webhooks when posts publish?",
+          "isInternalNote": false,
+          "createdAt": "2026-11-09T01:54:58.716Z"
+        }
+      ],
+      "createdAt": "2026-11-09T01:54:58.716Z",
+      "updatedAt": "2026-11-09T09:54:58.913Z"
+    }
+  ]
+}

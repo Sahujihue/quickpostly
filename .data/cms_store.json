@@ -1,0 +1,877 @@
+{
+  "header": {
+    "id": "active_header",
+    "logoText": "QuickPostly",
+    "logoLight": null,
+    "logoDark": null,
+    "logoMobile": null,
+    "isSticky": true,
+    "showThemeToggle": true,
+    "showCtaButton": true,
+    "ctaText": "Start Free Trial",
+    "ctaLink": "/signup",
+    "showSignInButton": true,
+    "signInText": "Sign In",
+    "customCss": null,
+    "updatedAt": "2026-11-09T07:59:53.073Z"
+  },
+  "footer": {
+    "id": "active_footer",
+    "brandDescription": "Commercial-grade social media management platform engineered for modern agencies, growing SMBs, and creators.",
+    "copyrightText": "© 2026 QuickPostly Inc. All rights reserved. Built for global growth.",
+    "columnsJson": [
+      {
+        "id": "col_product",
+        "title": "Product",
+        "links": [
+          {
+            "label": "Category Scheduling",
+            "url": "/#features"
+          },
+          {
+            "label": "AI Post Copilot",
+            "url": "/#ai-tools"
+          },
+          {
+            "label": "Evergreen Recycling",
+            "url": "/#features"
+          },
+          {
+            "label": "Social Inbox",
+            "url": "/#features"
+          },
+          {
+            "label": "Pricing Plans",
+            "url": "/pricing"
+          }
+        ]
+      },
+      {
+        "id": "col_resources",
+        "title": "Resources",
+        "links": [
+          {
+            "label": "Knowledge Base & Blog",
+            "url": "/blog"
+          },
+          {
+            "label": "Platform Status",
+            "url": "/api/health"
+          },
+          {
+            "label": "Supported Integrations",
+            "url": "/#integrations"
+          },
+          {
+            "label": "Agency White-Label",
+            "url": "/pricing"
+          }
+        ]
+      },
+      {
+        "id": "col_company",
+        "title": "Company",
+        "links": [
+          {
+            "label": "About QuickPostly",
+            "url": "/about"
+          },
+          {
+            "label": "Contact Sales",
+            "url": "/contact"
+          },
+          {
+            "label": "Privacy Policy",
+            "url": "/privacy"
+          },
+          {
+            "label": "Terms of Service",
+            "url": "/terms"
+          }
+        ]
+      }
+    ],
+    "socialLinksJson": {
+      "twitter": "https://twitter.com/QuickPostly",
+      "linkedin": "https://linkedin.com/company/quickpostly",
+      "facebook": "https://facebook.com/quickpostly",
+      "instagram": "https://instagram.com/quickpostly",
+      "youtube": "https://youtube.com/@quickpostly"
+    },
+    "contactInfoJson": {
+      "supportEmail": "support@quickpostly.com",
+      "salesEmail": "sales@quickpostly.com",
+      "phone": "+1 (800) 555-0199",
+      "address": "500 Howard Street, Suite 400, San Francisco, CA 94105"
+    },
+    "newsletterTitle": "Subscribe to Social Growth Weekly",
+    "newsletterSubtitle": "Join 24,000+ marketers receiving evergreen distribution tactics every Tuesday.",
+    "showNewsletter": true,
+    "showSocialLinks": true,
+    "updatedAt": "2026-11-09T07:59:53.073Z"
+  },
+  "navItems": [
+    {
+      "id": "nav_1",
+      "menuLocation": "HEADER",
+      "label": "Features",
+      "path": "/#features",
+      "openInNewTab": false,
+      "order": 1,
+      "parentId": null,
+      "isActive": true,
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "nav_2",
+      "menuLocation": "HEADER",
+      "label": "AI Studio",
+      "path": "/#ai-tools",
+      "openInNewTab": false,
+      "order": 2,
+      "parentId": null,
+      "isActive": true,
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "nav_3",
+      "menuLocation": "HEADER",
+      "label": "Integrations",
+      "path": "/#integrations",
+      "openInNewTab": false,
+      "order": 3,
+      "parentId": null,
+      "isActive": true,
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "nav_4",
+      "menuLocation": "HEADER",
+      "label": "Pricing",
+      "path": "/pricing",
+      "openInNewTab": false,
+      "order": 4,
+      "parentId": null,
+      "isActive": true,
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "nav_5",
+      "menuLocation": "HEADER",
+      "label": "Blog",
+      "path": "/blog",
+      "openInNewTab": false,
+      "order": 5,
+      "parentId": null,
+      "isActive": true,
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "nav_6",
+      "menuLocation": "HEADER",
+      "label": "About",
+      "path": "/about",
+      "openInNewTab": false,
+      "order": 6,
+      "parentId": null,
+      "isActive": true,
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    }
+  ],
+  "pages": [
+    {
+      "id": "page_home",
+      "slug": "home",
+      "title": "Home - Intelligent Social Media Automation",
+      "metaTitle": "QuickPostly - AI-Powered Social Media Management SaaS",
+      "metaDescription": "Put your social media on intelligent autopilot with category-based smart queuing and multi-network AI copilot.",
+      "ogImage": "/images/og-home.png",
+      "canonicalUrl": "https://quickpostly.com",
+      "status": "PUBLISHED",
+      "isSystemPage": true,
+      "contentJson": {
+        "hero": {
+          "description": "Organize posts into strategic content categories and schedule faster across networks.",
+          "badgeText": "AI-Powered Social Media Management SaaS",
+          "highlightedPhrase": "intelligent autopilot",
+          "trustPoints": "No credit card required 14-day full trial Cancel anytime",
+          "headlineSuffix": "",
+          "secondaryCtaLink": "/dashboard",
+          "primaryCtaText": "Start Free 14-Day Trial",
+          "headlinePrefix": "Put your social media on ",
+          "secondaryCtaText": "Explore App Dashboard",
+          "primaryCtaLink": "/signup"
+        }
+      },
+      "customCss": null,
+      "customJs": null,
+      "publishedAt": "2026-11-09T07:59:53.073Z",
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-10T12:14:04.063Z"
+    },
+    {
+      "id": "page_about",
+      "slug": "about",
+      "title": "About QuickPostly",
+      "metaTitle": "About Us | QuickPostly SaaS",
+      "metaDescription": "Learn about QuickPostly mission to help creators and businesses master social publishing with category-based automation.",
+      "ogImage": null,
+      "canonicalUrl": "https://quickpostly.com/about",
+      "status": "PUBLISHED",
+      "isSystemPage": true,
+      "contentJson": {
+        "bodyHtml": "<h2>Built to eliminate social media chaos for modern marketing teams</h2>\n<p>QuickPostly was engineered to transform how agencies, brands, and solo entrepreneurs publish, engage, and grow across global social networks.</p>\n\n<h2>The Problem with Ordinary Social Schedulers</h2>\n<p>Traditional social schedulers force you into a daily hamster wheel: write a post, pick a time slot, repeat tomorrow. The result? Inconsistent content varieties, burnt-out social teams, and valuable evergreen insights that disappear after 24 hours.</p>\n\n<h2>The Category-Based Solution</h2>\n<p>QuickPostly changes the paradigm with <strong>Category-Based Scheduling</strong> and <strong>Evergreen Content Automation</strong>. You establish intentional content buckets (e.g., Thought Leadership, Industry News, Product Highlights, Customer Stories) and link them to dedicated publishing slots.</p>"
+      },
+      "customCss": null,
+      "customJs": null,
+      "publishedAt": "2026-11-09T07:59:53.073Z",
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "page_pricing",
+      "slug": "pricing",
+      "title": "Pricing & Plans",
+      "metaTitle": "Transparent Pricing for Growth | QuickPostly",
+      "metaDescription": "Explore flexible pricing plans for solo creators, fast-growing brands, and multi-client marketing agencies.",
+      "ogImage": null,
+      "canonicalUrl": "https://quickpostly.com/pricing",
+      "status": "PUBLISHED",
+      "isSystemPage": true,
+      "contentJson": null,
+      "customCss": null,
+      "customJs": null,
+      "publishedAt": "2026-11-09T07:59:53.073Z",
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "page_privacy",
+      "slug": "privacy",
+      "title": "Privacy Policy",
+      "metaTitle": "Privacy Policy | QuickPostly",
+      "metaDescription": "Learn how QuickPostly collects, protects, and handles your data and social media tokens.",
+      "ogImage": null,
+      "canonicalUrl": "https://quickpostly.com/privacy",
+      "status": "PUBLISHED",
+      "isSystemPage": true,
+      "contentJson": {
+        "bodyHtml": "<h2>1. Introduction & Scope</h2>\n<p>QuickPostly Technologies Inc. (\"QuickPostly\", \"we\", \"us\", or \"our\") is committed to protecting your privacy and ensuring transparency regarding how we handle your personal data. This Privacy Policy governs the collection, use, and disclosure of information obtained when you access or use our websites, APIs, and SaaS platform.</p>\n\n<h2>2. Information We Collect</h2>\n<ul>\n  <li><strong>Account Information:</strong> Name, email address, password hash, company name, and billing details.</li>\n  <li><strong>Social Media Profile Data & Tokens:</strong> Secure OAuth access tokens for X, LinkedIn, Facebook, Instagram, Pinterest, and TikTok.</li>\n  <li><strong>User Content & Media:</strong> Post copy, hashtags, images, and videos uploaded to your queues.</li>\n  <li><strong>Telemetry & Usage Data:</strong> IP addresses, browser types, and diagnostics for platform reliability.</li>\n</ul>\n\n<h2>3. How We Use Your Data</h2>\n<p>We use your information exclusively to deliver category scheduling, authenticate users, execute AI drafting, and ensure API rate limit compliance.</p>\n\n<h2>4. Social Network API Compliance</h2>\n<p>QuickPostly adheres strictly to the Developer Terms and API policies of all connected social networks. We never sell your social tokens or follower analytics to data brokers.</p>\n\n<h2>5. Security & Data Retention</h2>\n<p>We employ AES-256 encryption for stored tokens and TLS 1.3 encryption in transit. OAuth tokens are immediately revoked upon account deletion.</p>\n\n<h2>6. Contact Privacy Team</h2>\n<p>Questions regarding our privacy practices? Contact us at <a href=\"mailto:support@quickpostly.com\">support@quickpostly.com</a>.</p>"
+      },
+      "customCss": null,
+      "customJs": null,
+      "publishedAt": "2026-11-10T12:09:17.840Z",
+      "createdAt": "2026-11-10T12:09:17.840Z",
+      "updatedAt": "2026-11-10T12:09:17.840Z"
+    },
+    {
+      "id": "page_terms",
+      "slug": "terms",
+      "title": "Terms and Conditions",
+      "metaTitle": "Terms and Conditions | QuickPostly",
+      "metaDescription": "Terms of service, subscription policies, and legal agreements for QuickPostly SaaS.",
+      "ogImage": null,
+      "canonicalUrl": "https://quickpostly.com/terms",
+      "status": "PUBLISHED",
+      "isSystemPage": true,
+      "contentJson": {
+        "bodyHtml": "<h2>1. Agreement to Terms</h2>\n<p>By accessing or creating an account on QuickPostly (\"Service\"), operated by QuickPostly Technologies Inc., you agree to be bound by these Terms and Conditions.</p>\n\n<h2>2. User Accounts & Workspaces</h2>\n<p>You must provide accurate information during registration. You are responsible for safeguarding your login credentials and maintaining the confidentiality of your workspace API keys.</p>\n\n<h2>3. Acceptable Use Policy</h2>\n<p>You agree not to use QuickPostly to violate third-party API policies, publish malicious content or unsolicited spam, or abuse automated queue frequencies.</p>\n\n<h2>4. Subscriptions, Billing & Cancellations</h2>\n<p>QuickPostly provides subscription services billed in advance on a recurring monthly or annual basis. You may cancel your subscription at any time from your billing dashboard.</p>\n\n<h2>5. Intellectual Property & User Content</h2>\n<p>You retain 100% full ownership of all text, media, graphics, and video content you schedule through QuickPostly.</p>\n\n<h2>6. Limitation of Liability</h2>\n<p>To the maximum extent permitted by applicable law, QuickPostly Technologies Inc. shall not be liable for indirect damages resulting from third-party social media API downtime.</p>"
+      },
+      "customCss": null,
+      "customJs": null,
+      "publishedAt": "2026-11-10T12:09:17.840Z",
+      "createdAt": "2026-11-10T12:09:17.840Z",
+      "updatedAt": "2026-11-10T12:09:17.840Z"
+    }
+  ],
+  "sections": [
+    {
+      "id": "sec_hero",
+      "pageId": "page_home",
+      "sectionKey": "hero",
+      "title": "Hero Header",
+      "subtitle": "Intelligent Category Queuing",
+      "order": 1,
+      "isVisible": true,
+      "contentJson": {},
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "sec_features",
+      "pageId": "page_home",
+      "sectionKey": "features",
+      "title": "Core Features",
+      "subtitle": "Publishing Engine",
+      "order": 2,
+      "isVisible": true,
+      "contentJson": {},
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "sec_ai",
+      "pageId": "page_home",
+      "sectionKey": "ai-tools",
+      "title": "AI Copilot Suite",
+      "subtitle": "Multi-network generation",
+      "order": 3,
+      "isVisible": true,
+      "contentJson": {},
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "sec_integrations",
+      "pageId": "page_home",
+      "sectionKey": "integrations",
+      "title": "Official Integrations",
+      "subtitle": "Certified API connections",
+      "order": 4,
+      "isVisible": true,
+      "contentJson": {},
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "sec_how",
+      "pageId": "page_home",
+      "sectionKey": "how-it-works",
+      "title": "How It Works",
+      "subtitle": "Four simple steps to autopilot",
+      "order": 5,
+      "isVisible": true,
+      "contentJson": {},
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "sec_pricing",
+      "pageId": "page_home",
+      "sectionKey": "pricing",
+      "title": "Pricing Section",
+      "subtitle": "Affordable commercial tiers",
+      "order": 6,
+      "isVisible": true,
+      "contentJson": {},
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "sec_testimonials",
+      "pageId": "page_home",
+      "sectionKey": "testimonials",
+      "title": "Customer Reviews",
+      "subtitle": "Verified social ROI",
+      "order": 7,
+      "isVisible": true,
+      "contentJson": {},
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "sec_faqs",
+      "pageId": "page_home",
+      "sectionKey": "faqs",
+      "title": "Frequently Asked Questions",
+      "subtitle": "Common platform questions",
+      "order": 8,
+      "isVisible": true,
+      "contentJson": {},
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "sec_cta",
+      "pageId": "page_home",
+      "sectionKey": "cta",
+      "title": "Closing Call To Action",
+      "subtitle": "Free trial banner",
+      "order": 9,
+      "isVisible": true,
+      "contentJson": {},
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    }
+  ],
+  "revisions": [],
+  "pricingPlans": [
+    {
+      "id": "plan_free_trial",
+      "slug": "free-trial",
+      "name": "Free Trial",
+      "description": "14-day fully featured sandbox trial for exploring QuickPostly automation.",
+      "badge": "14 Days Free",
+      "monthlyPrice": 0,
+      "annualPrice": 0,
+      "currency": "USD",
+      "features": [
+        "3 Social Media Profiles",
+        "30 Scheduled Queue Slots",
+        "25 AI Copilot Text Generations",
+        "5 AI Social Image Credits",
+        "Basic Performance Analytics (14 Days)",
+        "Evergreen Category Recycling",
+        "Single User Workspace"
+      ],
+      "limitsJson": {
+        "maxSocialAccounts": 3,
+        "maxScheduledPosts": 30,
+        "aiGenerationsMonthly": 25,
+        "aiImageCreditsMonthly": 5,
+        "aiVideoCreditsMonthly": 0,
+        "maxTeamMembers": 1,
+        "maxWorkspaces": 1,
+        "maxClients": 0,
+        "storageMb": 500,
+        "analyticsRetentionDays": 14,
+        "hasSocialInbox": false
+      },
+      "isPopular": false,
+      "isActive": true,
+      "ctaText": "Start 14-Day Free Trial",
+      "ctaLink": "/signup?plan=free-trial",
+      "order": 1,
+      "createdAt": "2026-11-10T11:22:07.425Z",
+      "updatedAt": "2026-11-10T11:23:04.120Z"
+    },
+    {
+      "id": "plan_starter",
+      "slug": "starter",
+      "name": "Starter Plus",
+      "description": "Updated Starter tier with elevated quotas",
+      "badge": "Popular Choice",
+      "monthlyPrice": 29,
+      "annualPrice": 24,
+      "currency": "USD",
+      "features": [
+        "10 Connected Social Accounts",
+        "250 Scheduled Posts in Queue",
+        "100 AI Generations / mo"
+      ],
+      "limitsJson": {
+        "analyticsRetentionDays": 45,
+        "hasSocialInbox": true,
+        "aiGenerationsMonthly": 100,
+        "maxWorkspaces": 1,
+        "maxClients": 1,
+        "aiVideoCreditsMonthly": 5,
+        "aiImageCreditsMonthly": 20,
+        "maxSocialAccounts": 10,
+        "storageMb": 3072,
+        "maxScheduledPosts": 250,
+        "maxTeamMembers": 3
+      },
+      "isPopular": false,
+      "isActive": true,
+      "ctaText": "Start Free 14-Day Trial",
+      "ctaLink": "/signup?plan=starter",
+      "order": 1,
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-10T12:13:43.248Z"
+    },
+    {
+      "id": "plan_pro",
+      "slug": "pro",
+      "name": "Pro Growth",
+      "description": "Engineered for high-performing brands, social marketers, and thriving SMBs.",
+      "badge": "Most Popular",
+      "monthlyPrice": 79,
+      "annualPrice": 65,
+      "currency": "USD",
+      "features": [
+        "15 Connected Social Accounts",
+        "3 Workspaces",
+        "5 Team Members with Permissions",
+        "Evergreen Recycling & Auto-requeue",
+        "AI Post Copilot & Re-purposer (150 credits/mo)",
+        "Advanced Multi-channel Analytics & PDF Export",
+        "Social Unified Inbox & Comment Moderation",
+        "Priority 24/7 Support"
+      ],
+      "limitsJson": {
+        "maxAccounts": 15,
+        "maxWorkspaces": 3,
+        "aiCredits": 150
+      },
+      "isPopular": true,
+      "isActive": true,
+      "ctaText": "Try Pro Free for 14 Days",
+      "ctaLink": "/signup?plan=pro",
+      "order": 2,
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "plan_agency",
+      "slug": "agency",
+      "name": "Agency Scale",
+      "description": "Built for marketing agencies managing client portfolios with white-label requirements.",
+      "badge": "Best for Agencies",
+      "monthlyPrice": 199,
+      "annualPrice": 159,
+      "currency": "USD",
+      "features": [
+        "50 Connected Social Accounts",
+        "Unlimited Client Workspaces",
+        "25 Team & Client Seats",
+        "Client Post Approval Workflows",
+        "White-Label Client Portal & Custom Domain",
+        "AI Post Copilot (1,000 credits/mo)",
+        "Custom Branded Reporting & CSV Exports",
+        "Dedicated Account Strategist"
+      ],
+      "limitsJson": {
+        "maxAccounts": 50,
+        "maxWorkspaces": -1,
+        "aiCredits": 1000
+      },
+      "isPopular": false,
+      "isActive": true,
+      "ctaText": "Start Agency Trial",
+      "ctaLink": "/signup?plan=agency",
+      "order": 3,
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "test_1",
+      "name": "Elena Rostova",
+      "role": "VP of Growth",
+      "company": "NexaScale SaaS",
+      "avatarUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+      "rating": 5,
+      "quote": "QuickPostly reduced our team’s social content creation and scheduling time by 65%. The category-based queuing ensures our audience receives a healthy mix of educational insights and product announcements without daily manual spreadsheet planning.",
+      "metricResult": "+340% Reach in 90 Days",
+      "order": 1,
+      "isActive": true,
+      "isFeatured": true,
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "test_2",
+      "name": "Marcus Vance",
+      "role": "Head of Social Marketing",
+      "company": "OmniBrand Collective",
+      "avatarUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
+      "rating": 5,
+      "quote": "The evergreen recycling engine is a pure revenue driver. Our best-performing case studies and thought-leadership posts continue to generate inbound enterprise demo inquiries months after their initial creation.",
+      "metricResult": "18 hrs saved every week",
+      "order": 2,
+      "isActive": true,
+      "isFeatured": true,
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "test_3",
+      "name": "Chloe Tremblay",
+      "role": "Managing Director",
+      "company": "Pulse Digital Agency",
+      "avatarUrl": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80",
+      "rating": 5,
+      "quote": "Managing 16 client brands used to be a logistical nightmare of spreadsheets and missed approvals. QuickPostly gives each client an isolated workspace with clear approval roles, saving us hundreds of hours monthly.",
+      "metricResult": "99.4% On-Time Publishing",
+      "order": 3,
+      "isActive": true,
+      "isFeatured": true,
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    }
+  ],
+  "faqs": [
+    {
+      "id": "faq_1",
+      "category": "Platform",
+      "question": "How is QuickPostly different from ordinary social media schedulers?",
+      "answer": "Unlike generic chronological schedulers that require you to pick a time for every single post, QuickPostly implements category-based content queuing. You organize posts by purpose (e.g. Evergreen, Curated, Promotional, Educational), and our scheduling engine automatically slots them into your optimized weekly timetable.",
+      "order": 1,
+      "isActive": true,
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "faq_2",
+      "category": "Features",
+      "question": "What social media channels does QuickPostly support?",
+      "answer": "QuickPostly connects directly to X (Twitter), LinkedIn Personal Profiles & Company Pages, Facebook Pages & Groups, Instagram Business & Creator accounts, Pinterest, TikTok, YouTube Community & Shorts, Threads, and Google Business Profiles.",
+      "order": 2,
+      "isActive": true,
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "faq_3",
+      "category": "Agencies",
+      "question": "Can I manage multiple clients with custom approval flows?",
+      "answer": "Yes! Our Agency tier gives you isolated workspaces for each client brand. You can invite client stakeholders with restricted \"Viewer\" or \"Approver\" roles, allowing them to review, comment on, and approve draft schedules before publication.",
+      "order": 3,
+      "isActive": true,
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "faq_4",
+      "category": "Billing",
+      "question": "Is there a free trial and can I cancel anytime?",
+      "answer": "We offer an unrestricted 14-day free trial on all plans without requiring upfront contracts or credit cards. You can upgrade, downgrade, or cancel your subscription at any time directly through your workspace settings.",
+      "order": 4,
+      "isActive": true,
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "faq_5",
+      "category": "Security",
+      "question": "How does QuickPostly protect our social media credentials?",
+      "answer": "QuickPostly never stores your actual account passwords. We utilize official OAuth 2.0 API integrations certified by Meta, LinkedIn, X, and Google, with bank-grade encryption at rest and in transit.",
+      "order": 5,
+      "isActive": true,
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    }
+  ],
+  "blogCategories": [
+    {
+      "id": "cat_strategy",
+      "slug": "strategy",
+      "name": "Social Strategy",
+      "description": "Growth playbooks and distribution frameworks.",
+      "order": 1,
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "cat_ai",
+      "slug": "ai-automation",
+      "name": "AI & Automation",
+      "description": "Leveraging AI for high-speed multi-channel publishing.",
+      "order": 2,
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "cat_agency",
+      "slug": "agency-growth",
+      "name": "Agency Operations",
+      "description": "Scaling workflows, approvals, and client retention.",
+      "order": 3,
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    }
+  ],
+  "blogPosts": [
+    {
+      "id": "post_1",
+      "slug": "category-based-social-queuing-guide",
+      "title": "Why Category-Based Social Queuing Beats Chronological Scheduling",
+      "excerpt": "Discover why top growth teams are abandoning manual calendar dates in favor of automated evergreen queues.",
+      "contentHtml": "<p>Scheduling individual social posts one by one is one of the highest friction activities in modern marketing. When a post fails to publish or a campaign priority shifts, manual calendars fall apart.</p><h2>The Core Principle of Content Queues</h2><p>By categorizing your content into predictable pillars—such as <strong>Evergreen Insights</strong>, <strong>Industry Highlights</strong>, and <strong>Product Demos</strong>—you establish a resilient publishing rhythm that runs on autopilot without daily oversight.</p><blockquote>Category scheduling decouples content ideation from publishing mechanics.</blockquote><p>Once you implement automated buffer recycling, evergreen content keeps generating qualified inbound pipeline indefinitely.</p>",
+      "featuredImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+      "authorName": "Alex Mercer",
+      "authorAvatar": null,
+      "authorRole": "Head of Content Strategy",
+      "categoryId": "cat_strategy",
+      "tagsJson": [
+        "Strategy",
+        "Automation",
+        "Evergreen"
+      ],
+      "status": "PUBLISHED",
+      "readingTimeMinutes": 5,
+      "views": 1422,
+      "metaTitle": "Category-Based Social Queuing Guide | QuickPostly",
+      "metaDescription": "Discover why top growth teams are abandoning manual calendar dates in favor of automated evergreen queues.",
+      "ogImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+      "scheduledPublishAt": null,
+      "publishedAt": "2026-11-09T07:59:53.073Z",
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "post_2",
+      "slug": "mastering-multi-network-ai-repurposing",
+      "title": "Mastering Multi-Network AI Repurposing: From Longform to Viral Threads",
+      "excerpt": "A step-by-step breakdown of how to transform a single blog post into 10 platform-tailored updates.",
+      "contentHtml": "<p>Every high-value blog post or customer case study contains at least a dozen distinct insights. Instead of sharing a bare link that gets algorithmically suppressed, top creators break it down into native visual carousels and concise threads.</p><h2>Adapting Voice for Each Platform</h2><ul><li><strong>LinkedIn:</strong> Focus on professional takeaways, operational lessons, and data proof-points.</li><li><strong>X (Twitter):</strong> Craft compelling opening hooks and crisp numbered threads.</li><li><strong>Instagram:</strong> Transform key takeaways into carousel slides with high readability.</li></ul>",
+      "featuredImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+      "authorName": "Elena Rostova",
+      "authorAvatar": null,
+      "authorRole": "VP of Growth",
+      "categoryId": "cat_ai",
+      "tagsJson": [
+        "AI",
+        "Repurposing",
+        "Multi-Network"
+      ],
+      "status": "PUBLISHED",
+      "readingTimeMinutes": 4,
+      "views": 984,
+      "metaTitle": "Mastering Multi-Network AI Repurposing | QuickPostly",
+      "metaDescription": "Step-by-step framework to repurpose longform content into high-converting social updates.",
+      "ogImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+      "scheduledPublishAt": null,
+      "publishedAt": "2026-11-09T07:59:53.073Z",
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "post_3",
+      "slug": "agency-client-approval-workflows-that-scale",
+      "title": "Eliminating the Feedback Loop: Agency Approval Workflows That Scale",
+      "excerpt": "How to manage multi-client content approvals without endless email threads and missed deadlines.",
+      "contentHtml": "<p>When managing dozens of client brands, the single greatest bottleneck is client approvals. Traditional agencies drown in Google Docs, spreadsheet comment threads, and emergency Slack messages.</p><h2>Isolated Brand Workspaces with Role-Based Approvals</h2><p>By giving each client their own branded workspace with a designated <em>Approver</em> seat, clients can preview posts in their exact native format and give single-click approvals.</p>",
+      "featuredImage": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
+      "authorName": "Chloe Tremblay",
+      "authorAvatar": null,
+      "authorRole": "Managing Director, Pulse Agency",
+      "categoryId": "cat_agency",
+      "tagsJson": [
+        "Agencies",
+        "Workflows",
+        "Productivity"
+      ],
+      "status": "PUBLISHED",
+      "readingTimeMinutes": 6,
+      "views": 740,
+      "metaTitle": "Agency Client Approval Workflows That Scale | QuickPostly",
+      "metaDescription": "How to manage multi-client content approvals without endless email threads and missed deadlines.",
+      "ogImage": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
+      "scheduledPublishAt": null,
+      "publishedAt": "2026-11-09T07:59:53.073Z",
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    }
+  ],
+  "mediaItems": [
+    {
+      "id": "med_1",
+      "fileName": "socialhive-dashboard-preview.png",
+      "fileUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+      "mimeType": "image/png",
+      "fileSize": 420000,
+      "width": 1920,
+      "height": 1080,
+      "altText": "QuickPostly Dashboard User Interface Preview",
+      "folder": "product",
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "med_2",
+      "fileName": "ai-post-composer-modal.png",
+      "fileUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+      "mimeType": "image/png",
+      "fileSize": 310000,
+      "width": 1400,
+      "height": 900,
+      "altText": "AI Multi-Platform Post Composer and Hook Generator",
+      "folder": "features",
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "med_3",
+      "fileName": "agency-workspace-switcher.png",
+      "fileUrl": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80",
+      "mimeType": "image/png",
+      "fileSize": 285000,
+      "width": 1200,
+      "height": 800,
+      "altText": "Multi-Tenant Agency Workspace Switcher",
+      "folder": "agencies",
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    }
+  ],
+  "announcements": [
+    {
+      "id": "ann_1",
+      "title": "Spring Growth Special",
+      "content": "🎉 Spring Offer: Save 25% on Pro & Agency Annual plans with code SPRING25 at checkout!",
+      "type": "BAR",
+      "position": "TOP",
+      "ctaText": "Claim Discount",
+      "ctaLink": "/pricing",
+      "bgColor": "#f59e0b",
+      "textColor": "#0f172a",
+      "startDate": null,
+      "endDate": null,
+      "isActive": true,
+      "targetAudience": "ALL",
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    },
+    {
+      "id": "ann_2",
+      "title": "Welcome to QuickPostly 2.0",
+      "content": "Experience our newly launched AI Thread Repurposer and Unified Social Inbox.",
+      "type": "POPUP",
+      "position": "CENTER",
+      "ctaText": "See What’s New",
+      "ctaLink": "/blog/mastering-multi-network-ai-repurposing",
+      "bgColor": "#1e293b",
+      "textColor": "#ffffff",
+      "startDate": null,
+      "endDate": null,
+      "isActive": false,
+      "targetAudience": "GUESTS",
+      "createdAt": "2026-11-09T07:59:53.073Z",
+      "updatedAt": "2026-11-09T07:59:53.073Z"
+    }
+  ],
+  "theme": {
+    "id": "active_theme",
+    "siteName": "QuickPostly",
+    "tagLine": "Create Smarter. Schedule Faster. Grow Everywhere.",
+    "logoLight": null,
+    "logoDark": null,
+    "favicon": null,
+    "primaryColor": "#f59e0b",
+    "secondaryColor": "#0f172a",
+    "accentColor": "#6366f1",
+    "fontHeading": "Inter",
+    "fontBody": "Inter",
+    "customCss": null,
+    "updatedAt": "2026-11-09T07:59:53.073Z"
+  },
+  "seo": {
+    "id": "active_seo",
+    "defaultMetaTitle": "QuickPostly - Commercial Social Media Management Platform",
+    "defaultMetaDescription": "Create AI-powered social media content, schedule posts, manage multiple accounts and grow your brand with QuickPostly.",
+    "defaultOgImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+    "twitterCardType": "summary_large_image",
+    "twitterHandle": "@QuickPostly",
+    "googleAnalyticsId": "G-SH7890ABCD",
+    "googleTagManagerId": null,
+    "facebookPixelId": null,
+    "robotsTxt": "User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /dashboard\nSitemap: https://quickpostly.com/sitemap.xml",
+    "sitemapEnabled": true,
+    "updatedAt": "2026-11-09T07:59:53.073Z"
+  },
+  "email": {
+    "id": "active_email",
+    "provider": "SMTP",
+    "fromName": "QuickPostly Notifications",
+    "fromEmail": "notifications@quickpostly.com",
+    "replyToEmail": "support@quickpostly.com",
+    "smtpHost": "smtp.mailtrap.io",
+    "smtpPort": 587,
+    "smtpUser": "socialhive_smtp_dev",
+    "smtpPassword": "dev_smtp_password_secure",
+    "smtpSecure": true,
+    "updatedAt": "2026-11-09T07:59:53.073Z"
+  },
+  "security": {
+    "id": "active_security",
+    "maxLoginAttempts": 5,
+    "lockoutMinutes": 15,
+    "enforce2FAForAdmin": true,
+    "sessionTimeoutHours": 168,
+    "allowedIps": null,
+    "blockedIps": null,
+    "maintenanceMode": false,
+    "maintenanceMessage": "QuickPostly is undergoing scheduled platform upgrades. We will be back online shortly.",
+    "updatedAt": "2026-11-09T07:59:53.073Z"
+  }
+}

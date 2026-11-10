@@ -1,0 +1,1547 @@
+// Prisma schema for SocialHive - Social Media Management SaaS Platform
+// Provider: PostgreSQL
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ==============================================================================
+// 1. FOUNDATIONAL CORE MODELS: USERS, PROFILES, RBAC & WORKSPACES
+// ==============================================================================
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+  PENDING_VERIFICATION
+}
+
+enum UserSystemRole {
+  SUPER_ADMIN
+  ADMIN
+  CONTENT_MANAGER
+  SUPPORT
+  USER
+}
+
+enum TokenType {
+  EMAIL_VERIFICATION
+  PASSWORD_RESET
+  TWO_FACTOR_AUTH
+}
+
+enum WorkspacePlan {
+  FREE
+  PRO
+  AGENCY
+  ENTERPRISE
+}
+
+enum WorkspaceStatus {
+  ACTIVE
+  PAST_DUE
+  TRIALING
+  CANCELED
+}
+
+enum MemberStatus {
+  INVITED
+  ACTIVE
+  SUSPENDED
+}
+
+enum MenuLocation {
+  HEADER
+  FOOTER_PRIMARY
+  FOOTER_LEGAL
+  SIDEBAR
+}
+
+enum SubscriptionStatus {
+  TRIALING
+  ACTIVE
+  PAST_DUE
+  GRACE_PERIOD
+  CANCELED
+  EXPIRED
+}
+
+enum SubscriptionBillingInterval {
+  MONTHLY
+  YEARLY
+  CUSTOM
+}
+
+enum CouponType {
+  PERCENTAGE
+  FIXED
+}
+
+enum InvoiceStatus {
+  PAID
+  PENDING
+  FAILED
+  REFUNDED
+}
+
+enum PaymentGatewayCategory {
+  INDIAN
+  INTERNATIONAL
+  CRYPTO
+}
+
+enum PaymentTransactionStatus {
+  PENDING
+  PROCESSING
+  SUCCEEDED
+  FAILED
+  REFUNDED
+}
+
+enum PageStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+model User {
+  id                     String         @id @default(cuid())
+  email                  String         @unique
+  passwordHash           String?
+  name                   String
+  role                   UserSystemRole @default(USER)
+  emailVerified          DateTime?
+  image                  String?
+  status                 UserStatus     @default(ACTIVE)
+  twoFactorEnabled       Boolean        @default(false)
+  twoFactorSecret        String?
+  twoFactorRecoveryCodes Json?
+  failedLoginAttempts    Int            @default(0)
+  lockoutUntil           DateTime?
+  lastLoginAt            DateTime?
+  createdAt              DateTime       @default(now())
+  updatedAt              DateTime       @updatedAt
+
+  profile             UserProfile?
+  userRoles           UserRole[]
+  ownedWorkspaces     Workspace[]         @relation("WorkspaceOwner")
+  workspaceMembers    WorkspaceMember[]
+  activityLogs        ActivityLog[]
+  sessions            Session[]
+  verificationTokens  VerificationToken[]
+  subscriptions       Subscription[]
+  invoices            Invoice[]
+
+  @@index([email])
+  @@index([status])
+  @@index([role])
+  @@map("users")
+}
+
+model UserProfile {
+  id                  String   @id @default(cuid())
+  userId              String   @unique
+  bio                 String?  @db.Text
+  company             String?
+  phone               String?
+  country             String?
+  timezone            String   @default("UTC")
+  language            String   @default("en")
+  currency            String   @default("USD")
+  avatarUrl           String?
+  socialLinks         Json?
+  onboardingCompleted Boolean  @default(false)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_profiles")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  userId       String
+  token        String   @unique
+  userAgent    String?  @db.Text
+  ipAddress    String?
+  deviceInfo   String?
+  isRevoked    Boolean  @default(false)
+  expiresAt    DateTime
+  lastActiveAt DateTime @default(now())
+  createdAt    DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([token])
+  @@index([isRevoked])
+  @@map("sessions")
+}
+
+model VerificationToken {
+  id         String    @id @default(cuid())
+  identifier String
+  token      String    @unique
+  type       TokenType
+  expiresAt  DateTime
+  createdAt  DateTime  @default(now())
+  userId     String?
+
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([identifier, type])
+  @@index([token])
+  @@map("verification_tokens")
+}
+
+model RateLimitRecord {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  count     Int      @default(1)
+  expiresAt DateTime
+
+  @@index([key])
+  @@index([expiresAt])
+  @@map("rate_limit_records")
+}
+
+model Role {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  isSystem    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  permissions RolePermission[]
+  userRoles   UserRole[]
+
+  @@map("roles")
+}
+
+model Permission {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  module      String
+  description String?
+  createdAt   DateTime @default(now())
+
+  roles RolePermission[]
+
+  @@index([module])
+  @@map("permissions")
+}
+
+model RolePermission {
+  id           String     @id @default(cuid())
+  roleId       String
+  permissionId String
+  createdAt    DateTime   @default(now())
+
+  role       Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@unique([roleId, permissionId])
+  @@map("role_permissions")
+}
+
+model UserRole {
+  id          String     @id @default(cuid())
+  userId      String
+  roleId      String
+  workspaceId String?
+  assignedAt  DateTime   @default(now())
+
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role      Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  workspace Workspace? @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, roleId, workspaceId])
+  @@index([userId])
+  @@index([workspaceId])
+  @@map("user_roles")
+}
+
+model Workspace {
+  id                 String          @id @default(cuid())
+  name               String
+  slug               String          @unique
+  logo               String?
+  plan               WorkspacePlan   @default(FREE)
+  status             WorkspaceStatus @default(ACTIVE)
+  ownerId            String
+  timezone           String          @default("UTC")
+  maxSocialAccounts  Int             @default(5)
+  maxMembers         Int             @default(3)
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+
+  owner        User              @relation("WorkspaceOwner", fields: [ownerId], references: [id], onDelete: Restrict)
+  members      WorkspaceMember[]
+  userRoles    UserRole[]
+  activityLogs ActivityLog[]
+  subscription Subscription?
+  invoices     Invoice[]
+  usage        WorkspaceUsage?
+
+  @@index([slug])
+  @@index([ownerId])
+  @@map("workspaces")
+}
+
+model WorkspaceMember {
+  id           String       @id @default(cuid())
+  workspaceId  String
+  userId       String
+  role         String       @default("MEMBER")
+  status       MemberStatus @default(ACTIVE)
+  invitedEmail String?
+  joinedAt     DateTime     @default(now())
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([workspaceId, userId])
+  @@index([workspaceId])
+  @@index([userId])
+  @@map("workspace_members")
+}
+
+model AppSetting {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  value       String   @db.Text
+  group       String   @default("general")
+  isPublic    Boolean  @default(false)
+  description String?
+  updatedAt   DateTime @updatedAt
+
+  @@index([group])
+  @@map("app_settings")
+}
+
+model ActivityLog {
+  id          String   @id @default(cuid())
+  userId      String?
+  workspaceId String?
+  action      String
+  entityType  String
+  entityId    String?
+  metadata    Json?
+  ipAddress   String?
+  userAgent   String?
+  createdAt   DateTime @default(now())
+
+  user      User?      @relation(fields: [userId], references: [id], onDelete: SetNull)
+  workspace Workspace? @relation(fields: [workspaceId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([workspaceId])
+  @@index([action])
+  @@index([entityType, entityId])
+  @@map("activity_logs")
+}
+
+// ==============================================================================
+// 2. DYNAMIC WEBSITE CMS ARCHITECTURE (Zero Source-Code Website Management)
+// ==============================================================================
+
+model CmsNavigationItem {
+  id           String       @id @default(cuid())
+  menuLocation MenuLocation @default(HEADER)
+  label        String
+  path         String
+  openInNewTab Boolean      @default(false)
+  order        Int          @default(0)
+  parentId     String?
+  isActive     Boolean      @default(true)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  parent   CmsNavigationItem?  @relation("NavHierarchy", fields: [parentId], references: [id], onDelete: Cascade)
+  children CmsNavigationItem[] @relation("NavHierarchy")
+
+  @@index([menuLocation, order])
+  @@map("cms_navigation_items")
+}
+
+model CmsPage {
+  id              String     @id @default(cuid())
+  slug            String     @unique
+  title           String
+  metaTitle       String?
+  metaDescription String?    @db.Text
+  ogImage         String?
+  canonicalUrl    String?
+  status          PageStatus @default(PUBLISHED)
+  isSystemPage    Boolean    @default(false)
+  contentJson     Json?
+  customCss       String?    @db.Text
+  customJs        String?    @db.Text
+  publishedAt     DateTime?
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  sections  CmsSection[]
+  revisions CmsPageRevision[]
+
+  @@index([slug])
+  @@index([status])
+  @@map("cms_pages")
+}
+
+model CmsSection {
+  id          String   @id @default(cuid())
+  pageId      String
+  sectionKey  String
+  title       String?
+  subtitle    String?
+  contentJson Json
+  order       Int      @default(0)
+  isVisible   Boolean  @default(true)
+  updatedAt   DateTime @updatedAt
+
+  page CmsPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+
+  @@index([pageId, order])
+  @@map("cms_sections")
+}
+
+model CmsPricingPlan {
+  id           String   @id @default(cuid())
+  slug         String   @unique
+  name         String
+  description  String
+  badge        String?
+  monthlyPrice Float
+  annualPrice  Float
+  currency     String   @default("USD")
+  features     Json
+  limitsJson   Json?
+  isPopular    Boolean  @default(false)
+  isActive     Boolean  @default(true)
+  ctaText      String   @default("Get Started")
+  ctaLink      String   @default("/contact")
+  order        Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([isActive, order])
+  @@map("cms_pricing_plans")
+}
+
+model CmsFaqItem {
+  id        String   @id @default(cuid())
+  question  String
+  answer    String   @db.Text
+  category  String   @default("General")
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([category, order])
+  @@map("cms_faq_items")
+}
+
+model CmsThemeSetting {
+  id             String   @id @default("active_theme")
+  siteName       String   @default("SocialHive")
+  tagLine        String?  @default("Data-Driven Social Media Management & Smart Queuing")
+  logoLight      String?
+  logoDark       String?
+  favicon        String?
+  primaryColor   String   @default("#f59e0b")
+  secondaryColor String   @default("#0f172a")
+  accentColor    String   @default("#6366f1")
+  fontHeading    String   @default("Inter")
+  fontBody       String   @default("Inter")
+  customCss      String?  @db.Text
+  updatedAt      DateTime @updatedAt
+
+  @@map("cms_theme_settings")
+}
+
+model CmsSeoSetting {
+  id                    String   @id @default("active_seo")
+  defaultMetaTitle      String   @default("SocialHive - Commercial Social Media Management Platform")
+  defaultMetaDescription String  @default("Scale your social media presence with AI post generation, category-based smart queues, analytics, and agency workflows.") @db.Text
+  defaultOgImage        String?
+  twitterCardType       String   @default("summary_large_image")
+  twitterHandle         String?  @default("@SocialHiveHQ")
+  googleAnalyticsId     String?
+  googleTagManagerId    String?
+  facebookPixelId       String?
+  robotsTxt             String?  @db.Text
+  sitemapEnabled        Boolean  @default(true)
+  updatedAt             DateTime @updatedAt
+
+  @@map("cms_seo_settings")
+}
+
+model CmsHeaderSetting {
+  id                   String   @id @default("active_header")
+  logoText             String   @default("SocialHive")
+  logoLight            String?
+  logoDark             String?
+  logoMobile           String?
+  isSticky             Boolean  @default(true)
+  showThemeToggle      Boolean  @default(true)
+  showCtaButton        Boolean  @default(true)
+  ctaText              String   @default("Start Free Trial")
+  ctaLink              String   @default("/signup")
+  signInText           String   @default("Sign In")
+  signInLink           String   @default("/login")
+  announcementEnabled  Boolean  @default(false)
+  announcementText     String?
+  announcementLink     String?
+  announcementBg       String   @default("#f59e0b")
+  announcementColor    String   @default("#0f172a")
+  updatedAt            DateTime @updatedAt
+
+  @@map("cms_header_settings")
+}
+
+model CmsFooterSetting {
+  id               String   @id @default("active_footer")
+  brandDescription String   @default("Commercial-grade social media management platform engineered for agencies, SMBs, and creators.") @db.Text
+  copyrightText    String   @default("© 2026 SocialHive Inc. All rights reserved.")
+  contactEmail     String?  @default("sales@socialhive.io")
+  contactPhone     String?  @default("+1 (555) 019-2834")
+  contactAddress   String?  @default("San Francisco, CA, USA")
+  newsletterTitle  String   @default("Stay ahead of social growth")
+  newsletterSubtitle String @default("Join 15,000+ marketers receiving our bi-weekly algorithm briefing.")
+  newsletterEnabled Boolean @default(true)
+  showSocialLinks  Boolean  @default(true)
+  twitterUrl       String?  @default("https://twitter.com/SocialHiveHQ")
+  linkedinUrl      String?  @default("https://linkedin.com/company/socialhive")
+  facebookUrl      String?  @default("https://facebook.com/socialhive")
+  instagramUrl     String?  @default("https://instagram.com/socialhive.app")
+  youtubeUrl       String?
+  columnsJson      Json?
+  updatedAt        DateTime @updatedAt
+
+  @@map("cms_footer_settings")
+}
+
+model CmsTestimonial {
+  id           String   @id @default(cuid())
+  name         String
+  role         String
+  company      String
+  avatarUrl    String?
+  rating       Int      @default(5)
+  quote        String   @db.Text
+  metricResult String?
+  order        Int      @default(0)
+  isActive     Boolean  @default(true)
+  isFeatured   Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([isActive, order])
+  @@map("cms_testimonials")
+}
+
+model CmsBlogCategory {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  description String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  posts CmsBlogPost[]
+
+  @@map("cms_blog_categories")
+}
+
+model CmsBlogPost {
+  id                 String     @id @default(cuid())
+  slug               String     @unique
+  title              String
+  excerpt            String     @db.Text
+  contentHtml        String     @db.Text
+  featuredImage      String?
+  authorName         String     @default("SocialHive Editorial")
+  authorAvatar       String?
+  authorRole         String     @default("Growth Strategist")
+  categoryId         String?
+  tagsJson           Json?
+  status             PageStatus @default(PUBLISHED)
+  readingTimeMinutes Int        @default(4)
+  views              Int        @default(0)
+  metaTitle          String?
+  metaDescription    String?    @db.Text
+  ogImage            String?
+  scheduledPublishAt DateTime?
+  publishedAt        DateTime?  @default(now())
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @updatedAt
+
+  category CmsBlogCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+
+  @@index([slug])
+  @@index([status, publishedAt])
+  @@map("cms_blog_posts")
+}
+
+model CmsMediaItem {
+  id        String   @id @default(cuid())
+  fileName  String
+  fileUrl   String
+  mimeType  String
+  fileSize  Int
+  width     Int?
+  height    Int?
+  altText   String?
+  folder    String   @default("uploads")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([fileName])
+  @@index([folder])
+  @@map("cms_media_items")
+}
+
+model CmsAnnouncement {
+  id             String    @id @default(cuid())
+  title          String
+  content        String    @db.Text
+  type           String    @default("BAR") // BAR, POPUP, BANNER
+  position       String    @default("TOP") // TOP, BOTTOM, CENTER
+  ctaText        String?
+  ctaLink        String?
+  bgColor        String    @default("#f59e0b")
+  textColor      String    @default("#0f172a")
+  startDate      DateTime?
+  endDate        DateTime?
+  isActive       Boolean   @default(true)
+  targetAudience String    @default("ALL") // ALL, GUESTS, USERS
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([isActive, type])
+  @@map("cms_announcements")
+}
+
+model CmsEmailSetting {
+  id            String   @id @default("active_email")
+  provider      String   @default("SMTP") // SMTP, RESEND, SENDGRID, POSTMARK
+  fromName      String   @default("SocialHive Notifications")
+  fromEmail     String   @default("notifications@socialhive.io")
+  replyToEmail  String?  @default("support@socialhive.io")
+  smtpHost      String   @default("smtp.mailtrap.io")
+  smtpPort      Int      @default(587)
+  smtpUser      String?  @default("socialhive_smtp")
+  smtpPassword  String?
+  smtpSecure    Boolean  @default(true)
+  updatedAt     DateTime @updatedAt
+
+  @@map("cms_email_settings")
+}
+
+model CmsSecuritySetting {
+  id                   String   @id @default("active_security")
+  maxLoginAttempts     Int      @default(5)
+  lockoutMinutes       Int      @default(15)
+  enforce2FAForAdmin   Boolean  @default(true)
+  sessionTimeoutHours  Int      @default(168) // 7 days
+  allowedIps           String?  @db.Text
+  blockedIps           String?  @db.Text
+  maintenanceMode      Boolean  @default(false)
+  maintenanceMessage   String?  @default("SocialHive is undergoing scheduled platform upgrades. We will be back online shortly.") @db.Text
+  updatedAt            DateTime @updatedAt
+
+  @@map("cms_security_settings")
+}
+
+model CmsPageRevision {
+  id          String   @id @default(cuid())
+  pageId      String
+  title       String
+  contentJson Json
+  createdBy   String?
+  createdAt   DateTime @default(now())
+
+  page CmsPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+
+  @@index([pageId, createdAt])
+  @@map("cms_page_revisions")
+}
+
+// ==============================================================================
+// 3. COMMERCIAL SUBSCRIPTION, BILLING & QUOTA ENFORCEMENT (PART 5)
+// ==============================================================================
+
+model SubscriptionPlan {
+  id                    String   @id @default(cuid())
+  name                  String
+  slug                  String   @unique
+  description           String
+  badge                 String?
+  monthlyPrice          Float
+  annualPrice           Float
+  customPrice           Float?
+  customIntervalDays    Int?
+  currency              String   @default("USD")
+  trialDays             Int      @default(14)
+  isActive              Boolean  @default(true)
+  isPopular             Boolean  @default(false)
+  order                 Int      @default(0)
+
+  // Granular Plan Limits
+  maxSocialAccounts     Int      @default(5)
+  maxScheduledPosts     Int      @default(50)
+  aiGenerationsMonthly  Int      @default(50)
+  aiImageCreditsMonthly Int      @default(10)
+  aiVideoCreditsMonthly Int      @default(2)
+  maxTeamMembers        Int      @default(2)
+  maxWorkspaces         Int      @default(1)
+  maxClients            Int      @default(0)
+  storageMb             Int      @default(1024)
+  analyticsRetentionDays Int     @default(30)
+  hasSocialInbox        Boolean  @default(false)
+  features              Json
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  subscriptions         Subscription[]
+
+  @@index([isActive, order])
+  @@map("subscription_plans")
+}
+
+model Subscription {
+  id                 String                      @id @default(cuid())
+  workspaceId        String                      @unique
+  userId             String
+  planId             String
+  planSlug           String
+  status             SubscriptionStatus          @default(TRIALING)
+  billingInterval    SubscriptionBillingInterval @default(MONTHLY)
+  customIntervalDays Int?
+  currentPeriodStart DateTime                    @default(now())
+  currentPeriodEnd   DateTime
+  cancelAtPeriodEnd  Boolean                     @default(false)
+  canceledAt         DateTime?
+  cancellationReason String?
+  trialStart         DateTime?
+  trialEnd           DateTime?
+  gracePeriodEnd     DateTime?
+  failedPaymentCount Int                         @default(0)
+  activeCouponCode   String?
+  discountPercent    Float                       @default(0)
+  amount             Float
+  currency           String                      @default("USD")
+  metadata           Json?
+  createdAt          DateTime                    @default(now())
+  updatedAt          DateTime                    @updatedAt
+
+  workspace Workspace              @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  user      User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan      SubscriptionPlan       @relation(fields: [planId], references: [id], onDelete: Restrict)
+  history   SubscriptionAuditLog[]
+
+  @@index([userId])
+  @@index([status])
+  @@index([planSlug])
+  @@map("subscriptions")
+}
+
+model Coupon {
+  id                  String     @id @default(cuid())
+  code                String     @unique
+  discountType        CouponType @default(PERCENTAGE)
+  discountValue       Float
+  currency            String     @default("USD")
+  maxRedemptions      Int        @default(100)
+  redemptionsCount    Int        @default(0)
+  perUserLimit        Int        @default(1)
+  applicablePlanSlugs Json?
+  expiresAt           DateTime?
+  isActive            Boolean    @default(true)
+  createdAt           DateTime   @default(now())
+  updatedAt           DateTime   @updatedAt
+
+  redemptions         CouponRedemption[]
+
+  @@index([code, isActive])
+  @@map("coupons")
+}
+
+model CouponRedemption {
+  id             String   @id @default(cuid())
+  couponId       String
+  userId         String
+  workspaceId    String
+  discountAmount Float
+  redeemedAt     DateTime @default(now())
+
+  coupon Coupon @relation(fields: [couponId], references: [id], onDelete: Cascade)
+
+  @@index([couponId])
+  @@index([userId])
+  @@index([workspaceId])
+  @@map("coupon_redemptions")
+}
+
+model Invoice {
+  id              String        @id @default(cuid())
+  invoiceNumber   String        @unique
+  workspaceId     String
+  userId          String
+  subscriptionId  String?
+  planName        String
+  subtotal        Float
+  discountAmount  Float         @default(0)
+  taxAmount       Float         @default(0)
+  totalAmount     Float
+  currency        String        @default("USD")
+  billingInterval String        @default("MONTHLY")
+  status          InvoiceStatus @default(PAID)
+  periodStart     DateTime
+  periodEnd       DateTime
+  paidAt          DateTime?
+  paymentMethod   String?       @default("Visa ending in 4242")
+  downloadUrl     String?
+  createdAt       DateTime      @default(now())
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([workspaceId])
+  @@index([userId])
+  @@index([status])
+  @@map("invoices")
+}
+
+model WorkspaceUsage {
+  id                  String   @id @default(cuid())
+  workspaceId         String   @unique
+  socialAccountsCount Int      @default(0)
+  scheduledPostsCount Int      @default(0)
+  aiGenerationsUsed   Int      @default(0)
+  aiImageCreditsUsed  Int      @default(0)
+  aiVideoCreditsUsed  Int      @default(0)
+  teamMembersCount    Int      @default(1)
+  clientsCount        Int      @default(0)
+  storageUsedBytes    BigInt   @default(0)
+  lastResetAt         DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@map("workspace_usages")
+}
+
+model SubscriptionAuditLog {
+  id             String   @id @default(cuid())
+  subscriptionId String
+  action         String
+  performedBy    String
+  fromPlan       String?
+  toPlan         String?
+  notes          String?
+  createdAt      DateTime @default(now())
+
+  subscription Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  @@index([subscriptionId])
+  @@map("subscription_audit_logs")
+}
+
+// ==============================================================================
+// 4. COMPLETE MULTI-PAYMENT GATEWAY SYSTEM (PART 6)
+// ==============================================================================
+
+model PaymentGatewayConfig {
+  id                  String                 @id // razorpay, cashfree, stripe, etc.
+  name                String
+  category            PaymentGatewayCategory
+  isEnabled           Boolean                @default(false)
+  isLiveMode          Boolean                @default(false)
+  apiKey              String?
+  secretKey           String?
+  clientId            String?                // merchantId, appId, workingKey
+  webhookSecret       String?
+  connectionStatus    String                 @default("DISCONNECTED") // CONNECTED, DISCONNECTED, ERROR
+  supportsRecurring   Boolean                @default(false)
+  supportedCurrencies Json                   // ['INR', 'USD', 'EUR']
+  supportedMethods    Json                   // ['UPI', 'CARDS', ...]
+  lastTestedAt        DateTime?
+  updatedAt           DateTime               @updatedAt
+
+  transactions        PaymentTransaction[]
+
+  @@map("payment_gateway_configs")
+}
+
+model PaymentTransaction {
+  id                String                   @id @default(cuid())
+  transactionNumber String                   @unique // TX-2026-XXXX
+  gatewayId         String
+  workspaceId       String
+  userId            String
+  subscriptionId    String?
+  invoiceId         String?
+  amount            Float
+  currency          String                   @default("USD")
+  status            PaymentTransactionStatus @default(PENDING)
+  paymentMethod     String                   // UPI, VISA, PAYPAL, BTC, etc.
+  gatewayPaymentId  String?                  // razorpay_payment_id, stripe_pi_xxx, etc.
+  gatewayOrderId    String?                  // razorpay_order_id, etc.
+  idempotencyKey    String?                  @unique
+  customerEmail     String
+  customerName      String?
+  isRefunded        Boolean                  @default(false)
+  refundAmount      Float                    @default(0)
+  refundReason      String?
+  refundedAt        DateTime?
+  metadata          Json?
+  createdAt         DateTime                 @default(now())
+  updatedAt         DateTime                 @updatedAt
+
+  gateway           PaymentGatewayConfig     @relation(fields: [gatewayId], references: [id], onDelete: Restrict)
+
+  @@index([gatewayId])
+  @@index([workspaceId])
+  @@index([status])
+  @@index([gatewayPaymentId])
+  @@map("payment_transactions")
+}
+
+// ==============================================================================
+// 5. ADVANCED MULTI-AI CONTENT STUDIO (PART 7)
+// ==============================================================================
+
+enum AITaskType {
+  TEXT
+  IMAGE
+  VIDEO
+  VOICE
+}
+
+enum AIProviderStatus {
+  CONNECTED
+  DISCONNECTED
+  ERROR
+  RATE_LIMITED
+}
+
+enum AIGenerationStatus {
+  PENDING
+  PROCESSING
+  SUCCEEDED
+  FAILED
+  CANCELED
+}
+
+enum AICreditType {
+  TEXT_GENERATION
+  IMAGE_GENERATION
+  VIDEO_GENERATION
+  VOICE_GENERATION
+}
+
+enum AICreditTransactionType {
+  MONTHLY_ALLOCATION
+  PACK_PURCHASE
+  DEDUCTION
+  REFUND_REVERSAL
+  ADMIN_ADJUSTMENT
+}
+
+model AIProvider {
+  id               String           @id // openai, gemini, claude, grok, deepseek, runway, elevenlabs, etc.
+  name             String
+  taskTypes        AITaskType[]
+  isEnabled        Boolean          @default(false)
+  apiKey           String?
+  apiEndpoint      String?
+  organizationId   String?
+  priority         Int              @default(1)
+  connectionStatus AIProviderStatus @default(DISCONNECTED)
+  latencyMs        Int?
+  lastTestedAt     DateTime?
+  supportedModels  AIModel[]
+  routingRules     AIRoutingRule[]
+  providerErrors   AIProviderError[]
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  @@map("ai_providers")
+}
+
+model AIModel {
+  id               String       @id // gpt-4o, gemini-1.5-pro, claude-3-5-sonnet, etc.
+  providerId       String
+  name             String
+  taskType         AITaskType   @default(TEXT)
+  isEnabled        Boolean      @default(true)
+  isDefault        Boolean      @default(false)
+  contextWindow    Int          @default(128000)
+  maxOutputTokens  Int          @default(4096)
+  costPer1kInput   Float        @default(0.005) // USD
+  costPer1kOutput  Float        @default(0.015) // USD
+  creditCost       Int          @default(1)
+  capabilities     Json?        // ["chat", "vision", "reasoning"]
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+
+  provider         AIProvider   @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  generations      AIGeneration[]
+
+  @@index([providerId])
+  @@index([taskType])
+  @@map("ai_models")
+}
+
+model AITool {
+  id            String       @id // caption_generator, hashtag_generator, etc.
+  name          String
+  slug          String       @unique
+  taskType      AITaskType   @default(TEXT)
+  description   String       @db.Text
+  systemPrompt  String       @db.Text
+  defaultModel  String?
+  creditCost    Int          @default(1)
+  creditType    AICreditType @default(TEXT_GENERATION)
+  isEnabled     Boolean      @default(true)
+  iconName      String?
+  displayOrder  Int          @default(1)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  generations   AIGeneration[]
+
+  @@map("ai_tools")
+}
+
+model AIRoutingRule {
+  id                    String      @id @default(cuid())
+  taskType              AITaskType
+  primaryProviderId     String
+  fallbackProviderIds   Json        // e.g. ["gemini", "claude", "deepseek"]
+  maxCostThreshold      Float       @default(0.05) // Never silently switch to higher cost
+  autoFallbackEnabled   Boolean     @default(true)
+  timeoutMs             Int         @default(15000)
+  retryAttempts         Int         @default(2)
+  createdAt             DateTime    @default(now())
+  updatedAt             DateTime    @updatedAt
+
+  primaryProvider       AIProvider  @relation(fields: [primaryProviderId], references: [id], onDelete: Cascade)
+
+  @@index([taskType])
+  @@map("ai_routing_rules")
+}
+
+model AIWorkspaceSettings {
+  id                   String     @id @default(cuid())
+  workspaceId          String     @unique
+  preferredMode        String     @default("AUTOMATIC") // AUTOMATIC or MANUAL
+  preferredProviderId  String?
+  preferredModelId     String?
+  defaultTone          String     @default("Authoritative Executive")
+  defaultLanguage      String     @default("English")
+  maxMonthlySpendUsd   Float      @default(100.0)
+  createdAt            DateTime   @default(now())
+  updatedAt            DateTime   @updatedAt
+
+  @@map("ai_workspace_settings")
+}
+
+model AIUsageLimit {
+  id                   String     @id @default(cuid())
+  workspaceId          String     @unique
+  monthlyTextCredits   Int        @default(1000)
+  monthlyImageCredits  Int        @default(200)
+  monthlyVideoCredits  Int        @default(40)
+  monthlyVoiceCredits  Int        @default(100)
+  bonusTextCredits     Int        @default(0)
+  bonusImageCredits    Int        @default(0)
+  bonusVideoCredits    Int        @default(0)
+  bonusVoiceCredits    Int        @default(0)
+  updatedAt            DateTime   @updatedAt
+
+  @@map("ai_usage_limits")
+}
+
+model AIUsage {
+  id                 String       @id @default(cuid())
+  workspaceId        String
+  userId             String
+  billingCycleMonth  String       // "2026-11"
+  textGenerations    Int          @default(0)
+  inputTokens        Int          @default(0)
+  outputTokens       Int          @default(0)
+  imagesGenerated    Int          @default(0)
+  videosGenerated    Int          @default(0)
+  voiceSeconds       Int          @default(0)
+  estimatedCostUsd   Float        @default(0.0)
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+
+  @@unique([workspaceId, billingCycleMonth])
+  @@index([workspaceId])
+  @@map("ai_usages")
+}
+
+model AIGeneration {
+  id               String             @id @default(cuid())
+  workspaceId      String
+  userId           String
+  toolId           String
+  providerId       String
+  modelId          String
+  taskType         AITaskType         @default(TEXT)
+  prompt           String             @db.Text
+  systemPromptUsed String?            @db.Text
+  output           String             @db.Text
+  mediaUrls        Json?              // For image/video/audio URLs
+  tokensUsed       Int                @default(0)
+  estimatedCostUsd Float              @default(0.0)
+  creditsDeducted  Int                @default(0)
+  creditType       AICreditType       @default(TEXT_GENERATION)
+  status           AIGenerationStatus @default(SUCCEEDED)
+  errorMessage     String?            @db.Text
+  selectionMode    String             @default("AUTOMATIC") // AUTOMATIC or MANUAL
+  fallbackTriggered Boolean           @default(false)
+  isDraft          Boolean            @default(false)
+  isTemplate       Boolean            @default(false)
+  scheduledPostId  String?
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+
+  tool             AITool             @relation(fields: [toolId], references: [id], onDelete: Restrict)
+  model            AIModel            @relation(fields: [modelId], references: [id], onDelete: Restrict)
+
+  @@index([workspaceId])
+  @@index([userId])
+  @@index([toolId])
+  @@index([status])
+  @@map("ai_generations")
+}
+
+model AIPricing {
+  id              String       @id @default(cuid())
+  creditType      AICreditType @unique
+  name            String
+  creditsPerUnit  Int          @default(1)
+  unitDescription String
+  pricePerCredit  Float        @default(0.02) // USD
+  updatedAt       DateTime     @updatedAt
+
+  @@map("ai_pricings")
+}
+
+model AICreditTransaction {
+  id              String                  @id @default(cuid())
+  workspaceId     String
+  userId          String
+  generationId    String?
+  creditType      AICreditType
+  amount          Int                     // positive for additions, negative for deductions
+  balanceAfter    Int
+  type            AICreditTransactionType
+  description     String
+  createdAt       DateTime                @default(now())
+
+  @@index([workspaceId])
+  @@index([userId])
+  @@index([creditType])
+  @@map("ai_credit_transactions")
+}
+
+model AIProviderError {
+  id                 String       @id @default(cuid())
+  providerId         String
+  modelId            String?
+  taskType           AITaskType
+  httpStatusCode     Int?
+  errorCode          String?
+  errorMessage       String       @db.Text
+  workspaceId        String?
+  recoveredByFallback Boolean     @default(false)
+  fallbackProviderId String?
+  createdAt          DateTime     @default(now())
+
+  provider           AIProvider   @relation(fields: [providerId], references: [id], onDelete: Cascade)
+
+  @@index([providerId])
+  @@index([createdAt])
+  @@map("ai_provider_errors")
+}
+
+// ==============================================================================
+// 6. REAL SOCIAL MEDIA API INTEGRATIONS (PART 8)
+// ==============================================================================
+
+enum SocialPlatform {
+  INSTAGRAM
+  FACEBOOK
+  LINKEDIN
+  TIKTOK
+  YOUTUBE
+  PINTEREST
+  TWITTER
+  GOOGLE_BUSINESS
+}
+
+enum SocialAccountStatus {
+  CONNECTED
+  EXPIRING
+  EXPIRED
+  REQUIRES_REAUTH
+  DISCONNECTED
+}
+
+enum SocialAccountType {
+  PROFILE
+  PAGE
+  GROUP
+  BUSINESS_ACCOUNT
+  CREATOR_ACCOUNT
+  ORGANIZATION
+  CHANNEL
+  BOARD
+  LOCATION
+}
+
+enum SocialPostType {
+  TEXT
+  IMAGE
+  VIDEO
+  CAROUSEL
+  REELS
+  SHORTS
+}
+
+enum SocialPublishStatus {
+  PENDING
+  PROCESSING
+  PUBLISHED
+  FAILED
+}
+
+model SocialPlatformConfig {
+  id                 String          @id // instagram, facebook, linkedin, etc.
+  platform           SocialPlatform  @unique
+  name               String
+  isEnabled          Boolean         @default(false)
+  clientId           String?         // App ID / API Key
+  clientSecret       String?         // App Secret
+  redirectUri        String?
+  scopes             Json            // Array of required/requested OAuth scopes
+  requiresAppReview  Boolean         @default(true)
+  appReviewStatus    String          @default("PENDING_REVIEW") // APPROVED, PENDING_REVIEW, IN_DEVELOPMENT
+  connectionStatus   String          @default("NOT_CONFIGURED") // CONFIGURED, NOT_CONFIGURED, ERROR
+  latencyMs          Int?
+  lastTestedAt       DateTime?
+  updatedAt          DateTime        @updatedAt
+
+  accounts           SocialAccount[]
+
+  @@map("social_platform_configs")
+}
+
+model SocialAccount {
+  id                 String              @id @default(cuid())
+  workspaceId        String
+  userId             String
+  platform           SocialPlatform
+  platformConfigId   String
+  platformAccountId  String              // The external ID on Meta, LinkedIn, etc.
+  accountName        String
+  accountHandle      String
+  accountType        SocialAccountType   @default(PROFILE)
+  profilePictureUrl  String?
+  followersCount     Int                 @default(0)
+  accessToken        String              @db.Text
+  refreshToken       String?             @db.Text
+  tokenExpiresAt     DateTime?
+  scopesGranted      Json                // Scopes approved during OAuth
+  connectionStatus   SocialAccountStatus @default(CONNECTED)
+  lastSyncAt         DateTime?
+  lastErrorReason    String?             @db.Text
+  metadata           Json?               // Platform-specific IDs (e.g. pageId, igUserId, channelId)
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+
+  platformConfig     SocialPlatformConfig @relation(fields: [platformConfigId], references: [id], onDelete: Restrict)
+  publishLogs        SocialPublishLog[]
+  metricSnapshots    SocialMetricSnapshot[]
+  conversations      SocialInboxConversation[]
+
+  @@unique([workspaceId, platform, platformAccountId])
+  @@index([workspaceId])
+  @@index([userId])
+  @@index([platform])
+  @@index([connectionStatus])
+  @@map("social_accounts")
+}
+
+model SocialOAuthState {
+  id           String         @id @default(cuid())
+  state        String         @unique
+  platform     SocialPlatform
+  workspaceId  String
+  userId       String
+  codeVerifier String?        // PKCE Code Verifier for X (Twitter), TikTok, Pinterest
+  redirectUri  String
+  expiresAt    DateTime
+  createdAt    DateTime       @default(now())
+
+  @@index([state])
+  @@index([workspaceId])
+  @@map("social_oauth_states")
+}
+
+model SocialPublishLog {
+  id                  String              @id @default(cuid())
+  workspaceId         String
+  userId              String
+  socialAccountId     String
+  platform            SocialPlatform
+  postType            SocialPostType      @default(TEXT)
+  platformPostId      String?             // Remote ID generated by the social platform
+  content             String              @db.Text
+  mediaUrls           Json?
+  status              SocialPublishStatus @default(PENDING)
+  errorMessage        String?             @db.Text
+  rateLimitRemaining  Int?
+  rateLimitResetAt    DateTime?
+  metadata            Json?
+  createdAt           DateTime            @default(now())
+
+  socialAccount       SocialAccount       @relation(fields: [socialAccountId], references: [id], onDelete: Cascade)
+
+  @@index([workspaceId])
+  @@index([socialAccountId])
+  @@index([platform])
+  @@index([status])
+  @@map("social_publish_logs")
+}
+
+// ============================================================================
+// PART 9: CONTENT CALENDAR & AUTOMATIC POST SCHEDULER
+// ============================================================================
+
+enum PostPublishStatus {
+  DRAFT
+  SCHEDULED
+  PROCESSING
+  PUBLISHED
+  FAILED
+  CANCELLED
+}
+
+enum NotificationType {
+  PUBLISHING_SUCCESS
+  PUBLISHING_FAILURE
+  UPCOMING_POST
+  TOKEN_EXPIRATION
+  SYSTEM
+}
+
+enum RecurrenceRule {
+  NONE
+  DAILY
+  WEEKLY
+  BIWEEKLY
+  MONTHLY
+  EVERY_X_DAYS
+}
+
+model ScheduledPost {
+  id                 String            @id @default(cuid())
+  workspaceId        String
+  userId             String
+  content            String            @db.Text
+  mediaUrls          Json?             // Array of media URLs
+  postType           SocialPostType    @default(TEXT)
+  status             PostPublishStatus @default(DRAFT)
+  platforms          Json              // Array of platform strings e.g. ["instagram", "twitter"]
+  accountIds         Json              // Array of account IDs e.g. ["acc_1", "acc_2"]
+  scheduledAt        DateTime?
+  publishedAt        DateTime?
+  timezone           String            @default("UTC")
+  hashtags           Json?             // Array of hashtag strings
+  callToAction       String?
+  isRecurring        Boolean           @default(false)
+  recurrenceRule     RecurrenceRule    @default(NONE)
+  recurrenceInterval Int?              // e.g. every 2 weeks, every 3 days
+  recurrenceDays     Json?             // Array of days: [1, 3, 5] (Mon, Wed, Fri)
+  evergreen          Boolean           @default(false)
+  evergreenRecycles  Int               @default(0)
+  maxRecycles        Int?              // Maximum number of recycles before auto-pausing
+  categoryId         String?
+  queuePosition      Int?
+  jobId              String?           // BullMQ delayed job ID
+  failureReason      String?           @db.Text
+  platformPostIds    Json?             // Record<platform, remotePostId>
+  metadata           Json?
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+
+  category           ContentCategory?  @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+
+  @@index([workspaceId])
+  @@index([userId])
+  @@index([status])
+  @@index([scheduledAt])
+  @@index([categoryId])
+  @@map("scheduled_posts")
+}
+
+model ContentCategory {
+  id          String          @id @default(cuid())
+  workspaceId String
+  name        String
+  color       String          @default("#6366f1")
+  description String?
+  isEvergreen Boolean         @default(false)
+  timeSlots   Json?           // Array of { dayOfWeek: number, timeString: string, timezone: string }
+  order       Int             @default(0)
+  isPaused    Boolean         @default(false)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  posts       ScheduledPost[]
+
+  @@index([workspaceId])
+  @@index([order])
+  @@map("content_categories")
+}
+
+model AppNotification {
+  id          String           @id @default(cuid())
+  workspaceId String
+  userId      String
+  type        NotificationType
+  title       String
+  message     String           @db.Text
+  isRead      Boolean          @default(false)
+  entityId    String?          // postId, accountId, etc.
+  metadata    Json?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  @@index([workspaceId])
+  @@index([userId])
+  @@index([isRead])
+  @@index([type])
+  @@index([createdAt])
+  @@map("app_notifications")
+}
+
+// ============================================================================
+// PART 10: SOCIAL ANALYTICS & UNIFIED SOCIAL INBOX
+// ============================================================================
+
+enum InboxItemType {
+  COMMENT
+  DIRECT_MESSAGE
+  MENTION
+}
+
+enum InboxSenderType {
+  CUSTOMER
+  AGENT
+  SYSTEM
+  NOTE
+}
+
+model SocialMetricSnapshot {
+  id                 String         @id @default(cuid())
+  workspaceId        String
+  socialAccountId    String
+  platform           SocialPlatform
+  date               DateTime       // Snapshot date
+  followersCount     Int            @default(0)
+  followerGrowth     Int            @default(0)
+  likes              Int            @default(0)
+  comments           Int            @default(0)
+  shares             Int            @default(0)
+  reach              Int            @default(0)
+  impressions        Int            @default(0)
+  engagementRate     Float          @default(0.0)
+  clicks             Int            @default(0)
+  postsPublished     Int            @default(0)
+  unavailableMetrics Json?          // e.g. ["shares", "reach"] where official API restricts them
+  rawMetrics         Json?
+  createdAt          DateTime       @default(now())
+
+  socialAccount      SocialAccount  @relation(fields: [socialAccountId], references: [id], onDelete: Cascade)
+
+  @@unique([socialAccountId, date])
+  @@index([workspaceId])
+  @@index([platform])
+  @@index([date])
+  @@map("social_metric_snapshots")
+}
+
+model SocialInboxConversation {
+  id                     String         @id @default(cuid())
+  workspaceId            String
+  socialAccountId        String
+  platform               SocialPlatform
+  externalId             String         // Platform thread, conversation, or post ID
+  type                   InboxItemType  @default(COMMENT)
+  authorName             String
+  authorHandle           String
+  authorAvatarUrl        String?
+  postTitle              String?
+  postPermalink          String?
+  snippet                String         @db.Text
+  isUnread               Boolean        @default(true)
+  isArchived             Boolean        @default(false)
+  sentiment              String?        // POSITIVE, LEAD, QUESTION, NEUTRAL, NEGATIVE
+  assignedToUserId       String?
+  assignedToName         String?
+  canReply               Boolean        @default(true)
+  replyRestrictionReason String?        // Reason if replies are restricted by official API
+  lastActivityAt         DateTime       @default(now())
+  createdAt              DateTime       @default(now())
+  updatedAt              DateTime       @updatedAt
+
+  messages               SocialInboxMessage[]
+  socialAccount          SocialAccount  @relation(fields: [socialAccountId], references: [id], onDelete: Cascade)
+
+  @@index([workspaceId])
+  @@index([socialAccountId])
+  @@index([platform])
+  @@index([isUnread])
+  @@index([isArchived])
+  @@index([lastActivityAt])
+  @@map("social_inbox_conversations")
+}
+
+model SocialInboxMessage {
+  id                String                  @id @default(cuid())
+  conversationId    String
+  senderType        InboxSenderType         @default(CUSTOMER)
+  senderName        String
+  content           String                  @db.Text
+  externalMessageId String?
+  isInternalNote    Boolean                 @default(false)
+  createdAt         DateTime                @default(now())
+
+  conversation      SocialInboxConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@index([conversationId])
+  @@index([createdAt])
+  @@map("social_inbox_messages")
+}
+
+
+
+

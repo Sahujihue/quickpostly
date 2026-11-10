@@ -1,0 +1,1118 @@
+{
+  "gateways": {
+    "razorpay": {
+      "id": "razorpay",
+      "name": "Razorpay",
+      "category": "INDIAN",
+      "isEnabled": true,
+      "isLiveMode": false,
+      "apiKey": "razorpay_sandbox_key_9941a8",
+      "secretKey": "sec_razorpay_sandbox_82b9",
+      "webhookSecret": "whsec_razorpay_sandbox_test",
+      "connectionStatus": "CONNECTED",
+      "supportsRecurring": true,
+      "supportedCurrencies": [
+        "INR",
+        "USD",
+        "EUR",
+        "GBP",
+        "SGD",
+        "AED"
+      ],
+      "supportedMethods": [
+        "UPI",
+        "UPI_QR",
+        "INDIAN_CARDS",
+        "INTERNATIONAL_CARDS",
+        "VISA",
+        "MASTERCARD",
+        "NET_BANKING",
+        "WALLETS"
+      ],
+      "lastTestedAt": "2026-11-09T08:45:31.487Z",
+      "meta": {
+        "id": "razorpay",
+        "name": "Razorpay",
+        "category": "INDIAN",
+        "description": "India’s leading payments powerhouse: UPI, QR, RuPay/Visa/Mastercard, Net Banking, and recurring subscriptions.",
+        "brandColor": "#0c2340",
+        "badgeText": "UPI & e-NACH Subscriptions",
+        "supportedCurrencies": [
+          "INR",
+          "USD",
+          "EUR",
+          "GBP",
+          "SGD",
+          "AED"
+        ],
+        "supportedMethods": [
+          "UPI",
+          "UPI_QR",
+          "INDIAN_CARDS",
+          "INTERNATIONAL_CARDS",
+          "VISA",
+          "MASTERCARD",
+          "NET_BANKING",
+          "WALLETS"
+        ],
+        "supportsRecurring": true,
+        "requiresMerchantApproval": true,
+        "supportedCountries": [
+          "IN",
+          "GLOBAL"
+        ],
+        "fields": {
+          "apiKeyLabel": "Key ID (rzp_test_... or rzp_live_...)",
+          "secretKeyLabel": "Key Secret",
+          "webhookSecretLabel": "Webhook Secret"
+        }
+      }
+    },
+    "cashfree": {
+      "id": "cashfree",
+      "name": "Cashfree",
+      "category": "INDIAN",
+      "isEnabled": false,
+      "isLiveMode": false,
+      "apiKey": "",
+      "secretKey": "",
+      "clientId": "CF_SANDBOX_M1",
+      "webhookSecret": "",
+      "connectionStatus": "DISCONNECTED",
+      "supportsRecurring": true,
+      "supportedCurrencies": [
+        "INR",
+        "USD",
+        "EUR"
+      ],
+      "supportedMethods": [
+        "UPI",
+        "UPI_QR",
+        "INDIAN_CARDS",
+        "INTERNATIONAL_CARDS",
+        "VISA",
+        "MASTERCARD",
+        "NET_BANKING",
+        "WALLETS"
+      ],
+      "meta": {
+        "id": "cashfree",
+        "name": "Cashfree",
+        "category": "INDIAN",
+        "description": "High-speed payment processing with auto-collect UPI, BharatQR, Instant Mandates, and low-latency net banking.",
+        "brandColor": "#172554",
+        "badgeText": "AutoCollect & UPI Mandates",
+        "supportedCurrencies": [
+          "INR",
+          "USD",
+          "EUR"
+        ],
+        "supportedMethods": [
+          "UPI",
+          "UPI_QR",
+          "INDIAN_CARDS",
+          "INTERNATIONAL_CARDS",
+          "VISA",
+          "MASTERCARD",
+          "NET_BANKING",
+          "WALLETS"
+        ],
+        "supportsRecurring": true,
+        "requiresMerchantApproval": true,
+        "supportedCountries": [
+          "IN"
+        ],
+        "fields": {
+          "apiKeyLabel": "App ID (CF-AppID)",
+          "secretKeyLabel": "Secret Key (CF-Secret)",
+          "clientIdLabel": "Merchant ID",
+          "webhookSecretLabel": "Webhook Verification Salt"
+        }
+      }
+    },
+    "payu": {
+      "id": "payu",
+      "name": "PayU",
+      "category": "INDIAN",
+      "isEnabled": false,
+      "isLiveMode": false,
+      "apiKey": "",
+      "secretKey": "",
+      "webhookSecret": "",
+      "connectionStatus": "DISCONNECTED",
+      "supportsRecurring": false,
+      "supportedCurrencies": [
+        "INR"
+      ],
+      "supportedMethods": [
+        "UPI",
+        "INDIAN_CARDS",
+        "VISA",
+        "MASTERCARD",
+        "AMEX",
+        "NET_BANKING",
+        "WALLETS"
+      ],
+      "meta": {
+        "id": "payu",
+        "name": "PayU",
+        "category": "INDIAN",
+        "description": "Enterprise Indian aggregator with multi-bank net banking routers, credit line EMIs, and cards.",
+        "brandColor": "#047857",
+        "badgeText": "Enterprise Routing",
+        "supportedCurrencies": [
+          "INR"
+        ],
+        "supportedMethods": [
+          "UPI",
+          "INDIAN_CARDS",
+          "VISA",
+          "MASTERCARD",
+          "AMEX",
+          "NET_BANKING",
+          "WALLETS"
+        ],
+        "supportsRecurring": false,
+        "requiresMerchantApproval": true,
+        "supportedCountries": [
+          "IN"
+        ],
+        "fields": {
+          "apiKeyLabel": "Merchant Key",
+          "secretKeyLabel": "Merchant Salt",
+          "clientIdLabel": "PayU Merchant ID",
+          "webhookSecretLabel": "Reverse Hash Salt"
+        }
+      }
+    },
+    "phonepe": {
+      "id": "phonepe",
+      "name": "PhonePe Payment Gateway",
+      "category": "INDIAN",
+      "isEnabled": true,
+      "isLiveMode": false,
+      "apiKey": "phonepe_sandbox_key_9941a8",
+      "secretKey": "sec_phonepe_sandbox_82b9",
+      "clientId": "1",
+      "webhookSecret": "whsec_phonepe_sandbox_test",
+      "connectionStatus": "CONNECTED",
+      "supportsRecurring": false,
+      "supportedCurrencies": [
+        "INR"
+      ],
+      "supportedMethods": [
+        "UPI",
+        "UPI_QR",
+        "WALLETS",
+        "INDIAN_CARDS"
+      ],
+      "lastTestedAt": "2026-11-09T08:45:39.583Z",
+      "meta": {
+        "id": "phonepe",
+        "name": "PhonePe Payment Gateway",
+        "category": "INDIAN",
+        "description": "Direct UPI deep-linking, PhonePe dynamic QR, wallet debit, and high-concurrency payment intents.",
+        "brandColor": "#5f259f",
+        "badgeText": "Direct UPI & Dynamic QR",
+        "supportedCurrencies": [
+          "INR"
+        ],
+        "supportedMethods": [
+          "UPI",
+          "UPI_QR",
+          "WALLETS",
+          "INDIAN_CARDS"
+        ],
+        "supportsRecurring": false,
+        "requiresMerchantApproval": true,
+        "supportedCountries": [
+          "IN"
+        ],
+        "fields": {
+          "apiKeyLabel": "Merchant ID (MID)",
+          "secretKeyLabel": "Salt Key",
+          "clientIdLabel": "Salt Index (e.g. 1)",
+          "webhookSecretLabel": "X-VERIFY Salt Index"
+        }
+      }
+    },
+    "ccavenue": {
+      "id": "ccavenue",
+      "name": "CCAvenue",
+      "category": "INDIAN",
+      "isEnabled": false,
+      "isLiveMode": false,
+      "apiKey": "",
+      "secretKey": "",
+      "webhookSecret": "",
+      "connectionStatus": "DISCONNECTED",
+      "supportsRecurring": false,
+      "supportedCurrencies": [
+        "INR",
+        "USD",
+        "EUR",
+        "GBP",
+        "AED"
+      ],
+      "supportedMethods": [
+        "NET_BANKING",
+        "INDIAN_CARDS",
+        "INTERNATIONAL_CARDS",
+        "VISA",
+        "MASTERCARD",
+        "AMEX",
+        "WALLETS"
+      ],
+      "meta": {
+        "id": "ccavenue",
+        "name": "CCAvenue",
+        "category": "INDIAN",
+        "description": "Heritage Indian gateway supporting 200+ payment options, 55+ Net Banking partners, and multi-currency billing.",
+        "brandColor": "#b91c1c",
+        "badgeText": "55+ Bank Connectors",
+        "supportedCurrencies": [
+          "INR",
+          "USD",
+          "EUR",
+          "GBP",
+          "AED"
+        ],
+        "supportedMethods": [
+          "NET_BANKING",
+          "INDIAN_CARDS",
+          "INTERNATIONAL_CARDS",
+          "VISA",
+          "MASTERCARD",
+          "AMEX",
+          "WALLETS"
+        ],
+        "supportsRecurring": false,
+        "requiresMerchantApproval": true,
+        "supportedCountries": [
+          "IN"
+        ],
+        "fields": {
+          "apiKeyLabel": "Merchant ID",
+          "secretKeyLabel": "Working Key",
+          "clientIdLabel": "Access Code",
+          "webhookSecretLabel": "Checksum Encryption Key"
+        }
+      }
+    },
+    "stripe": {
+      "id": "stripe",
+      "name": "Stripe",
+      "category": "INTERNATIONAL",
+      "isEnabled": true,
+      "isLiveMode": false,
+      "apiKey": "stripe_sandbox_key_9941a8",
+      "secretKey": "sec_stripe_sandbox_82b9",
+      "webhookSecret": "whsec_stripe_sandbox_test",
+      "connectionStatus": "CONNECTED",
+      "supportsRecurring": true,
+      "supportedCurrencies": [
+        "USD",
+        "EUR",
+        "GBP",
+        "INR",
+        "AUD",
+        "CAD",
+        "SGD",
+        "AED",
+        "JPY"
+      ],
+      "supportedMethods": [
+        "INTERNATIONAL_CARDS",
+        "VISA",
+        "MASTERCARD",
+        "AMEX",
+        "WALLETS"
+      ],
+      "lastTestedAt": "2026-11-09T08:45:35.550Z",
+      "meta": {
+        "id": "stripe",
+        "name": "Stripe",
+        "category": "INTERNATIONAL",
+        "description": "Gold-standard global payment infrastructure for recurring SaaS billing, 3D Secure 2 cards, and wallets.",
+        "brandColor": "#635bff",
+        "badgeText": "Automated Global Subscriptions",
+        "supportedCurrencies": [
+          "USD",
+          "EUR",
+          "GBP",
+          "INR",
+          "AUD",
+          "CAD",
+          "SGD",
+          "AED",
+          "JPY"
+        ],
+        "supportedMethods": [
+          "INTERNATIONAL_CARDS",
+          "VISA",
+          "MASTERCARD",
+          "AMEX",
+          "WALLETS"
+        ],
+        "supportsRecurring": true,
+        "requiresMerchantApproval": false,
+        "supportedCountries": [
+          "GLOBAL"
+        ],
+        "fields": {
+          "apiKeyLabel": "Publishable Key (pk_test_... / pk_live_...)",
+          "secretKeyLabel": "Secret Key (sk_test_... / sk_live_...)",
+          "webhookSecretLabel": "Webhook Signing Secret (whsec_...)"
+        }
+      }
+    },
+    "paypal": {
+      "id": "paypal",
+      "name": "PayPal",
+      "category": "INTERNATIONAL",
+      "isEnabled": true,
+      "isLiveMode": false,
+      "apiKey": "paypal_sandbox_key_9941a8",
+      "secretKey": "sec_paypal_sandbox_82b9",
+      "webhookSecret": "whsec_paypal_sandbox_test",
+      "connectionStatus": "CONNECTED",
+      "supportsRecurring": true,
+      "supportedCurrencies": [
+        "USD",
+        "EUR",
+        "GBP",
+        "AUD",
+        "CAD",
+        "SGD"
+      ],
+      "supportedMethods": [
+        "PAYPAL",
+        "INTERNATIONAL_CARDS",
+        "VISA",
+        "MASTERCARD",
+        "AMEX"
+      ],
+      "lastTestedAt": "2026-11-09T08:37:52.946Z",
+      "meta": {
+        "id": "paypal",
+        "name": "PayPal",
+        "category": "INTERNATIONAL",
+        "description": "Global consumer brand with 400M+ active wallets, recurring subscriptions, and buyer protection.",
+        "brandColor": "#003087",
+        "badgeText": "Global Wallet & Vaulting",
+        "supportedCurrencies": [
+          "USD",
+          "EUR",
+          "GBP",
+          "AUD",
+          "CAD",
+          "SGD"
+        ],
+        "supportedMethods": [
+          "PAYPAL",
+          "INTERNATIONAL_CARDS",
+          "VISA",
+          "MASTERCARD",
+          "AMEX"
+        ],
+        "supportsRecurring": true,
+        "requiresMerchantApproval": false,
+        "supportedCountries": [
+          "GLOBAL"
+        ],
+        "fields": {
+          "apiKeyLabel": "Client ID",
+          "secretKeyLabel": "Client Secret",
+          "webhookSecretLabel": "Webhook ID"
+        }
+      }
+    },
+    "twocheckout": {
+      "id": "twocheckout",
+      "name": "2Checkout / Verifone",
+      "category": "INTERNATIONAL",
+      "isEnabled": false,
+      "isLiveMode": false,
+      "apiKey": "",
+      "secretKey": "",
+      "webhookSecret": "",
+      "connectionStatus": "DISCONNECTED",
+      "supportsRecurring": true,
+      "supportedCurrencies": [
+        "USD",
+        "EUR",
+        "GBP",
+        "CAD",
+        "AUD"
+      ],
+      "supportedMethods": [
+        "INTERNATIONAL_CARDS",
+        "VISA",
+        "MASTERCARD",
+        "AMEX",
+        "PAYPAL"
+      ],
+      "meta": {
+        "id": "twocheckout",
+        "name": "2Checkout / Verifone",
+        "category": "INTERNATIONAL",
+        "description": "Merchant-of-Record platform handling cross-border sales taxes, global cards, and European banking rails.",
+        "brandColor": "#0284c7",
+        "badgeText": "Cross-Border Merchant of Record",
+        "supportedCurrencies": [
+          "USD",
+          "EUR",
+          "GBP",
+          "CAD",
+          "AUD"
+        ],
+        "supportedMethods": [
+          "INTERNATIONAL_CARDS",
+          "VISA",
+          "MASTERCARD",
+          "AMEX",
+          "PAYPAL"
+        ],
+        "supportsRecurring": true,
+        "requiresMerchantApproval": true,
+        "supportedCountries": [
+          "GLOBAL"
+        ],
+        "fields": {
+          "apiKeyLabel": "Merchant Code",
+          "secretKeyLabel": "Buy-Link Secret Word",
+          "clientIdLabel": "Publishable Key",
+          "webhookSecretLabel": "INS Secret Key"
+        }
+      }
+    },
+    "paddle": {
+      "id": "paddle",
+      "name": "Paddle",
+      "category": "INTERNATIONAL",
+      "isEnabled": false,
+      "isLiveMode": false,
+      "apiKey": "",
+      "secretKey": "",
+      "webhookSecret": "",
+      "connectionStatus": "DISCONNECTED",
+      "supportsRecurring": true,
+      "supportedCurrencies": [
+        "USD",
+        "EUR",
+        "GBP",
+        "AUD",
+        "CAD"
+      ],
+      "supportedMethods": [
+        "INTERNATIONAL_CARDS",
+        "VISA",
+        "MASTERCARD",
+        "PAYPAL"
+      ],
+      "meta": {
+        "id": "paddle",
+        "name": "Paddle",
+        "category": "INTERNATIONAL",
+        "description": "SaaS Merchant of Record taking complete liability for international VAT, GST, and sales tax compliance.",
+        "brandColor": "#0d9488",
+        "badgeText": "Global SaaS Tax MoR",
+        "supportedCurrencies": [
+          "USD",
+          "EUR",
+          "GBP",
+          "AUD",
+          "CAD"
+        ],
+        "supportedMethods": [
+          "INTERNATIONAL_CARDS",
+          "VISA",
+          "MASTERCARD",
+          "PAYPAL"
+        ],
+        "supportsRecurring": true,
+        "requiresMerchantApproval": true,
+        "supportedCountries": [
+          "GLOBAL"
+        ],
+        "fields": {
+          "apiKeyLabel": "Vendor ID",
+          "secretKeyLabel": "API Key",
+          "webhookSecretLabel": "Webhook Secret Key (v2)"
+        }
+      }
+    },
+    "lemonsqueezy": {
+      "id": "lemonsqueezy",
+      "name": "Lemon Squeezy",
+      "category": "INTERNATIONAL",
+      "isEnabled": false,
+      "isLiveMode": false,
+      "apiKey": "",
+      "secretKey": "",
+      "webhookSecret": "",
+      "connectionStatus": "DISCONNECTED",
+      "supportsRecurring": true,
+      "supportedCurrencies": [
+        "USD",
+        "EUR",
+        "GBP"
+      ],
+      "supportedMethods": [
+        "INTERNATIONAL_CARDS",
+        "VISA",
+        "MASTERCARD",
+        "AMEX",
+        "PAYPAL"
+      ],
+      "meta": {
+        "id": "lemonsqueezy",
+        "name": "Lemon Squeezy",
+        "category": "INTERNATIONAL",
+        "description": "Modern developer-first MoR with built-in European VAT management, subscription portals, and checkout overlays.",
+        "brandColor": "#eab308",
+        "badgeText": "Developer-First MoR",
+        "supportedCurrencies": [
+          "USD",
+          "EUR",
+          "GBP"
+        ],
+        "supportedMethods": [
+          "INTERNATIONAL_CARDS",
+          "VISA",
+          "MASTERCARD",
+          "AMEX",
+          "PAYPAL"
+        ],
+        "supportsRecurring": true,
+        "requiresMerchantApproval": true,
+        "supportedCountries": [
+          "GLOBAL"
+        ],
+        "fields": {
+          "apiKeyLabel": "Store ID",
+          "secretKeyLabel": "API Key",
+          "webhookSecretLabel": "Signing Secret"
+        }
+      }
+    },
+    "nowpayments": {
+      "id": "nowpayments",
+      "name": "NOWPayments",
+      "category": "CRYPTO",
+      "isEnabled": true,
+      "isLiveMode": false,
+      "apiKey": "nowpayments_sandbox_key_9941a8",
+      "secretKey": "sec_nowpayments_sandbox_82b9",
+      "webhookSecret": "whsec_nowpayments_sandbox_test",
+      "connectionStatus": "CONNECTED",
+      "supportsRecurring": false,
+      "supportedCurrencies": [
+        "USD",
+        "EUR",
+        "BTC",
+        "ETH",
+        "USDT",
+        "USDC",
+        "LTC"
+      ],
+      "supportedMethods": [
+        "BTC",
+        "ETH",
+        "USDT",
+        "USDC",
+        "LTC"
+      ],
+      "lastTestedAt": "2026-11-09T08:45:43.661Z",
+      "meta": {
+        "id": "nowpayments",
+        "name": "NOWPayments",
+        "category": "CRYPTO",
+        "description": "Non-custodial cryptocurrency payment gateway supporting 160+ tokens with instant fiat auto-conversion.",
+        "brandColor": "#0284c7",
+        "badgeText": "Non-Custodial Multi-Crypto",
+        "supportedCurrencies": [
+          "USD",
+          "EUR",
+          "BTC",
+          "ETH",
+          "USDT",
+          "USDC",
+          "LTC"
+        ],
+        "supportedMethods": [
+          "BTC",
+          "ETH",
+          "USDT",
+          "USDC",
+          "LTC"
+        ],
+        "supportsRecurring": false,
+        "requiresMerchantApproval": false,
+        "supportedCountries": [
+          "GLOBAL"
+        ],
+        "fields": {
+          "apiKeyLabel": "API Key",
+          "secretKeyLabel": "IPN Secret Key",
+          "webhookSecretLabel": "IPN Webhook Secret"
+        }
+      }
+    },
+    "coinpayments": {
+      "id": "coinpayments",
+      "name": "CoinPayments",
+      "category": "CRYPTO",
+      "isEnabled": false,
+      "isLiveMode": false,
+      "apiKey": "",
+      "secretKey": "",
+      "webhookSecret": "",
+      "connectionStatus": "DISCONNECTED",
+      "supportsRecurring": false,
+      "supportedCurrencies": [
+        "USD",
+        "BTC",
+        "ETH",
+        "USDT",
+        "USDC",
+        "LTC"
+      ],
+      "supportedMethods": [
+        "BTC",
+        "ETH",
+        "USDT",
+        "USDC",
+        "LTC"
+      ],
+      "meta": {
+        "id": "coinpayments",
+        "name": "CoinPayments",
+        "category": "CRYPTO",
+        "description": "Legacy crypto gateway operating since 2013 with wallet vaults, multi-coin invoices, and POS QR codes.",
+        "brandColor": "#1d4ed8",
+        "badgeText": "Multi-Coin Vaulting",
+        "supportedCurrencies": [
+          "USD",
+          "BTC",
+          "ETH",
+          "USDT",
+          "USDC",
+          "LTC"
+        ],
+        "supportedMethods": [
+          "BTC",
+          "ETH",
+          "USDT",
+          "USDC",
+          "LTC"
+        ],
+        "supportsRecurring": false,
+        "requiresMerchantApproval": false,
+        "supportedCountries": [
+          "GLOBAL"
+        ],
+        "fields": {
+          "apiKeyLabel": "Public Key",
+          "secretKeyLabel": "Private Key",
+          "clientIdLabel": "Merchant ID",
+          "webhookSecretLabel": "IPN Secret"
+        }
+      }
+    },
+    "coinbase": {
+      "id": "coinbase",
+      "name": "Coinbase Commerce",
+      "category": "CRYPTO",
+      "isEnabled": true,
+      "isLiveMode": false,
+      "apiKey": "",
+      "secretKey": "",
+      "webhookSecret": "",
+      "connectionStatus": "DISCONNECTED",
+      "supportsRecurring": false,
+      "supportedCurrencies": [
+        "USD",
+        "USDC",
+        "BTC",
+        "ETH"
+      ],
+      "supportedMethods": [
+        "USDC",
+        "BTC",
+        "ETH"
+      ],
+      "meta": {
+        "id": "coinbase",
+        "name": "Coinbase Commerce",
+        "category": "CRYPTO",
+        "description": "Institutional web3 commerce protocol powered by smart contracts on Base, Polygon, and Ethereum.",
+        "brandColor": "#0052ff",
+        "badgeText": "Web3 Institutional Protocol",
+        "supportedCurrencies": [
+          "USD",
+          "USDC",
+          "BTC",
+          "ETH"
+        ],
+        "supportedMethods": [
+          "USDC",
+          "BTC",
+          "ETH"
+        ],
+        "supportsRecurring": false,
+        "requiresMerchantApproval": false,
+        "supportedCountries": [
+          "GLOBAL"
+        ],
+        "fields": {
+          "apiKeyLabel": "Commerce API Key",
+          "secretKeyLabel": "API Secret",
+          "webhookSecretLabel": "Shared Webhook Secret"
+        }
+      }
+    }
+  },
+  "transactions": [
+    {
+      "id": "tx_1794213964083_w04x",
+      "transactionNumber": "TX-2026-1061",
+      "gatewayId": "nowpayments",
+      "gatewayName": "NOWPayments",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_current",
+      "amount": 149,
+      "currency": "USD",
+      "status": "PENDING",
+      "paymentMethod": "USDT",
+      "idempotencyKey": "idemp_1794213964083",
+      "customerEmail": "admin@socialhive.io",
+      "customerName": "Super Admin",
+      "isRefunded": false,
+      "refundAmount": 0,
+      "createdAt": "2026-11-09T08:46:04.083Z",
+      "updatedAt": "2026-11-09T08:46:04.083Z"
+    },
+    {
+      "id": "tx_1794213960017_uoen",
+      "transactionNumber": "TX-2026-1060",
+      "gatewayId": "phonepe",
+      "gatewayName": "PhonePe Payment Gateway",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_current",
+      "amount": 2436,
+      "currency": "INR",
+      "status": "PENDING",
+      "paymentMethod": "UPI_QR",
+      "idempotencyKey": "idemp_1794213960017",
+      "customerEmail": "admin@socialhive.io",
+      "customerName": "Super Admin",
+      "isRefunded": false,
+      "refundAmount": 0,
+      "createdAt": "2026-11-09T08:46:00.017Z",
+      "updatedAt": "2026-11-09T08:46:00.017Z"
+    },
+    {
+      "id": "tx_1794213955906_a7g8",
+      "transactionNumber": "TX-2026-1059",
+      "gatewayId": "stripe",
+      "gatewayName": "Stripe",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_current",
+      "amount": 780,
+      "currency": "USD",
+      "status": "PENDING",
+      "paymentMethod": "CARDS",
+      "idempotencyKey": "idemp_1794213955906",
+      "customerEmail": "admin@socialhive.io",
+      "customerName": "Super Admin",
+      "isRefunded": false,
+      "refundAmount": 0,
+      "createdAt": "2026-11-09T08:45:55.906Z",
+      "updatedAt": "2026-11-09T08:45:55.906Z"
+    },
+    {
+      "id": "tx_1794213951854_hvn0",
+      "transactionNumber": "TX-2026-1058",
+      "gatewayId": "razorpay",
+      "gatewayName": "Razorpay",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_current",
+      "amount": 2436,
+      "currency": "INR",
+      "status": "REFUNDED",
+      "paymentMethod": "UPI",
+      "idempotencyKey": "idemp_1794213951854",
+      "customerEmail": "admin@socialhive.io",
+      "customerName": "Super Admin",
+      "isRefunded": true,
+      "refundAmount": 2436,
+      "createdAt": "2026-11-09T08:45:51.854Z",
+      "updatedAt": "2026-11-09T08:46:08.318Z",
+      "gatewayPaymentId": "pay_simulated_77777",
+      "refundReason": "Customer requested Part 6 refund test",
+      "refundedAt": "2026-11-09T08:46:08.318Z"
+    },
+    {
+      "id": "tx_1794213855991_u02y",
+      "transactionNumber": "TX-2026-1057",
+      "gatewayId": "nowpayments",
+      "gatewayName": "NOWPayments",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_current",
+      "amount": 149,
+      "currency": "USD",
+      "status": "PENDING",
+      "paymentMethod": "USDT",
+      "idempotencyKey": "idemp_1794213855991",
+      "customerEmail": "admin@socialhive.io",
+      "customerName": "Super Admin",
+      "isRefunded": false,
+      "refundAmount": 0,
+      "createdAt": "2026-11-09T08:44:15.991Z",
+      "updatedAt": "2026-11-09T08:44:15.991Z"
+    },
+    {
+      "id": "tx_1794213851940_d6fp",
+      "transactionNumber": "TX-2026-1056",
+      "gatewayId": "phonepe",
+      "gatewayName": "PhonePe Payment Gateway",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_current",
+      "amount": 2436,
+      "currency": "INR",
+      "status": "PENDING",
+      "paymentMethod": "UPI_QR",
+      "idempotencyKey": "idemp_1794213851940",
+      "customerEmail": "admin@socialhive.io",
+      "customerName": "Super Admin",
+      "isRefunded": false,
+      "refundAmount": 0,
+      "createdAt": "2026-11-09T08:44:11.940Z",
+      "updatedAt": "2026-11-09T08:44:11.940Z"
+    },
+    {
+      "id": "tx_1794213847875_zznh",
+      "transactionNumber": "TX-2026-1055",
+      "gatewayId": "stripe",
+      "gatewayName": "Stripe",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_current",
+      "amount": 780,
+      "currency": "USD",
+      "status": "PENDING",
+      "paymentMethod": "CARDS",
+      "idempotencyKey": "idemp_1794213847875",
+      "customerEmail": "admin@socialhive.io",
+      "customerName": "Super Admin",
+      "isRefunded": false,
+      "refundAmount": 0,
+      "createdAt": "2026-11-09T08:44:07.875Z",
+      "updatedAt": "2026-11-09T08:44:07.875Z"
+    },
+    {
+      "id": "tx_1794213843816_vgj8",
+      "transactionNumber": "TX-2026-1054",
+      "gatewayId": "razorpay",
+      "gatewayName": "Razorpay",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_current",
+      "amount": 2436,
+      "currency": "INR",
+      "status": "REFUNDED",
+      "paymentMethod": "UPI",
+      "idempotencyKey": "idemp_1794213843816",
+      "customerEmail": "admin@socialhive.io",
+      "customerName": "Super Admin",
+      "isRefunded": true,
+      "refundAmount": 2436,
+      "createdAt": "2026-11-09T08:44:03.816Z",
+      "updatedAt": "2026-11-09T08:44:20.328Z",
+      "gatewayPaymentId": "pay_simulated_77777",
+      "refundReason": "Customer requested Part 6 refund test",
+      "refundedAt": "2026-11-09T08:44:20.328Z"
+    },
+    {
+      "id": "tx_1794213702202_uyvc",
+      "transactionNumber": "TX-2026-1053",
+      "gatewayId": "nowpayments",
+      "gatewayName": "NOWPayments",
+      "workspaceId": "ws_test_default",
+      "userId": "usr_current",
+      "amount": 149,
+      "currency": "USD",
+      "status": "PENDING",
+      "paymentMethod": "USDT",
+      "idempotencyKey": "idemp_1794213702202",
+      "customerEmail": "admin@socialhive.io",
+      "customerName": "Super Admin",
+      "isRefunded": false,
+      "refundAmount": 0,
+      "createdAt": "2026-11-09T08:41:42.202Z",
+      "updatedAt": "2026-11-09T08:41:42.202Z"
+    },
+    {
+      "id": "tx_1794213698165_ptqm",
+      "transactionNumber": "TX-2026-1052",
+      "gatewayId": "phonepe",
+      "gatewayName": "PhonePe Payment Gateway",
+      "workspaceId": "ws_test_default",
+      "userId": "usr_current",
+      "amount": 2436,
+      "currency": "INR",
+      "status": "PENDING",
+      "paymentMethod": "UPI_QR",
+      "idempotencyKey": "idemp_1794213698165",
+      "customerEmail": "admin@socialhive.io",
+      "customerName": "Super Admin",
+      "isRefunded": false,
+      "refundAmount": 0,
+      "createdAt": "2026-11-09T08:41:38.165Z",
+      "updatedAt": "2026-11-09T08:41:38.165Z"
+    },
+    {
+      "id": "tx_1794213694103_qigt",
+      "transactionNumber": "TX-2026-1051",
+      "gatewayId": "stripe",
+      "gatewayName": "Stripe",
+      "workspaceId": "ws_test_default",
+      "userId": "usr_current",
+      "amount": 780,
+      "currency": "USD",
+      "status": "PENDING",
+      "paymentMethod": "CARDS",
+      "idempotencyKey": "idemp_1794213694103",
+      "customerEmail": "admin@socialhive.io",
+      "customerName": "Super Admin",
+      "isRefunded": false,
+      "refundAmount": 0,
+      "createdAt": "2026-11-09T08:41:34.103Z",
+      "updatedAt": "2026-11-09T08:41:34.103Z"
+    },
+    {
+      "id": "tx_1794213690006_51kl",
+      "transactionNumber": "TX-2026-1050",
+      "gatewayId": "razorpay",
+      "gatewayName": "Razorpay",
+      "workspaceId": "ws_test_default",
+      "userId": "usr_current",
+      "amount": 2436,
+      "currency": "INR",
+      "status": "PENDING",
+      "paymentMethod": "UPI",
+      "idempotencyKey": "idemp_1794213690006",
+      "customerEmail": "admin@socialhive.io",
+      "customerName": "Super Admin",
+      "isRefunded": false,
+      "refundAmount": 0,
+      "createdAt": "2026-11-09T08:41:30.006Z",
+      "updatedAt": "2026-11-09T08:41:30.006Z"
+    },
+    {
+      "id": "tx_stripe_001",
+      "transactionNumber": "TX-2026-1049",
+      "gatewayId": "stripe",
+      "gatewayName": "Stripe",
+      "workspaceId": "ws_peak_scale",
+      "userId": "usr_super_admin_seed",
+      "subscriptionId": "sub_admin_pro",
+      "invoiceId": "inv_2026_001",
+      "amount": 780,
+      "currency": "USD",
+      "status": "SUCCEEDED",
+      "paymentMethod": "VISA",
+      "gatewayPaymentId": "pi_3L2k98xKLM9821a",
+      "gatewayOrderId": "cs_live_99812984",
+      "customerEmail": "admin@socialhive.io",
+      "customerName": "Super Administrator",
+      "isRefunded": false,
+      "refundAmount": 0,
+      "createdAt": "2026-10-10T08:37:52.946Z",
+      "updatedAt": "2026-10-10T08:37:52.946Z"
+    },
+    {
+      "id": "tx_razorpay_002",
+      "transactionNumber": "TX-2026-1048",
+      "gatewayId": "razorpay",
+      "gatewayName": "Razorpay",
+      "workspaceId": "ws_solo_growth",
+      "userId": "usr_normal_seed",
+      "subscriptionId": "sub_user_starter",
+      "invoiceId": "inv_2026_003",
+      "amount": 2420,
+      "currency": "INR",
+      "status": "SUCCEEDED",
+      "paymentMethod": "UPI",
+      "gatewayPaymentId": "pay_OMs87bZ19K",
+      "gatewayOrderId": "order_OMs8271KL8",
+      "customerEmail": "user@socialhive.io",
+      "customerName": "Growth Marketer",
+      "isRefunded": false,
+      "refundAmount": 0,
+      "createdAt": "2026-10-30T08:37:52.946Z",
+      "updatedAt": "2026-10-30T08:37:52.946Z"
+    },
+    {
+      "id": "tx_paypal_003",
+      "transactionNumber": "TX-2026-1047",
+      "gatewayId": "paypal",
+      "gatewayName": "PayPal",
+      "workspaceId": "ws_apex_digital",
+      "userId": "usr_apex_owner",
+      "subscriptionId": "sub_apex_agency",
+      "invoiceId": "inv_2026_002",
+      "amount": 299,
+      "currency": "USD",
+      "status": "SUCCEEDED",
+      "paymentMethod": "PAYPAL",
+      "gatewayPaymentId": "CAPTURE-9821KLM-889",
+      "gatewayOrderId": "ORDER-981244",
+      "customerEmail": "billing@apexdigital.com",
+      "customerName": "Apex Digital Agency",
+      "isRefunded": false,
+      "refundAmount": 0,
+      "createdAt": "2026-10-25T08:37:52.946Z",
+      "updatedAt": "2026-10-25T08:37:52.946Z"
+    },
+    {
+      "id": "tx_phonepe_004",
+      "transactionNumber": "TX-2026-1046",
+      "gatewayId": "phonepe",
+      "gatewayName": "PhonePe Payment Gateway",
+      "workspaceId": "ws_lumina_boutique",
+      "userId": "usr_lumina_owner",
+      "amount": 6580,
+      "currency": "INR",
+      "status": "SUCCEEDED",
+      "paymentMethod": "UPI_QR",
+      "gatewayPaymentId": "T26101214002938192",
+      "gatewayOrderId": "MT782910398",
+      "customerEmail": "ops@luminaboutique.com",
+      "customerName": "Lumina Boutique",
+      "isRefunded": false,
+      "refundAmount": 0,
+      "createdAt": "2026-11-05T08:37:52.946Z",
+      "updatedAt": "2026-11-05T08:37:52.946Z"
+    },
+    {
+      "id": "tx_crypto_005",
+      "transactionNumber": "TX-2026-1045",
+      "gatewayId": "nowpayments",
+      "gatewayName": "NOWPayments",
+      "workspaceId": "ws_apex_digital",
+      "userId": "usr_crypto_subscriber",
+      "amount": 149,
+      "currency": "USD",
+      "status": "SUCCEEDED",
+      "paymentMethod": "USDT",
+      "gatewayPaymentId": "NP_INV_9921827419",
+      "gatewayOrderId": "np_order_8829",
+      "customerEmail": "crypto@apexdigital.com",
+      "customerName": "Apex Web3 Fund",
+      "isRefunded": false,
+      "refundAmount": 0,
+      "createdAt": "2026-11-07T08:37:52.946Z",
+      "updatedAt": "2026-11-07T08:37:52.946Z"
+    }
+  ]
+}
