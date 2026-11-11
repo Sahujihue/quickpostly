@@ -19,7 +19,7 @@ const envSchema = z.object({
   NEXT_PUBLIC_META_DESCRIPTION: z.string().default('Create AI-powered social media content, schedule posts, manage multiple accounts and grow your brand with QuickPostly.'),
 
   // Database & Cache
-  DATABASE_URL: z.string().min(1, 'DATABASE_URL is required'),
+  DATABASE_URL: z.string().default('postgresql://postgres:postgres@localhost:5432/quickpostly_db?schema=public'),
   REDIS_URL: z.string().default('redis://localhost:6379'),
 
   // Security
