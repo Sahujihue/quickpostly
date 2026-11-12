@@ -379,7 +379,7 @@ export default function AdminHeaderPage() {
             <button
               type="button"
               onClick={() => setIsAddLinkModalOpen(false)}
-              className="px-4 py-2 text-xs font-medium text-slate-500 hover:text-slate-700"
+              className="px-4 py-2 text-xs font-medium text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 cursor-pointer"
             >
               Cancel
             </button>

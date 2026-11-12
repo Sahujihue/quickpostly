@@ -285,18 +285,18 @@ export default function AdminUsersPage() {
       {/* Title & Stats Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-white flex items-center gap-2">
+          <h1 className="text-2xl font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
             <Users className="w-6 h-6 text-indigo-500" />
             <span>Platform User Directory</span>
           </h1>
-          <p className="text-xs sm:text-sm text-slate-400">
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
             Manage user accounts, roles, statuses, credentials, and full account lifecycles.
           </p>
         </div>
         <div className="flex items-center gap-2.5">
           <Link
             href="/admin/staff"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 border border-purple-500/30 font-semibold text-xs cursor-pointer transition-colors"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-purple-50 dark:bg-purple-600/20 hover:bg-purple-100 dark:hover:bg-purple-600/30 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-500/30 font-semibold text-xs cursor-pointer transition-colors"
           >
             <ShieldCheck className="w-3.5 h-3.5" />
             <span>Staff Management</span>
@@ -304,7 +304,7 @@ export default function AdminUsersPage() {
           <button
             type="button"
             onClick={fetchUsers}
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 text-xs font-semibold cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold cursor-pointer transition-colors"
           >
             <RefreshCw className="w-3.5 h-3.5" />
             <span>Refresh</span>
@@ -324,8 +324,8 @@ export default function AdminUsersPage() {
         <div
           className={`p-3.5 rounded-xl text-xs flex items-center gap-2.5 transition-all ${
             feedback.isError
-              ? 'bg-rose-950/70 border border-rose-900 text-rose-300'
-              : 'bg-emerald-950/70 border border-emerald-900 text-emerald-300'
+              ? 'bg-rose-50 dark:bg-rose-950/70 border border-rose-200 dark:border-rose-900 text-rose-700 dark:text-rose-300'
+              : 'bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200 dark:border-emerald-900 text-emerald-700 dark:text-emerald-300'
           }`}
         >
           {feedback.isError ? <AlertCircle className="w-4 h-4 shrink-0" /> : <CheckCircle2 className="w-4 h-4 shrink-0" />}
@@ -334,16 +334,16 @@ export default function AdminUsersPage() {
       )}
 
       {/* Filter and Search Bar */}
-      <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+      <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4 shadow-xs">
         <form onSubmit={handleSearchSubmit} className="flex flex-col sm:flex-row items-center gap-3">
           <div className="relative flex-1 w-full">
-            <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-3" />
+            <Search className="w-4 h-4 text-slate-400 dark:text-slate-500 absolute left-3.5 top-3" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search by user name or email address..."
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
             />
           </div>
 
@@ -352,7 +352,7 @@ export default function AdminUsersPage() {
             <select
               value={roleFilter}
               onChange={(e) => setRoleFilter(e.target.value)}
-              className="px-3 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300 focus:outline-none"
+              className="px-3 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-300 focus:outline-none"
             >
               <option value="ALL">All Roles</option>
               <option value="SUPER_ADMIN">Super Admin</option>
@@ -366,7 +366,7 @@ export default function AdminUsersPage() {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-3 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300 focus:outline-none"
+              className="px-3 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-300 focus:outline-none"
             >
               <option value="ALL">All Statuses</option>
               <option value="ACTIVE">Active</option>
@@ -386,7 +386,7 @@ export default function AdminUsersPage() {
         {/* Users Table */}
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="text-slate-400 uppercase font-mono tracking-wider border-b border-slate-800">
+            <thead className="text-slate-600 dark:text-slate-400 uppercase font-mono tracking-wider border-b border-slate-200 dark:border-slate-800">
               <tr>
                 <th className="py-3 px-4">User</th>
                 <th className="py-3 px-4">Role</th>
@@ -397,13 +397,13 @@ export default function AdminUsersPage() {
                 <th className="py-3 px-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800 text-slate-300">
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
               {users.map((u) => (
-                <tr key={u.id} className="hover:bg-slate-950/40 transition-colors">
+                <tr key={u.id} className="hover:bg-slate-50 dark:hover:bg-slate-950/40 transition-colors">
                   <td className="py-3.5 px-4">
                     <div className="flex flex-col">
-                      <span className="font-bold text-white text-sm">{u.name}</span>
-                      <span className="text-[11px] text-slate-400 font-mono">{u.email}</span>
+                      <span className="font-bold text-slate-900 dark:text-white text-sm">{u.name}</span>
+                      <span className="text-[11px] text-slate-500 dark:text-slate-400 font-mono">{u.email}</span>
                     </div>
                   </td>
                   <td className="py-3.5 px-4">{getRoleBadge(u.role)}</td>

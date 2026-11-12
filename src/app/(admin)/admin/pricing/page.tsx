@@ -394,7 +394,7 @@ export default function AdminPricingPage() {
                   {/* Quota Highlights */}
                   <div className="space-y-1.5 mb-4 text-xs font-medium text-slate-600 dark:text-slate-300">
                     <div className="flex items-center justify-between">
-                      <span className="flex items-center gap-1.5 text-slate-500">
+                      <span className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
                         <Share2 className="w-3.5 h-3.5 text-indigo-500" />
                         <span>Social Accounts:</span>
                       </span>
@@ -403,7 +403,7 @@ export default function AdminPricingPage() {
                       </strong>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="flex items-center gap-1.5 text-slate-500">
+                      <span className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
                         <Calendar className="w-3.5 h-3.5 text-amber-500" />
                         <span>Queue Slots:</span>
                       </span>
@@ -412,7 +412,7 @@ export default function AdminPricingPage() {
                       </strong>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="flex items-center gap-1.5 text-slate-500">
+                      <span className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
                         <Bot className="w-3.5 h-3.5 text-emerald-500" />
                         <span>AI Text Gens:</span>
                       </span>
@@ -421,11 +421,11 @@ export default function AdminPricingPage() {
                       </strong>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="flex items-center gap-1.5 text-slate-500">
+                      <span className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
                         <MessageSquare className="w-3.5 h-3.5 text-sky-500" />
                         <span>Social Inbox:</span>
                       </span>
-                      <strong className={lim.hasSocialInbox ? 'text-emerald-500' : 'text-slate-400'}>
+                      <strong className={lim.hasSocialInbox ? 'text-emerald-500 dark:text-emerald-400' : 'text-slate-400'}>
                         {lim.hasSocialInbox ? 'Included' : 'None'}
                       </strong>
                     </div>
@@ -529,7 +529,7 @@ export default function AdminPricingPage() {
               </span>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-500 mb-1">Monthly ($)</label>
+                  <label className="block text-[11px] font-bold text-slate-500 dark:text-slate-400 mb-1">Monthly ($)</label>
                   <input
                     type="number"
                     step="0.01"
@@ -541,7 +541,7 @@ export default function AdminPricingPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-500 mb-1">Annual ($/mo)</label>
+                  <label className="block text-[11px] font-bold text-slate-500 dark:text-slate-400 mb-1">Annual ($/mo)</label>
                   <input
                     type="number"
                     step="0.01"
@@ -553,7 +553,7 @@ export default function AdminPricingPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-500 mb-1">Trial (Days)</label>
+                  <label className="block text-[11px] font-bold text-slate-500 dark:text-slate-400 mb-1">Trial (Days)</label>
                   <input
                     type="number"
                     min="0"
@@ -565,7 +565,7 @@ export default function AdminPricingPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-500 mb-1">Currency</label>
+                  <label className="block text-[11px] font-bold text-slate-500 dark:text-slate-400 mb-1">Currency</label>
                   <input
                     type="text"
                     value={editingPlan.currency || 'USD'}
@@ -583,7 +583,7 @@ export default function AdminPricingPage() {
               </span>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-500 mb-1">Social Accounts</label>
+                  <label className="block text-[11px] font-bold text-slate-500 dark:text-slate-400 mb-1">Social Accounts</label>
                   <input
                     type="number"
                     min="1"
@@ -594,7 +594,7 @@ export default function AdminPricingPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-500 mb-1">Scheduled Posts</label>
+                  <label className="block text-[11px] font-bold text-slate-500 dark:text-slate-400 mb-1">Scheduled Posts</label>
                   <input
                     type="number"
                     min="1"
@@ -605,7 +605,7 @@ export default function AdminPricingPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-500 mb-1">AI Text Gens/mo</label>
+                  <label className="block text-[11px] font-bold text-slate-500 dark:text-slate-400 mb-1">AI Text Gens/mo</label>
                   <input
                     type="number"
                     min="0"
@@ -616,7 +616,7 @@ export default function AdminPricingPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-500 mb-1">AI Image Credits</label>
+                  <label className="block text-[11px] font-bold text-slate-500 dark:text-slate-400 mb-1">AI Image Credits</label>
                   <input
                     type="number"
                     min="0"
@@ -627,7 +627,7 @@ export default function AdminPricingPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-500 mb-1">AI Video Credits</label>
+                  <label className="block text-[11px] font-bold text-slate-500 dark:text-slate-400 mb-1">AI Video Credits</label>
                   <input
                     type="number"
                     min="0"
@@ -638,7 +638,7 @@ export default function AdminPricingPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-500 mb-1">Team Seats</label>
+                  <label className="block text-[11px] font-bold text-slate-500 dark:text-slate-400 mb-1">Team Seats</label>
                   <input
                     type="number"
                     min="1"
@@ -649,7 +649,7 @@ export default function AdminPricingPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-500 mb-1">Workspaces</label>
+                  <label className="block text-[11px] font-bold text-slate-500 dark:text-slate-400 mb-1">Workspaces</label>
                   <input
                     type="number"
                     min="1"
@@ -660,7 +660,7 @@ export default function AdminPricingPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-500 mb-1">Storage (MB)</label>
+                  <label className="block text-[11px] font-bold text-slate-500 dark:text-slate-400 mb-1">Storage (MB)</label>
                   <input
                     type="number"
                     min="100"
@@ -682,7 +682,7 @@ export default function AdminPricingPage() {
                   <span>Unified Social Inbox Enabled</span>
                 </label>
 
-                <div className="flex items-center gap-2 text-xs text-slate-500">
+                <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
                   <span>Analytics Retention:</span>
                   <input
                     type="number"
@@ -734,7 +734,7 @@ export default function AdminPricingPage() {
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="px-4 py-2 text-xs font-medium text-slate-500 hover:text-slate-700"
+                className="px-4 py-2 text-xs font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white cursor-pointer"
               >
                 Cancel
               </button>

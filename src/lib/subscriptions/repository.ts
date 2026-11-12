@@ -1013,6 +1013,112 @@ export class SubscriptionRepository {
     return sub;
   }
 
+  public static async updateSubscription(
+    id: string,
+    updates: {
+      planSlug?: string;
+      status?: SubscriptionStatus;
+      billingInterval?: SubscriptionBillingInterval;
+      amount?: number;
+      currency?: string;
+      currentPeriodEnd?: string;
+      trialEnd?: string | null;
+      customNotes?: string;
+    }
+  ): Promise<SubscriptionDTO | null> {
+    const store = SubscriptionRepository.ensureStore();
+    const idx = store.subscriptions.findIndex((s) => s.id === id);
+    if (idx < 0) return null;
+
+    const sub = { ...store.subscriptions[idx] };
+    const oldPlan = sub.planSlug;
+    const oldStatus = sub.status;
+
+    if (updates.planSlug && updates.planSlug !== sub.planSlug) {
+      const plan = await SubscriptionRepository.getPlanBySlug(updates.planSlug);
+      if (plan) {
+        sub.planId = plan.id;
+        sub.planSlug = plan.slug;
+        sub.planName = plan.name;
+        sub.amount =
+          updates.amount !== undefined
+            ? updates.amount
+            : sub.billingInterval === 'YEARLY'
+            ? plan.annualPrice
+            : plan.monthlyPrice;
+        sub.currency = plan.currency;
+      }
+    }
+
+    if (updates.status) sub.status = updates.status;
+    if (updates.billingInterval) sub.billingInterval = updates.billingInterval;
+    if (updates.amount !== undefined) sub.amount = updates.amount;
+    if (updates.currency) sub.currency = updates.currency;
+    if (updates.currentPeriodEnd) sub.currentPeriodEnd = updates.currentPeriodEnd;
+    if (updates.trialEnd !== undefined) sub.trialEnd = updates.trialEnd || undefined;
+    sub.updatedAt = new Date().toISOString();
+
+    store.subscriptions[idx] = sub;
+
+    store.auditLogs.unshift({
+      id: `log_${Date.now()}`,
+      subscriptionId: sub.id,
+      action: 'ADMIN_OVERRIDE',
+      performedBy: 'SUPER_ADMIN',
+      notes: `Subscription updated by administrator. Plan: ${oldPlan} -> ${sub.planSlug}, Status: ${oldStatus} -> ${sub.status}. ${updates.customNotes || ''}`.trim(),
+      createdAt: new Date().toISOString(),
+    });
+
+    SubscriptionRepository.saveStore(store);
+
+    try {
+      await prisma.subscription.update({
+        where: { id: sub.id },
+        data: {
+          status: sub.status as any,
+          billingInterval: sub.billingInterval as any,
+          amount: sub.amount,
+          currentPeriodEnd: new Date(sub.currentPeriodEnd),
+          trialEnd: sub.trialEnd ? new Date(sub.trialEnd) : null,
+        },
+      });
+    } catch {
+      // Prisma fallback
+    }
+
+    return sub;
+  }
+
+  public static async deleteSubscription(id: string): Promise<boolean> {
+    const store = SubscriptionRepository.ensureStore();
+    const idx = store.subscriptions.findIndex((s) => s.id === id);
+    if (idx < 0) return false;
+
+    const removed = store.subscriptions[idx];
+    store.subscriptions.splice(idx, 1);
+
+    store.auditLogs.unshift({
+      id: `log_${Date.now()}`,
+      subscriptionId: removed.id,
+      action: 'ADMIN_DELETE',
+      performedBy: 'SUPER_ADMIN',
+      notes: `Subscription deleted by administrator for workspace ${removed.workspaceId}`,
+      createdAt: new Date().toISOString(),
+    });
+
+    SubscriptionRepository.saveStore(store);
+
+    try {
+      await prisma.subscription.delete({
+        where: { id: removed.id },
+      });
+    } catch {
+      // Prisma fallback
+    }
+
+    return true;
+  }
+
   // ============================================================================
   // COUPONS MANAGEMENT
   // ============================================================================

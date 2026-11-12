@@ -148,59 +148,59 @@ export default function AdminTransactionsPage() {
 
       {/* Top Ledger Telemetry */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-1">
+        <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1 shadow-xs">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-slate-400 font-medium">Total Volume Settled</span>
-            <DollarSign className="w-4 h-4 text-emerald-400" />
+            <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">Total Volume Settled</span>
+            <DollarSign className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
           </div>
-          <div className="text-2xl font-black text-white">
+          <div className="text-2xl font-black text-slate-900 dark:text-white">
             ${metrics.totalVolume.toLocaleString(undefined, { minimumFractionDigits: 2 })}
           </div>
-          <span className="text-[11px] text-slate-400">{metrics.succeededCount} successful charges</span>
+          <span className="text-[11px] text-slate-500 dark:text-slate-400">{metrics.succeededCount} successful charges</span>
         </div>
 
-        <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-1">
+        <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1 shadow-xs">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-slate-400 font-medium">Total Transactions</span>
-            <Receipt className="w-4 h-4 text-indigo-400" />
+            <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">Total Transactions</span>
+            <Receipt className="w-4 h-4 text-indigo-500 dark:text-indigo-400" />
           </div>
-          <div className="text-2xl font-black text-white">{metrics.totalCount}</div>
-          <span className="text-[11px] text-slate-400">Ledger records across all gateways</span>
+          <div className="text-2xl font-black text-slate-900 dark:text-white">{metrics.totalCount}</div>
+          <span className="text-[11px] text-slate-500 dark:text-slate-400">Ledger records across all gateways</span>
         </div>
 
-        <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-1">
+        <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1 shadow-xs">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-slate-400 font-medium">Refunded Volume</span>
-            <RotateCcw className="w-4 h-4 text-amber-400" />
+            <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">Refunded Volume</span>
+            <RotateCcw className="w-4 h-4 text-amber-500 dark:text-amber-400" />
           </div>
-          <div className="text-2xl font-black text-amber-400">
+          <div className="text-2xl font-black text-amber-500 dark:text-amber-400">
             ${metrics.refundedVolume.toLocaleString(undefined, { minimumFractionDigits: 2 })}
           </div>
-          <span className="text-[11px] text-slate-400">{metrics.refundedCount} transactions refunded</span>
+          <span className="text-[11px] text-slate-500 dark:text-slate-400">{metrics.refundedCount} transactions refunded</span>
         </div>
 
-        <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-1">
+        <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1 shadow-xs">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-slate-400 font-medium">Failed Payment Declines</span>
-            <AlertCircle className="w-4 h-4 text-rose-400" />
+            <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">Failed Payment Declines</span>
+            <AlertCircle className="w-4 h-4 text-rose-500 dark:text-rose-400" />
           </div>
-          <div className="text-2xl font-black text-rose-400">{metrics.failedCount}</div>
-          <span className="text-[11px] text-slate-400">Protected by 7-day grace period</span>
+          <div className="text-2xl font-black text-rose-500 dark:text-rose-400">{metrics.failedCount}</div>
+          <span className="text-[11px] text-slate-500 dark:text-slate-400">Protected by 7-day grace period</span>
         </div>
       </div>
 
       {/* Filter and Table Container */}
-      <div className="rounded-2xl border border-slate-800 bg-slate-900 shadow-xs overflow-hidden space-y-4">
+      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs overflow-hidden space-y-4">
         {/* Filters */}
-        <div className="p-4 border-b border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="p-4 border-b border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="relative w-full sm:w-80">
-            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
+            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
             <input
               type="text"
               placeholder="Search reference, email, customer..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+              className="w-full pl-9 pr-4 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-xs text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-amber-400"
             />
           </div>
 
@@ -208,7 +208,7 @@ export default function AdminTransactionsPage() {
             <select
               value={gatewayFilter}
               onChange={(e) => setGatewayFilter(e.target.value)}
-              className="px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 focus:outline-none"
+              className="px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-xs text-slate-700 dark:text-slate-300 focus:outline-none"
             >
               <option value="ALL">All Gateways</option>
               <option value="stripe">Stripe</option>
@@ -222,7 +222,7 @@ export default function AdminTransactionsPage() {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 focus:outline-none"
+              className="px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-xs text-slate-700 dark:text-slate-300 focus:outline-none"
             >
               <option value="ALL">All Statuses</option>
               <option value="SUCCEEDED">Succeeded</option>
@@ -236,7 +236,7 @@ export default function AdminTransactionsPage() {
         {/* Transactions Table */}
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-950 text-slate-400 font-semibold border-b border-slate-800">
+            <thead className="bg-slate-50 dark:bg-slate-950 text-slate-600 dark:text-slate-400 font-semibold border-b border-slate-200 dark:border-slate-800">
               <tr>
                 <th className="px-5 py-3.5">Transaction ID</th>
                 <th className="px-4 py-3.5">Customer</th>
@@ -248,7 +248,7 @@ export default function AdminTransactionsPage() {
                 <th className="px-4 py-3.5 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800">
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
               {loading ? (
                 <tr>
                   <td colSpan={8} className="px-5 py-12 text-center text-slate-400">
@@ -274,24 +274,24 @@ export default function AdminTransactionsPage() {
                       : 'slate';
 
                   return (
-                    <tr key={tx.id} className="hover:bg-slate-800/40">
-                      <td className="px-5 py-4 font-mono font-bold text-white">
+                    <tr key={tx.id} className="hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition-colors">
+                      <td className="px-5 py-4 font-mono font-bold text-slate-900 dark:text-white">
                         {tx.transactionNumber}
                       </td>
                       <td className="px-4 py-4">
-                        <div className="font-semibold text-slate-200">{tx.customerName || 'Workspace Member'}</div>
-                        <div className="text-[11px] text-slate-400 font-mono">{tx.customerEmail}</div>
+                        <div className="font-semibold text-slate-800 dark:text-slate-200">{tx.customerName || 'Workspace Member'}</div>
+                        <div className="text-[11px] text-slate-500 dark:text-slate-400 font-mono">{tx.customerEmail}</div>
                       </td>
                       <td className="px-4 py-4">
-                        <div className="font-medium text-slate-200">{tx.gatewayName}</div>
-                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 font-mono">
+                        <div className="font-medium text-slate-800 dark:text-slate-200">{tx.gatewayName}</div>
+                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-mono">
                           {tx.paymentMethod}
                         </span>
                       </td>
-                      <td className="px-4 py-4 font-mono text-[11px] text-slate-400">
+                      <td className="px-4 py-4 font-mono text-[11px] text-slate-500 dark:text-slate-400">
                         {tx.gatewayPaymentId || '—'}
                       </td>
-                      <td className="px-4 py-4 font-bold text-white font-mono">
+                      <td className="px-4 py-4 font-bold text-slate-900 dark:text-white font-mono">
                         {tx.currency === 'INR' ? '₹' : '$'}
                         {tx.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })} {tx.currency}
                       </td>
@@ -300,7 +300,7 @@ export default function AdminTransactionsPage() {
                           {tx.status}
                         </Badge>
                       </td>
-                      <td className="px-4 py-4 text-slate-400">
+                      <td className="px-4 py-4 text-slate-600 dark:text-slate-400">
                         {new Date(tx.createdAt).toLocaleDateString()}
                       </td>
                       <td className="px-4 py-4 text-right">
@@ -308,14 +308,14 @@ export default function AdminTransactionsPage() {
                           <button
                             type="button"
                             onClick={() => handleOpenRefund(tx)}
-                            className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 transition-colors cursor-pointer"
+                            className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 transition-colors cursor-pointer"
                           >
                             Refund
                           </button>
                         ) : tx.isRefunded ? (
-                          <span className="text-[11px] text-amber-500 font-medium">Refunded</span>
+                          <span className="text-[11px] text-amber-600 dark:text-amber-400 font-medium">Refunded</span>
                         ) : (
-                          <span className="text-[11px] text-slate-500">—</span>
+                          <span className="text-[11px] text-slate-400">—</span>
                         )}
                       </td>
                     </tr>

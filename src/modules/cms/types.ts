@@ -125,5 +125,6 @@ export interface HomepageContentDto {
   faqs: FaqItemDto[];
   pricing: PricingPlanDto[];
   cta: CtaBannerDto;
+  isFreePlanActive?: boolean;
 }
 

@@ -8,9 +8,10 @@ import { PricingPlanDto, FaqItemDto } from '@/modules/cms/types';
 interface PricingViewProps {
   plans: PricingPlanDto[];
   faqs: FaqItemDto[];
+  isFreePlanActive?: boolean;
 }
 
-export function PricingView({ plans, faqs }: PricingViewProps) {
+export function PricingView({ plans, faqs, isFreePlanActive = true }: PricingViewProps) {
   const [isAnnual, setIsAnnual] = useState(true);
 
   return (
@@ -25,7 +26,9 @@ export function PricingView({ plans, faqs }: PricingViewProps) {
             Plans built to scale with your content ambition
           </h1>
           <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-            All plans include category scheduling, multi-channel publishing, and our 14-day free trial. No setup fees.
+            {isFreePlanActive
+              ? 'All plans include category scheduling, multi-channel publishing, and our 14-day free trial. No setup fees.'
+              : 'All plans include category scheduling, multi-channel publishing, and instant workspace setup. No setup fees.'}
           </p>
 
           {/* Billing Interval Toggle */}

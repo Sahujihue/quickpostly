@@ -352,17 +352,17 @@ export default function AdminStaffPage() {
       )}
 
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
         <div>
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-purple-600/20 text-purple-400 border border-purple-500/30 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-xl bg-purple-100 dark:bg-purple-600/20 text-purple-700 dark:text-purple-400 border border-purple-200 dark:border-purple-500/30 flex items-center justify-center">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+              <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                 Staff &amp; Team Management
               </h1>
-              <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
                 Assign platform administrative roles, departments, permissions, and security controls.
               </p>
             </div>
@@ -373,16 +373,16 @@ export default function AdminStaffPage() {
           <button
             type="button"
             onClick={() => setIsPermissionsOpen(true)}
-            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 text-xs font-semibold transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 text-xs font-semibold transition-all cursor-pointer"
           >
-            <Lock className="w-3.5 h-3.5 text-purple-400" />
+            <Lock className="w-3.5 h-3.5 text-purple-500 dark:text-purple-400" />
             <span>Roles &amp; Permissions</span>
           </button>
 
           <button
             type="button"
             onClick={fetchStaff}
-            className="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white border border-slate-800 transition-all cursor-pointer"
+            className="p-2 rounded-xl bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-800 transition-all cursor-pointer"
             title="Refresh staff list"
           >
             <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
@@ -401,70 +401,70 @@ export default function AdminStaffPage() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-1">
+        <div className="p-4 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 space-y-1 shadow-xs">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-slate-400 font-medium">Total Staff</span>
-            <Users className="w-4 h-4 text-purple-400" />
+            <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">Total Staff</span>
+            <Users className="w-4 h-4 text-purple-500 dark:text-purple-400" />
           </div>
-          <div className="text-2xl font-extrabold text-white">{stats.totalStaff}</div>
-          <div className="text-[11px] text-emerald-400 flex items-center gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <div className="text-2xl font-extrabold text-slate-900 dark:text-white">{stats.totalStaff}</div>
+          <div className="text-[11px] text-emerald-600 dark:text-emerald-400 flex items-center gap-1 font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
             {stats.active} Active Members
           </div>
         </div>
 
-        <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-1">
+        <div className="p-4 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 space-y-1 shadow-xs">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-slate-400 font-medium">Super Admins &amp; Admins</span>
-            <Crown className="w-4 h-4 text-amber-400" />
+            <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">Super Admins &amp; Admins</span>
+            <Crown className="w-4 h-4 text-amber-500 dark:text-amber-400" />
           </div>
-          <div className="text-2xl font-extrabold text-white">{stats.superAdmins + stats.admins}</div>
-          <div className="text-[11px] text-slate-400">
+          <div className="text-2xl font-extrabold text-slate-900 dark:text-white">{stats.superAdmins + stats.admins}</div>
+          <div className="text-[11px] text-slate-500 dark:text-slate-400">
             {stats.superAdmins} Super, {stats.admins} Admins
           </div>
         </div>
 
-        <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-1">
+        <div className="p-4 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 space-y-1 shadow-xs">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-slate-400 font-medium">Content Managers</span>
-            <FileText className="w-4 h-4 text-emerald-400" />
+            <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">Content Managers</span>
+            <FileText className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
           </div>
-          <div className="text-2xl font-extrabold text-white">{stats.contentManagers}</div>
-          <div className="text-[11px] text-slate-400">CMS, Blog &amp; Pages</div>
+          <div className="text-2xl font-extrabold text-slate-900 dark:text-white">{stats.contentManagers}</div>
+          <div className="text-[11px] text-slate-500 dark:text-slate-400">CMS, Blog &amp; Pages</div>
         </div>
 
-        <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-1">
+        <div className="p-4 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 space-y-1 shadow-xs">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-slate-400 font-medium">Support Executives</span>
-            <Headphones className="w-4 h-4 text-indigo-400" />
+            <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">Support Executives</span>
+            <Headphones className="w-4 h-4 text-indigo-500 dark:text-indigo-400" />
           </div>
-          <div className="text-2xl font-extrabold text-white">{stats.support}</div>
-          <div className="text-[11px] text-slate-400">Tickets &amp; Moderation</div>
+          <div className="text-2xl font-extrabold text-slate-900 dark:text-white">{stats.support}</div>
+          <div className="text-[11px] text-slate-500 dark:text-slate-400">Tickets &amp; Moderation</div>
         </div>
       </div>
 
       {/* Search & Filters */}
-      <div className="p-4 rounded-2xl bg-slate-900/40 border border-slate-800 flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
+      <div className="p-4 rounded-2xl bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between shadow-xs">
         <form onSubmit={handleSearchSubmit} className="relative flex-1">
-          <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
+          <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500" />
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search staff by name, email, department, or role..."
-            className="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 transition-colors"
+            className="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-xs sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-purple-500 transition-colors"
           />
         </form>
 
         <div className="flex items-center gap-2.5">
-          <div className="flex items-center gap-1.5 text-xs text-slate-400">
-            <Filter className="w-3.5 h-3.5 text-slate-500" />
+          <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
+            <Filter className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
             <span>Role:</span>
           </div>
           <select
             value={roleFilter}
             onChange={(e) => setRoleFilter(e.target.value)}
-            className="px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white focus:outline-none focus:border-purple-500 cursor-pointer"
+            className="px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-xs text-slate-700 dark:text-white focus:outline-none focus:border-purple-500 cursor-pointer"
           >
             <option value="ALL">All Roles</option>
             <option value="SUPER_ADMIN">Super Admin</option>
@@ -476,7 +476,7 @@ export default function AdminStaffPage() {
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white focus:outline-none focus:border-purple-500 cursor-pointer"
+            className="px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-xs text-slate-700 dark:text-white focus:outline-none focus:border-purple-500 cursor-pointer"
           >
             <option value="ALL">All Status</option>
             <option value="ACTIVE">Active</option>
@@ -487,23 +487,23 @@ export default function AdminStaffPage() {
       </div>
 
       {/* Staff Table */}
-      <div className="rounded-2xl border border-slate-800 bg-slate-900/40 overflow-hidden">
+      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 overflow-hidden shadow-xs">
         {isLoading ? (
           <div className="p-12 text-center space-y-3">
             <RefreshCw className="w-6 h-6 animate-spin mx-auto text-purple-400" />
-            <p className="text-xs text-slate-400">Loading platform staff members...</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">Loading platform staff members...</p>
           </div>
         ) : staffList.length === 0 ? (
           <div className="p-12 text-center space-y-3">
-            <ShieldCheck className="w-8 h-8 mx-auto text-slate-600" />
-            <p className="text-sm font-semibold text-white">No staff members found</p>
-            <p className="text-xs text-slate-400 max-w-sm mx-auto">
+            <ShieldCheck className="w-8 h-8 mx-auto text-slate-400 dark:text-slate-600" />
+            <p className="text-sm font-semibold text-slate-900 dark:text-white">No staff members found</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm mx-auto">
               No staff records matched your query or filters. Click &quot;Add Staff Member&quot; to invite a new team member.
             </p>
             <button
               type="button"
               onClick={handleOpenCreate}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold transition-all"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold transition-all cursor-pointer"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Add First Staff Member</span>
@@ -512,7 +512,7 @@ export default function AdminStaffPage() {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-950 border-b border-slate-800 text-slate-400 uppercase tracking-wider text-[10px] font-mono">
+              <thead className="bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 uppercase tracking-wider text-[10px] font-mono">
                 <tr>
                   <th className="py-3 px-4">Staff Member</th>
                   <th className="py-3 px-4">Role &amp; Department</th>
@@ -522,9 +522,9 @@ export default function AdminStaffPage() {
                   <th className="py-3 px-4 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60">
+              <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60 text-slate-700 dark:text-slate-300">
                 {staffList.map((staff) => (
-                  <tr key={staff.id} className="hover:bg-slate-800/30 transition-colors">
+                  <tr key={staff.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
                     {/* Staff Member */}
                     <td className="py-3 px-4">
                       <div className="flex items-center gap-3">
@@ -532,16 +532,16 @@ export default function AdminStaffPage() {
                           {staff.name.charAt(0).toUpperCase()}
                         </div>
                         <div>
-                          <div className="font-bold text-white flex items-center gap-1.5">
+                          <div className="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
                             <span>{staff.name}</span>
                             {staff.id === 'usr_superadmin_01' && (
-                              <span className="text-[10px] font-mono text-amber-400 bg-amber-400/10 px-1.5 py-0.5 rounded border border-amber-400/20">
+                              <span className="text-[10px] font-mono text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-400/10 px-1.5 py-0.5 rounded border border-amber-300 dark:border-amber-400/20 font-bold">
                                 Primary Owner
                               </span>
                             )}
                           </div>
-                          <div className="text-[11px] text-slate-400 flex items-center gap-1 mt-0.5">
-                            <Mail className="w-3 h-3 text-slate-500" />
+                          <div className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1 mt-0.5">
+                            <Mail className="w-3 h-3 text-slate-400 dark:text-slate-500" />
                             <span>{staff.email}</span>
                           </div>
                         </div>

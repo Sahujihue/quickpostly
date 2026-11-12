@@ -105,26 +105,26 @@ export function AdminSidebar({ onCloseMobile }: AdminSidebarProps) {
   ];
 
   return (
-    <aside className="w-64 h-full flex flex-col justify-between border-r border-slate-800 bg-slate-950 text-slate-300 transition-colors">
+    <aside className="w-64 h-full flex flex-col justify-between border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 text-slate-700 dark:text-slate-300 transition-colors">
       <div className="flex flex-col flex-1 overflow-y-auto">
         {/* Brand header */}
-        <div className="h-16 px-5 border-b border-slate-800 flex items-center justify-between shrink-0">
+        <div className="h-16 px-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0">
           <Link href="/admin" className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold shadow-md shadow-indigo-600/30">
               <ShieldAlert className="w-4 h-4" />
             </div>
             <div className="flex flex-col">
-              <span className="font-extrabold text-sm tracking-tight text-white">
-                QuickPostly <span className="text-amber-400">Admin</span>
+              <span className="font-extrabold text-sm tracking-tight text-slate-900 dark:text-white">
+                QuickPostly <span className="text-amber-500 dark:text-amber-400">Admin</span>
               </span>
-              <span className="text-[10px] text-slate-500 font-mono">Platform Control (25 Modules)</span>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">Platform Control (25 Modules)</span>
             </div>
           </Link>
           {onCloseMobile && (
             <button
               type="button"
               onClick={onCloseMobile}
-              className="lg:hidden p-1.5 rounded-lg text-slate-400 hover:text-white cursor-pointer"
+              className="lg:hidden p-1.5 rounded-lg text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer"
               aria-label="Close admin sidebar"
             >
               <X className="w-5 h-5" />
@@ -136,7 +136,7 @@ export function AdminSidebar({ onCloseMobile }: AdminSidebarProps) {
         <nav className="p-3 space-y-6">
           {navGroups.map((group) => (
             <div key={group.groupTitle} className="space-y-1">
-              <div className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-500 font-mono">
+              <div className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 font-mono">
                 {group.groupTitle}
               </div>
               {group.items.map((item) => {
@@ -152,11 +152,11 @@ export function AdminSidebar({ onCloseMobile }: AdminSidebarProps) {
                     className={`flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium transition-all ${
                       isActive
                         ? 'bg-indigo-600 text-white font-bold shadow-md shadow-indigo-600/25'
-                        : 'text-slate-400 hover:bg-slate-900 hover:text-white'
+                        : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white'
                     }`}
                   >
                     <Icon
-                      className={`w-4 h-4 shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`}
+                      className={`w-4 h-4 shrink-0 ${isActive ? 'text-white' : 'text-slate-400 dark:text-slate-500'}`}
                     />
                     <span>{item.label}</span>
                   </Link>
@@ -168,10 +168,10 @@ export function AdminSidebar({ onCloseMobile }: AdminSidebarProps) {
       </div>
 
       {/* Footer Return */}
-      <div className="p-3 border-t border-slate-800 shrink-0">
+      <div className="p-3 border-t border-slate-200 dark:border-slate-800 shrink-0">
         <Link
           href="/dashboard"
-          className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 rounded-xl transition-colors"
+          className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 rounded-xl transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Exit to App Dashboard</span>

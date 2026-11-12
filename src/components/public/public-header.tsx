@@ -11,9 +11,10 @@ import { BrandLogo } from '@/components/ui/brand-logo';
 interface PublicHeaderProps {
   navItems?: Array<{ label: string; path: string }>;
   settings?: CmsHeaderRecord | null;
+  isFreePlanActive?: boolean;
 }
 
-export function PublicHeader({ navItems = [], settings }: PublicHeaderProps) {
+export function PublicHeader({ navItems = [], settings, isFreePlanActive = true }: PublicHeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -29,8 +30,13 @@ export function PublicHeader({ navItems = [], settings }: PublicHeaderProps) {
   const isSticky = settings?.isSticky ?? true;
   const showThemeToggle = settings?.showThemeToggle ?? true;
   const showCta = settings?.showCtaButton ?? true;
-  const ctaText = settings?.ctaText || 'Start Free Trial';
-  const ctaLink = settings?.ctaLink || '/signup';
+  const rawCtaText = settings?.ctaText || 'Start Free Trial';
+  const ctaText = isFreePlanActive
+    ? rawCtaText
+    : /trial/i.test(rawCtaText)
+    ? 'Get Started'
+    : rawCtaText;
+  const ctaLink = settings?.ctaLink || (isFreePlanActive ? '/signup' : '/pricing');
   const showSignIn = settings?.showSignInButton ?? true;
   const signInText = settings?.signInText || 'Sign In';
 

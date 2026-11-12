@@ -373,38 +373,79 @@ export class CmsService {
   }
 
   public static async getHomepageContent(): Promise<HomepageContentDto> {
+    const isFreePlanActive = await CmsRepository.isFreePlanActive();
     const page = await CmsRepository.getPageBySlug('home');
-    const [testimonials, faqs, pricing] = await Promise.all([
+    const [testimonials, faqs, rawPricing] = await Promise.all([
       this.getTestimonials(),
       this.getFaqs(),
       this.getPricingPlans(),
     ]);
 
+    // If free plan is OFF, filter out any free tier from pricing
+    const pricing = isFreePlanActive
+      ? rawPricing
+      : rawPricing.filter((p) => p.slug !== 'free-trial' && p.slug !== 'free_trial' && p.monthlyPrice > 0);
+
+    let hero = DEFAULT_HERO_CONTENT;
+    let features = DEFAULT_FEATURES;
+    let aiTools = DEFAULT_AI_TOOLS;
+    let integrations = DEFAULT_SOCIAL_INTEGRATIONS;
+    let howItWorks = DEFAULT_HOW_IT_WORKS;
+    let cta = DEFAULT_CTA_BANNER;
+
     if (page && page.contentJson) {
       const json = page.contentJson as unknown as Partial<HomepageContentDto>;
-      return {
-        hero: json.hero || DEFAULT_HERO_CONTENT,
-        features: json.features || DEFAULT_FEATURES,
-        aiTools: json.aiTools || DEFAULT_AI_TOOLS,
-        integrations: json.integrations || DEFAULT_SOCIAL_INTEGRATIONS,
-        howItWorks: json.howItWorks || DEFAULT_HOW_IT_WORKS,
-        testimonials: testimonials.length > 0 ? testimonials : (json.testimonials || []),
-        faqs: faqs.length > 0 ? faqs : (json.faqs || []),
-        pricing: pricing.length > 0 ? pricing : (json.pricing || []),
-        cta: json.cta || DEFAULT_CTA_BANNER,
+      if (json.hero) hero = { ...DEFAULT_HERO_CONTENT, ...json.hero };
+      if (json.features) features = json.features;
+      if (json.aiTools) aiTools = json.aiTools;
+      if (json.integrations) integrations = json.integrations;
+      if (json.howItWorks) howItWorks = json.howItWorks;
+      if (json.cta) cta = { ...DEFAULT_CTA_BANNER, ...json.cta };
+    }
+
+    // Dynamic adaptation when Free Subscription / Trial is toggled OFF
+    if (!isFreePlanActive) {
+      // 1. Dynamic Hero adaptation
+      const safeTrust = Array.isArray(hero.trustPoints) ? hero.trustPoints : DEFAULT_HERO_CONTENT.trustPoints;
+      const sanitizedTrust = safeTrust
+        .filter((tp) => !/14[\s-]*day/i.test(tp) && !/trial/i.test(tp));
+      if (!sanitizedTrust.includes('Instant setup in 60s')) {
+        sanitizedTrust.push('Instant setup in 60s');
+      }
+
+      const primaryCta = /trial|14[\s-]*day/i.test(hero.primaryCtaText) ? 'Get Started Now' : hero.primaryCtaText;
+
+      hero = {
+        ...hero,
+        primaryCtaText: primaryCta,
+        primaryCtaLink: hero.primaryCtaLink === '/signup?plan=free-trial' ? '/pricing' : hero.primaryCtaLink,
+        trustPoints: Array.from(new Set(sanitizedTrust)),
+      };
+
+      // 2. Dynamic CTA Banner adaptation
+      cta = {
+        ...cta,
+        title: cta.title.replace(/14[\s-]*day free trial/gi, 'QuickPostly platform'),
+        description: cta.description.replace(
+          /Start your 14-day free trial today\.\s*No credit card required\./gi,
+          'Accelerate your audience growth with intelligent category scheduling.'
+        ),
+        buttonText: /trial/i.test(cta.buttonText) ? 'Get Started Today' : cta.buttonText,
+        buttonLink: cta.buttonLink === '/signup?plan=free-trial' ? '/pricing' : cta.buttonLink,
       };
     }
 
     return {
-      hero: DEFAULT_HERO_CONTENT,
-      features: DEFAULT_FEATURES,
-      aiTools: DEFAULT_AI_TOOLS,
-      integrations: DEFAULT_SOCIAL_INTEGRATIONS,
-      howItWorks: DEFAULT_HOW_IT_WORKS,
-      testimonials,
-      faqs,
+      hero,
+      features,
+      aiTools,
+      integrations,
+      howItWorks,
+      testimonials: testimonials.length > 0 ? testimonials : [],
+      faqs: faqs.length > 0 ? faqs : [],
       pricing,
-      cta: DEFAULT_CTA_BANNER,
+      cta,
+      isFreePlanActive,
     };
   }
 

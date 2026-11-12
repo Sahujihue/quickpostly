@@ -48,18 +48,18 @@ function AdminAnalyticsContent() {
   return (
     <div className="space-y-8">
       {/* Top Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
               Executive Telemetry & Infrastructure
             </span>
-            <span className="text-xs text-slate-500 font-mono">Part 10 Admin Hub</span>
+            <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">Part 10 Admin Hub</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             Platform Analytics & System Health
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
             Real-time monitoring of global AI token consumption, social publishing throughput, API errors, and user activity.
           </p>
         </div>
@@ -67,9 +67,9 @@ function AdminAnalyticsContent() {
         <button
           type="button"
           onClick={fetchAdminAnalytics}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 text-white font-semibold text-xs transition-colors cursor-pointer"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-white font-semibold text-xs shadow-xs transition-colors cursor-pointer"
         >
-          <RefreshCw className={`w-3.5 h-3.5 text-indigo-400 ${isLoading ? 'animate-spin' : ''}`} />
+          <RefreshCw className={`w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400 ${isLoading ? 'animate-spin' : ''}`} />
           <span>Refresh Telemetry</span>
         </button>
       </div>
@@ -77,7 +77,7 @@ function AdminAnalyticsContent() {
       {isLoading ? (
         <div className="py-24 text-center">
           <RefreshCw className="w-8 h-8 text-indigo-500 animate-spin mx-auto mb-3" />
-          <p className="text-sm text-slate-400">Loading platform telemetry...</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400">Loading platform telemetry...</p>
         </div>
       ) : !summary ? (
         <div className="py-20 text-center text-slate-500">Failed to load platform telemetry.</div>
@@ -122,11 +122,11 @@ function AdminAnalyticsContent() {
           {/* AI Usage & Platform Distribution Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* AI Provider Cost Breakdown (6 cols) */}
-            <div className="lg:col-span-6 p-6 rounded-3xl bg-slate-900/60 border border-slate-800 space-y-4">
+            <div className="lg:col-span-6 p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4 shadow-xs">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-base font-bold text-white">AI Provider Usage & Cost</h3>
-                  <p className="text-xs text-slate-400">Breakdown of model executions and token costs.</p>
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white">AI Provider Usage & Cost</h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Breakdown of model executions and token costs.</p>
                 </div>
                 <Badge variant="indigo" size="sm">
                   ${summary.aiUsage.estimatedCostUsd.toFixed(2)} Total
@@ -137,14 +137,14 @@ function AdminAnalyticsContent() {
                 {Object.entries(summary.aiUsage.byProvider).map(([provider, data]) => {
                   const percent = Math.round((data.cost / summary.aiUsage.estimatedCostUsd) * 100);
                   return (
-                    <div key={provider} className="p-3 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
+                    <div key={provider} className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-2">
                       <div className="flex items-center justify-between text-xs font-semibold">
-                        <span className="text-white uppercase font-bold">{provider}</span>
-                        <span className="text-slate-300">
+                        <span className="text-slate-900 dark:text-white uppercase font-bold">{provider}</span>
+                        <span className="text-slate-600 dark:text-slate-300">
                           {data.count.toLocaleString()} calls &bull; ${data.cost.toFixed(2)} ({percent}%)
                         </span>
                       </div>
-                      <div className="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+                      <div className="w-full h-1.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
                         <div className="h-full rounded-full bg-indigo-500" style={{ width: `${percent}%` }} />
                       </div>
                     </div>
@@ -154,27 +154,27 @@ function AdminAnalyticsContent() {
             </div>
 
             {/* Platform Usage Distribution (6 cols) */}
-            <div className="lg:col-span-6 p-6 rounded-3xl bg-slate-900/60 border border-slate-800 space-y-4">
+            <div className="lg:col-span-6 p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4 shadow-xs">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-base font-bold text-white">Platform Usage Share</h3>
-                  <p className="text-xs text-slate-400">Share of posts published across official social APIs.</p>
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white">Platform Usage Share</h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Share of posts published across official social APIs.</p>
                 </div>
-                <span className="text-xs font-mono text-emerald-400 font-bold">
+                <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold">
                   {summary.publishingActivity.totalPublished.toLocaleString()} Dispatched
                 </span>
               </div>
 
               <div className="space-y-3 pt-2">
                 {summary.platformUsage.map((p) => (
-                  <div key={p.platform} className="p-3 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
+                  <div key={p.platform} className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-2">
                     <div className="flex items-center justify-between text-xs">
-                      <span className="font-bold text-white">{p.name}</span>
-                      <span className="font-mono text-slate-300">
+                      <span className="font-bold text-slate-900 dark:text-white">{p.name}</span>
+                      <span className="font-mono text-slate-600 dark:text-slate-300">
                         {p.postsCount} posts ({p.percentage}%)
                       </span>
                     </div>
-                    <div className="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+                    <div className="w-full h-1.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
                       <div
                         className="h-full rounded-full"
                         style={{ width: `${p.percentage}%`, backgroundColor: p.color }}
@@ -189,51 +189,51 @@ function AdminAnalyticsContent() {
           {/* Publishing Activity & API Errors Telemetry */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* Publishing Activity Stats (5 cols) */}
-            <div className="lg:col-span-5 p-6 rounded-3xl bg-slate-900/60 border border-slate-800 space-y-4">
+            <div className="lg:col-span-5 p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4 shadow-xs">
               <div>
-                <h3 className="text-base font-bold text-white">Publishing Pipeline</h3>
-                <p className="text-xs text-slate-400">BullMQ queue volume and status distribution.</p>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white">Publishing Pipeline</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400">BullMQ queue volume and status distribution.</p>
               </div>
 
               <div className="grid grid-cols-2 gap-3 text-xs">
-                <div className="p-3 rounded-2xl bg-slate-950 border border-slate-800">
-                  <span className="text-[10px] text-slate-500 block">Confirmed Published</span>
-                  <span className="text-lg font-extrabold text-emerald-400">
+                <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400 block">Confirmed Published</span>
+                  <span className="text-lg font-extrabold text-emerald-600 dark:text-emerald-400">
                     {summary.publishingActivity.totalPublished.toLocaleString()}
                   </span>
                 </div>
-                <div className="p-3 rounded-2xl bg-slate-950 border border-slate-800">
-                  <span className="text-[10px] text-slate-500 block">Scheduled in Queue</span>
-                  <span className="text-lg font-extrabold text-indigo-400">
+                <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400 block">Scheduled in Queue</span>
+                  <span className="text-lg font-extrabold text-indigo-600 dark:text-indigo-400">
                     {summary.publishingActivity.totalScheduled}
                   </span>
                 </div>
-                <div className="p-3 rounded-2xl bg-slate-950 border border-slate-800">
-                  <span className="text-[10px] text-slate-500 block">Active Drafts</span>
-                  <span className="text-lg font-extrabold text-slate-300">
+                <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400 block">Active Drafts</span>
+                  <span className="text-lg font-extrabold text-slate-700 dark:text-slate-300">
                     {summary.publishingActivity.totalDrafts}
                   </span>
                 </div>
-                <div className="p-3 rounded-2xl bg-slate-950 border border-slate-800">
-                  <span className="text-[10px] text-slate-500 block">Failed Dispatches</span>
-                  <span className="text-lg font-extrabold text-rose-400">
+                <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400 block">Failed Dispatches</span>
+                  <span className="text-lg font-extrabold text-rose-600 dark:text-rose-400">
                     {summary.publishingActivity.totalFailed}
                   </span>
                 </div>
               </div>
 
-              <div className="p-3 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-xs text-indigo-300 flex items-center justify-between">
+              <div className="p-3 rounded-2xl bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 text-xs text-indigo-700 dark:text-indigo-300 flex items-center justify-between">
                 <span>Daily Throughput:</span>
                 <span className="font-mono font-bold">{summary.publishingActivity.throughputPerDay} posts/day</span>
               </div>
             </div>
 
             {/* API Error Telemetry Log (7 cols) */}
-            <div className="lg:col-span-7 p-6 rounded-3xl bg-slate-900/60 border border-slate-800 space-y-4">
+            <div className="lg:col-span-7 p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4 shadow-xs">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-base font-bold text-white">Social Platform API Errors</h3>
-                  <p className="text-xs text-slate-400">Captured platform exceptions and rate limit alarms.</p>
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white">Social Platform API Errors</h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Captured platform exceptions and rate limit alarms.</p>
                 </div>
                 <Badge variant={summary.apiErrors.errorRatePercent < 1 ? 'emerald' : 'rose'} size="sm">
                   {summary.apiErrors.errorRatePercent}% Error Rate
@@ -242,26 +242,26 @@ function AdminAnalyticsContent() {
 
               <div className="space-y-2.5 pt-1">
                 {summary.apiErrors.recentErrors.length === 0 ? (
-                  <div className="py-8 text-center text-xs text-slate-500">
+                  <div className="py-8 text-center text-xs text-slate-500 dark:text-slate-400">
                     Zero recent API errors recorded.
                   </div>
                 ) : (
                   summary.apiErrors.recentErrors.map((err) => (
                     <div
                       key={err.id}
-                      className="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 text-xs space-y-1"
+                      className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs space-y-1"
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0" />
-                          <span className="font-bold text-rose-400 uppercase">{err.platform}</span>
-                          <span className="font-mono text-[10px] text-slate-500">{err.code}</span>
+                          <AlertTriangle className="w-4 h-4 text-rose-500 dark:text-rose-400 shrink-0" />
+                          <span className="font-bold text-rose-600 dark:text-rose-400 uppercase">{err.platform}</span>
+                          <span className="font-mono text-[10px] text-slate-500 dark:text-slate-400">{err.code}</span>
                         </div>
-                        <span className="text-[10px] text-slate-500 font-mono">
+                        <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">
                           {new Date(err.timestamp).toLocaleTimeString()}
                         </span>
                       </div>
-                      <p className="text-slate-300 text-xs leading-relaxed">{err.message}</p>
+                      <p className="text-slate-700 dark:text-slate-300 text-xs leading-relaxed">{err.message}</p>
                     </div>
                   ))
                 )}

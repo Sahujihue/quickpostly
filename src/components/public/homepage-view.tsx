@@ -35,7 +35,18 @@ interface HomepageViewProps {
 }
 
 export function HomepageView({ content }: HomepageViewProps) {
-  const { hero, features, aiTools, integrations, howItWorks, testimonials, faqs, pricing, cta } = content;
+  const {
+    hero,
+    features,
+    aiTools,
+    integrations,
+    howItWorks,
+    testimonials,
+    faqs,
+    pricing,
+    cta,
+    isFreePlanActive = true,
+  } = content;
 
   // Interactive Product Preview Tab State
   const [activePreviewTab, setActivePreviewTab] = useState<'queue' | 'ai' | 'calendar'>('queue');
@@ -243,7 +254,7 @@ export function HomepageView({ content }: HomepageViewProps) {
                     </div>
                     <div className="p-3 rounded-lg bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-300 space-y-2">
                       <p className="font-medium line-clamp-2">
-                        &quot;Ready to free up 15 hours each week? Test drive QuickPostly Pro free for 14 days with zero risk...&quot;
+                        &quot;Ready to free up 15 hours each week? Put your social queue on intelligent autopilot with zero stress...&quot;
                       </p>
                       <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1 border-t border-slate-100 dark:border-slate-800">
                         <span className="flex items-center gap-1">
@@ -634,7 +645,9 @@ export function HomepageView({ content }: HomepageViewProps) {
               Invest in consistent organic brand growth
             </h2>
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300">
-              Start with a 14-day free trial. Upgrade, downgrade, or cancel anytime.
+              {isFreePlanActive
+                ? 'Start with a 14-day free trial. Upgrade, downgrade, or cancel anytime.'
+                : 'Invest in consistent organic brand growth. Upgrade, downgrade, or cancel anytime.'}
             </p>
 
             {/* Monthly / Annual Billing Toggle */}

@@ -1825,6 +1825,33 @@ export class CmsRepository {
     return updated;
   }
 
+  public static async isFreePlanActive(): Promise<boolean> {
+    try {
+      const plans = await this.getPricingPlans();
+      const freePlan = plans.find(
+        (p) =>
+          p.slug === 'free-trial' ||
+          p.slug === 'free_trial' ||
+          p.id === 'plan_free_trial' ||
+          p.monthlyPrice === 0
+      );
+      if (freePlan) {
+        return Boolean(freePlan.isActive);
+      }
+    } catch {
+      // fallback
+    }
+    const store = ensureStoreInitialized();
+    const freePlan = store.pricingPlans.find(
+      (p) =>
+        p.slug === 'free-trial' ||
+        p.slug === 'free_trial' ||
+        p.id === 'plan_free_trial' ||
+        p.monthlyPrice === 0
+    );
+    return freePlan ? Boolean(freePlan.isActive) : true;
+  }
+
   // ===================== TESTIMONIALS =====================
   public static async getTestimonials(): Promise<CmsTestimonialRecord[]> {
     try {

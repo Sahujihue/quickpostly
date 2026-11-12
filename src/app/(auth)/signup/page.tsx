@@ -72,7 +72,7 @@ export default function SignupPage() {
           Create Your Workspace
         </h1>
         <p className="text-xs sm:text-sm text-slate-500">
-          Start your 14-day unrestricted trial of QuickPostly
+          Start automating and scaling your social media presence with QuickPostly
         </p>
       </div>
 
