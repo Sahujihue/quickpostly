@@ -72,6 +72,7 @@ export default function SubscriptionBillingPage() {
 
   // Global Alert feedback
   const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [isTrialActive, setIsTrialActive] = useState(true);
 
   const fetchSubscription = async () => {
     try {
@@ -94,6 +95,14 @@ export default function SubscriptionBillingPage() {
 
   useEffect(() => {
     fetchSubscription();
+    fetch('/api/v1/cms/trial-status', { cache: 'no-store' })
+      .then((res) => res.json())
+      .then((d) => {
+        if (d && typeof d.isFreePlanActive === 'boolean') {
+          setIsTrialActive(d.isFreePlanActive);
+        }
+      })
+      .catch(() => {});
   }, []);
 
   const handleApplyCoupon = async () => {
@@ -212,7 +221,7 @@ export default function SubscriptionBillingPage() {
   const sub = subData?.subscription;
   const metrics = subData?.metrics;
   const isFreePlanDisabled =
-    typeof document !== 'undefined' && document.cookie.includes('quickpostly_free_plan_active=false');
+    !isTrialActive || (typeof document !== 'undefined' && document.cookie.includes('quickpostly_free_plan_active=false'));
   const rawPlans = subData?.availablePlans || [];
   const plans = rawPlans.filter((p) => {
     if (p.isActive === false) return false;

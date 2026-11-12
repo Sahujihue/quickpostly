@@ -1823,7 +1823,7 @@ export class CmsRepository {
     persistStore(store);
 
     try {
-      await prisma.cmsPricingPlan.updateMany({
+      const updateResult = await prisma.cmsPricingPlan.updateMany({
         where: {
           OR: [
             { id: updated.id },
@@ -1835,6 +1835,35 @@ export class CmsRepository {
         },
         data: { isActive: newState },
       });
+      if (updateResult.count === 0 && isFree) {
+        await prisma.cmsPricingPlan.create({
+          data: {
+            id: 'plan_free_trial',
+            slug: 'free-trial',
+            name: 'Free Trial',
+            description: '14-day fully featured sandbox trial for exploring QuickPostly automation.',
+            badge: '14 Days Free',
+            monthlyPrice: 0,
+            annualPrice: 0,
+            currency: 'USD',
+            features: [
+              '3 Social Media Profiles',
+              '30 Scheduled Queue Slots',
+              '25 AI Copilot Text Generations',
+              '5 AI Social Image Credits',
+              'Basic Performance Analytics (14 Days)',
+              'Evergreen Category Recycling',
+              'Single User Workspace',
+            ],
+            limitsJson: { maxSocialAccounts: 3, maxScheduledPosts: 30, aiGenerationsMonthly: 25, aiImageCreditsMonthly: 5, aiVideoCreditsMonthly: 0, maxTeamMembers: 1, maxWorkspaces: 1, maxClients: 0, storageMb: 500, analyticsRetentionDays: 14, hasSocialInbox: false },
+            isPopular: false,
+            isActive: newState,
+            ctaText: 'Start 14-Day Free Trial',
+            ctaLink: '/signup?plan=free-trial',
+            order: 1,
+          },
+        });
+      }
     } catch {
       // local fallback
     }
@@ -1843,12 +1872,61 @@ export class CmsRepository {
   }
 
   public static async isFreePlanActive(): Promise<boolean> {
-    // 1. Check memory flag first (set dynamically by admin toggle)
+    // 1. Check runtime memory flag first (set dynamically by admin toggle)
     if (typeof (globalThis as any).__QUICKPOSTLY_FREE_PLAN_ACTIVE__ === 'boolean') {
       return (globalThis as any).__QUICKPOSTLY_FREE_PLAN_ACTIVE__;
     }
 
-    // 2. Check memory / file store
+    // 2. Check request cookie (instant client/admin synchronization)
+    try {
+      const { cookies } = await import('next/headers');
+      const cookieStore = await cookies();
+      const cookieVal = cookieStore.get('quickpostly_free_plan_active')?.value;
+      if (cookieVal !== undefined && cookieVal !== '') {
+        const active = cookieVal === 'true' || cookieVal === '1';
+        (globalThis as any).__QUICKPOSTLY_FREE_PLAN_ACTIVE__ = active;
+        return active;
+      }
+    } catch {
+      // Outside request context
+    }
+
+    // 3. Check persistent database (Prisma CmsPricingPlan & SubscriptionPlan)
+    try {
+      const dbPlan = await prisma.cmsPricingPlan.findFirst({
+        where: {
+          OR: [
+            { slug: 'free-trial' },
+            { slug: 'free_trial' },
+            { id: 'plan_free_trial' },
+            { monthlyPrice: 0 },
+          ],
+        },
+      });
+      if (dbPlan && typeof dbPlan.isActive === 'boolean') {
+        (globalThis as any).__QUICKPOSTLY_FREE_PLAN_ACTIVE__ = dbPlan.isActive;
+        return dbPlan.isActive;
+      }
+
+      const dbSub = await prisma.subscriptionPlan.findFirst({
+        where: {
+          OR: [
+            { slug: 'free-trial' },
+            { slug: 'free_trial' },
+            { id: 'plan_free_trial' },
+            { monthlyPrice: 0 },
+          ],
+        },
+      });
+      if (dbSub && typeof dbSub.isActive === 'boolean') {
+        (globalThis as any).__QUICKPOSTLY_FREE_PLAN_ACTIVE__ = dbSub.isActive;
+        return dbSub.isActive;
+      }
+    } catch {
+      // Prisma offline or schema pending
+    }
+
+    // 4. Check memory / file store
     try {
       const store = ensureStoreInitialized();
       const freePlan = store.pricingPlans.find(
@@ -1863,18 +1941,6 @@ export class CmsRepository {
       }
     } catch {
       // fallback
-    }
-
-    // 3. Fallback to request cookie
-    try {
-      const { cookies } = await import('next/headers');
-      const cookieStore = await cookies();
-      const cookieVal = cookieStore.get('quickpostly_free_plan_active')?.value;
-      if (cookieVal !== undefined) {
-        return cookieVal === 'true' || cookieVal === '1';
-      }
-    } catch {
-      // Outside request context
     }
 
     return true;

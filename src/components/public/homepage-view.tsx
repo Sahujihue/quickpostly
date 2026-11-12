@@ -59,6 +59,27 @@ export function HomepageView({ content }: HomepageViewProps) {
         setEffectiveFreePlanActive(match[1] === 'true' || match[1] === '1');
       }
     }
+
+    // Authoritative real-time check from server
+    fetch('/api/v1/cms/trial-status', { cache: 'no-store' })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && typeof data.isFreePlanActive === 'boolean') {
+          setEffectiveFreePlanActive(data.isFreePlanActive);
+        }
+      })
+      .catch(() => {});
+
+    // Listen for cross-component broadcast events
+    const handleStatusEvent = (e: any) => {
+      if (e?.detail && typeof e.detail.isFreePlanActive === 'boolean') {
+        setEffectiveFreePlanActive(e.detail.isFreePlanActive);
+      }
+    };
+    window.addEventListener('quickpostly:trial-status-changed', handleStatusEvent);
+    return () => {
+      window.removeEventListener('quickpostly:trial-status-changed', handleStatusEvent);
+    };
   }, [isFreePlanActive]);
 
   const defaultFreePlan = {
@@ -145,7 +166,14 @@ export function HomepageView({ content }: HomepageViewProps) {
           <div className="text-center max-w-3xl mx-auto space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-800 text-amber-900 dark:text-amber-300 text-xs font-semibold tracking-wide shadow-xs animate-in fade-in slide-in-from-top-3 duration-500">
               <Sparkles className="w-3.5 h-3.5 text-amber-500 animate-spin-slow" />
-              <span>{hero.badgeText}</span>
+              <span>
+                {effectiveFreePlanActive
+                  ? hero.badgeText
+                  : (hero.badgeText || '')
+                      .replace(/14[\s-]*day/gi, 'Intelligent')
+                      .replace(/trial/gi, 'Platform')
+                      .replace(/no credit card required/gi, 'Automated Publishing')}
+              </span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.12]">

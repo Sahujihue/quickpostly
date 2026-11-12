@@ -567,7 +567,7 @@ export class SubscriptionRepository {
     SubscriptionRepository.saveStore(store);
 
     try {
-      await prisma.subscriptionPlan.updateMany({
+      const subUpdate = await prisma.subscriptionPlan.updateMany({
         where: {
           OR: [
             { id: store.plans[idx].id },
@@ -579,6 +579,42 @@ export class SubscriptionRepository {
         },
         data: { isActive: newState },
       });
+      if (subUpdate.count === 0 && isFree) {
+        await prisma.subscriptionPlan.create({
+          data: {
+            id: store.plans[idx].id || 'plan_free_trial',
+            name: 'Free Trial',
+            slug: 'free-trial',
+            description: '14-day fully featured sandbox trial for exploring QuickPostly automation.',
+            badge: '14 Days Free',
+            monthlyPrice: 0,
+            annualPrice: 0,
+            currency: 'USD',
+            trialDays: 14,
+            isActive: newState,
+            isPopular: false,
+            order: 1,
+            maxSocialAccounts: 3,
+            maxScheduledPosts: 30,
+            aiGenerationsMonthly: 25,
+            aiImageCreditsMonthly: 5,
+            aiVideoCreditsMonthly: 0,
+            maxTeamMembers: 1,
+            maxWorkspaces: 1,
+            maxClients: 0,
+            storageMb: 500,
+            analyticsRetentionDays: 14,
+            hasSocialInbox: false,
+            features: [
+              '3 Social Media Profiles',
+              '30 Scheduled Queue Slots',
+              '25 AI Copilot Text Generations',
+              '5 AI Social Image Credits',
+              'Basic Performance Analytics (14 Days)',
+            ],
+          },
+        });
+      }
     } catch {
       // Prisma offline
     }

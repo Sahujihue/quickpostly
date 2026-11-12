@@ -14,7 +14,7 @@ interface PricingViewProps {
 export function PricingView({ plans, faqs, isFreePlanActive = true }: PricingViewProps) {
   const [isAnnual, setIsAnnual] = useState(true);
 
-  // Real-time cookie synchronization for instant toggle reflection
+  // Real-time cookie and API synchronization for instant toggle reflection
   const [effectiveFreePlanActive, setEffectiveFreePlanActive] = useState(isFreePlanActive);
 
   useEffect(() => {
@@ -25,6 +25,27 @@ export function PricingView({ plans, faqs, isFreePlanActive = true }: PricingVie
         setEffectiveFreePlanActive(match[1] === 'true' || match[1] === '1');
       }
     }
+
+    // Authoritative real-time check from server
+    fetch('/api/v1/cms/trial-status', { cache: 'no-store' })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && typeof data.isFreePlanActive === 'boolean') {
+          setEffectiveFreePlanActive(data.isFreePlanActive);
+        }
+      })
+      .catch(() => {});
+
+    // Listen for cross-component broadcast events
+    const handleStatusEvent = (e: any) => {
+      if (e?.detail && typeof e.detail.isFreePlanActive === 'boolean') {
+        setEffectiveFreePlanActive(e.detail.isFreePlanActive);
+      }
+    };
+    window.addEventListener('quickpostly:trial-status-changed', handleStatusEvent);
+    return () => {
+      window.removeEventListener('quickpostly:trial-status-changed', handleStatusEvent);
+    };
   }, [isFreePlanActive]);
 
   const defaultFreePlan: PricingPlanDto = {

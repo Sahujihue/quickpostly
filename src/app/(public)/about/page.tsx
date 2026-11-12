@@ -15,9 +15,14 @@ export async function generateMetadata() {
 }
 
 export default async function AboutPage() {
-  const page = await CmsRepository.getPageBySlug('about');
+  const [page, isFreePlanActive] = await Promise.all([
+    CmsRepository.getPageBySlug('about'),
+    CmsRepository.isFreePlanActive(),
+  ]);
   const customHtml = page?.contentJson?.bodyHtml as string | undefined;
   const safeHtml = customHtml ? sanitizeHtml(customHtml) : null;
+  const ctaText = isFreePlanActive ? 'Start Free 14-Day Trial' : 'Get Started Now';
+  const ctaLink = isFreePlanActive ? '/signup?plan=free-trial' : '/pricing';
 
   return (
     <div className="flex flex-col w-full py-16 md:py-24">
@@ -142,10 +147,10 @@ export default async function AboutPage() {
           </p>
           <div>
             <Link
-              href="/signup"
+              href={ctaLink}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold text-sm shadow-md transition-all cursor-pointer"
             >
-              <span>Start Free 14-Day Trial</span>
+              <span>{ctaText}</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

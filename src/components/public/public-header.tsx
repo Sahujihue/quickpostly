@@ -18,17 +18,41 @@ export function PublicHeader({ navItems = [], settings, isFreePlanActive = true 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  // Real-time cookie synchronization for instant toggle reflection
+  // Real-time cookie and API synchronization for instant toggle reflection
   const [effectiveFreePlanActive, setEffectiveFreePlanActive] = useState(isFreePlanActive);
 
   useEffect(() => {
+    setEffectiveFreePlanActive(isFreePlanActive);
+
+    // 1. Instant local cookie sync
     if (typeof document !== 'undefined') {
       const match = document.cookie.match(/quickpostly_free_plan_active=([^;]+)/);
       if (match) {
         setEffectiveFreePlanActive(match[1] === 'true' || match[1] === '1');
       }
     }
-  }, []);
+
+    // 2. Authoritative real-time check from server
+    fetch('/api/v1/cms/trial-status', { cache: 'no-store' })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && typeof data.isFreePlanActive === 'boolean') {
+          setEffectiveFreePlanActive(data.isFreePlanActive);
+        }
+      })
+      .catch(() => {});
+
+    // 3. Listen for cross-component broadcast events
+    const handleStatusEvent = (e: any) => {
+      if (e?.detail && typeof e.detail.isFreePlanActive === 'boolean') {
+        setEffectiveFreePlanActive(e.detail.isFreePlanActive);
+      }
+    };
+    window.addEventListener('quickpostly:trial-status-changed', handleStatusEvent);
+    return () => {
+      window.removeEventListener('quickpostly:trial-status-changed', handleStatusEvent);
+    };
+  }, [isFreePlanActive]);
 
   const links = navItems.length > 0 ? navItems : [
     { label: 'Features', path: '/#features' },
@@ -42,6 +66,10 @@ export function PublicHeader({ navItems = [], settings, isFreePlanActive = true 
   const isSticky = settings?.isSticky ?? true;
   const showThemeToggle = settings?.showThemeToggle ?? true;
   const showCta = settings?.showCtaButton ?? true;
+
+  // Strict Trial Isolation:
+  // When ON: "Start Free Trial" linking to free trial signup
+  // When OFF: Strictly "Get Started" linking to /pricing. Strip ANY mention of trial!
   const ctaText = effectiveFreePlanActive ? 'Start Free Trial' : 'Get Started';
   const ctaLink = effectiveFreePlanActive ? '/signup?plan=free-trial' : '/pricing';
   const showSignIn = settings?.showSignInButton ?? true;

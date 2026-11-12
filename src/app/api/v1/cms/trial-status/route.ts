@@ -6,7 +6,7 @@ export const revalidate = 0;
 
 export async function GET() {
   const isFreePlanActive = await CmsRepository.isFreePlanActive();
-  return NextResponse.json(
+  const response = NextResponse.json(
     { success: true, isFreePlanActive },
     {
       headers: {
@@ -14,4 +14,10 @@ export async function GET() {
       },
     }
   );
+  response.cookies.set('quickpostly_free_plan_active', String(isFreePlanActive), {
+    path: '/',
+    maxAge: 31536000,
+    sameSite: 'lax',
+  });
+  return response;
 }

@@ -90,6 +90,13 @@ export default function AdminPricingPage() {
       if (typeof document !== 'undefined') {
         document.cookie = `quickpostly_free_plan_active=${nextStatus}; path=/; max-age=31536000; SameSite=Lax`;
       }
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(
+          new CustomEvent('quickpostly:trial-status-changed', {
+            detail: { isFreePlanActive: nextStatus },
+          })
+        );
+      }
     }
 
     setPlans((prev) =>

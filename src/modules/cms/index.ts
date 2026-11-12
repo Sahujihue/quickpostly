@@ -288,8 +288,8 @@ export class CmsService {
     if (!isFreePlanActive) {
       return {
         ...header,
-        ctaText: /trial|free/i.test(header.ctaText) ? 'Get Started' : header.ctaText,
-        ctaLink: header.ctaLink === '/signup' || header.ctaLink === '/signup?plan=free-trial' ? '/pricing' : header.ctaLink,
+        ctaText: 'Get Started',
+        ctaLink: '/pricing',
       };
     }
     return {

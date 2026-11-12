@@ -29,7 +29,10 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function BlogPostDetailPage({ params }: Props) {
-  const post = await CmsRepository.getBlogPostBySlug(params.slug);
+  const [post, isFreePlanActive] = await Promise.all([
+    CmsRepository.getBlogPostBySlug(params.slug),
+    CmsRepository.isFreePlanActive(),
+  ]);
 
   if (!post || post.status !== 'PUBLISHED') {
     notFound();
@@ -39,6 +42,8 @@ export default async function BlogPostDetailPage({ params }: Props) {
   const recentPosts = (await CmsRepository.getBlogPosts({ limit: 4, status: 'PUBLISHED' })).filter(
     (p) => p.slug !== post.slug
   );
+  const ctaText = isFreePlanActive ? 'Start Free 14-Day Trial' : 'Get Started Now';
+  const ctaLink = isFreePlanActive ? '/signup?plan=free-trial' : '/pricing';
 
   return (
     <article className="min-h-screen bg-slate-50 dark:bg-slate-950 py-12 sm:py-16">
@@ -143,10 +148,10 @@ export default async function BlogPostDetailPage({ params }: Props) {
           </p>
           <div className="pt-2">
             <Link
-              href="/signup"
+              href={ctaLink}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold text-sm shadow-md shadow-amber-400/25 transition-transform active:scale-95"
             >
-              Start Free 14-Day Trial
+              {ctaText}
             </Link>
           </div>
         </div>
