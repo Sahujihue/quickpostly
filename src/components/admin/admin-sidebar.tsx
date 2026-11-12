@@ -79,7 +79,7 @@ export function AdminSidebar({ onCloseMobile }: AdminSidebarProps) {
         { label: 'Header Management', path: '/admin/header', icon: PanelTop },
         { label: 'Footer Management', path: '/admin/footer', icon: PanelBottom },
         { label: 'Custom Pages', path: '/admin/pages', icon: FileText },
-        { label: 'Theme & Branding', path: '/admin/theme', icon: Palette },
+        { label: 'Logo, Favicon & Theme', path: '/admin/theme', icon: Palette },
       ],
     },
     {

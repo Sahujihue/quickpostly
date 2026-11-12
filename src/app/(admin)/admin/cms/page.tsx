@@ -56,10 +56,11 @@ export default function AdminCmsHubPage() {
       badge: 'Versioned',
     },
     {
-      title: 'Theme, Fonts & Branding',
-      description: 'Manage brand color palette, fonts, taglines, and custom CSS overrides.',
+      title: 'Logo, Favicon & Brand Theme',
+      description: 'Upload light & dark website logos, browser favicon (.ico/.png), social meta banner, and brand palette.',
       path: '/admin/theme',
       icon: Palette,
+      badge: 'Brand Assets',
     },
     {
       title: 'Blog & Content Playbooks',

@@ -120,12 +120,12 @@ export default function AdminOverviewPage() {
             </div>
 
             <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-1.5">
-              <h4 className="text-xs font-bold text-slate-900 dark:text-white">Theme & Global SEO</h4>
+              <h4 className="text-xs font-bold text-slate-900 dark:text-white">Logo, Favicon & Brand Theme</h4>
               <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                Configure brand primary colors, font families, OG images, and tags.
+                Upload light/dark logos, browser favicon (.ico/.png), social meta banner, and colors.
               </p>
-              <Link href="/admin/cms" className="text-[11px] text-indigo-600 dark:text-indigo-400 font-semibold block pt-1 hover:underline">
-                Edit Theme & SEO &rarr;
+              <Link href="/admin/theme" className="text-[11px] text-indigo-600 dark:text-indigo-400 font-semibold block pt-1 hover:underline">
+                Upload Logos & Favicon &rarr;
               </Link>
             </div>
           </div>
