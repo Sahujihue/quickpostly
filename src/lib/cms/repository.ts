@@ -525,7 +525,7 @@ function getInitialStore(): LocalCmsStore {
         id: 'plan_free_trial',
         slug: 'free-trial',
         name: 'Free Trial',
-        description: '14-day fully featured sandbox trial for exploring SocialHive automation.',
+        description: '14-day fully featured sandbox trial for exploring QuickPostly automation.',
         badge: '14 Days Free',
         monthlyPrice: 0,
         annualPrice: 0,
@@ -541,7 +541,7 @@ function getInitialStore(): LocalCmsStore {
         ],
         limitsJson: { maxSocialAccounts: 3, maxScheduledPosts: 30, aiGenerationsMonthly: 25, aiImageCreditsMonthly: 5, aiVideoCreditsMonthly: 0, maxTeamMembers: 1, maxWorkspaces: 1, maxClients: 0, storageMb: 500, analyticsRetentionDays: 14, hasSocialInbox: false },
         isPopular: false,
-        isActive: true,
+        isActive: false,
         ctaText: 'Start 14-Day Free Trial',
         ctaLink: '/signup?plan=free-trial',
         order: 1,
@@ -571,7 +571,7 @@ function getInitialStore(): LocalCmsStore {
         limitsJson: { maxSocialAccounts: 5, maxScheduledPosts: 150, aiGenerationsMonthly: 75, aiImageCreditsMonthly: 15, aiVideoCreditsMonthly: 2, maxTeamMembers: 2, maxWorkspaces: 1, maxClients: 1, storageMb: 2048, analyticsRetentionDays: 30, hasSocialInbox: false },
         isPopular: false,
         isActive: true,
-        ctaText: 'Start Free 14-Day Trial',
+        ctaText: 'Get Started',
         ctaLink: '/signup?plan=starter',
         order: 2,
         createdAt: now,
@@ -602,7 +602,7 @@ function getInitialStore(): LocalCmsStore {
         limitsJson: { maxSocialAccounts: 15, maxScheduledPosts: 750, aiGenerationsMonthly: 300, aiImageCreditsMonthly: 60, aiVideoCreditsMonthly: 15, maxTeamMembers: 5, maxWorkspaces: 3, maxClients: 5, storageMb: 10240, analyticsRetentionDays: 90, hasSocialInbox: true },
         isPopular: true,
         isActive: true,
-        ctaText: 'Try Pro Free for 14 Days',
+        ctaText: 'Get Professional',
         ctaLink: '/signup?plan=professional',
         order: 3,
         createdAt: now,
@@ -1652,35 +1652,45 @@ export class CmsRepository {
 
   // ===================== PRICING PLANS =====================
   public static async getPricingPlans(): Promise<CmsPricingPlanRecord[]> {
+    const store = ensureStoreInitialized();
     try {
       const plans = await prisma.cmsPricingPlan.findMany({
         orderBy: { order: 'asc' },
       });
       if (plans.length > 0) {
-        return plans.map((p) => ({
-          id: p.id,
-          slug: p.slug,
-          name: p.name,
-          description: p.description,
-          badge: p.badge,
-          monthlyPrice: p.monthlyPrice,
-          annualPrice: p.annualPrice,
-          currency: p.currency,
-          features: Array.isArray(p.features) ? (p.features as string[]) : [],
-          limitsJson: (p.limitsJson as Record<string, unknown>) || null,
-          isPopular: p.isPopular,
-          isActive: p.isActive,
-          ctaText: p.ctaText,
-          ctaLink: p.ctaLink,
-          order: p.order,
-          createdAt: p.createdAt.toISOString(),
-          updatedAt: p.updatedAt.toISOString(),
-        }));
+        return plans.map((p) => {
+          // If store or memory flag has explicit isActive state, merge it
+          const storeMatch = store.pricingPlans.find((sp) => sp.id === p.id || sp.slug === p.slug);
+          let isActive = storeMatch ? storeMatch.isActive : p.isActive;
+          if (p.slug === 'free-trial' || p.slug === 'free_trial' || p.monthlyPrice === 0) {
+            if (typeof (globalThis as any).__QUICKPOSTLY_FREE_PLAN_ACTIVE__ === 'boolean') {
+              isActive = (globalThis as any).__QUICKPOSTLY_FREE_PLAN_ACTIVE__;
+            }
+          }
+          return {
+            id: p.id,
+            slug: p.slug,
+            name: p.name,
+            description: p.description,
+            badge: p.badge,
+            monthlyPrice: p.monthlyPrice,
+            annualPrice: p.annualPrice,
+            currency: p.currency,
+            features: Array.isArray(p.features) ? (p.features as string[]) : [],
+            limitsJson: (p.limitsJson as Record<string, unknown>) || null,
+            isPopular: p.isPopular,
+            isActive,
+            ctaText: p.ctaText,
+            ctaLink: p.ctaLink,
+            order: p.order,
+            createdAt: p.createdAt.toISOString(),
+            updatedAt: p.updatedAt.toISOString(),
+          };
+        });
       }
     } catch {
       // fallback
     }
-    const store = ensureStoreInitialized();
     return store.pricingPlans.sort((a, b) => a.order - b.order);
   }
 
@@ -1799,12 +1809,30 @@ export class CmsRepository {
     const newState = forceState !== undefined ? forceState : !store.pricingPlans[idx].isActive;
     store.pricingPlans[idx].isActive = newState;
     store.pricingPlans[idx].updatedAt = new Date().toISOString();
+
+    const isFree =
+      store.pricingPlans[idx].slug.includes('free') ||
+      store.pricingPlans[idx].slug.includes('trial') ||
+      store.pricingPlans[idx].monthlyPrice === 0;
+
+    if (isFree) {
+      (globalThis as any).__QUICKPOSTLY_FREE_PLAN_ACTIVE__ = newState;
+    }
+
     const updated = store.pricingPlans[idx];
     persistStore(store);
 
     try {
-      await prisma.cmsPricingPlan.update({
-        where: { id: updated.id },
+      await prisma.cmsPricingPlan.updateMany({
+        where: {
+          OR: [
+            { id: updated.id },
+            { slug: updated.slug },
+            { slug: 'free-trial' },
+            { slug: 'free_trial' },
+            { monthlyPrice: 0 },
+          ],
+        },
         data: { isActive: newState },
       });
     } catch {
@@ -1815,6 +1843,41 @@ export class CmsRepository {
   }
 
   public static async isFreePlanActive(): Promise<boolean> {
+    // 1. Check request cookie from Next.js headers if in SSR / Server Action context
+    try {
+      const { cookies } = await import('next/headers');
+      const cookieStore = await cookies();
+      const cookieVal = cookieStore.get('quickpostly_free_plan_active')?.value;
+      if (cookieVal !== undefined) {
+        return cookieVal === 'true' || cookieVal === '1';
+      }
+    } catch {
+      // Outside request context
+    }
+
+    // 2. Check memory flag
+    if (typeof (globalThis as any).__QUICKPOSTLY_FREE_PLAN_ACTIVE__ === 'boolean') {
+      return (globalThis as any).__QUICKPOSTLY_FREE_PLAN_ACTIVE__;
+    }
+
+    // 3. Check memory / file store
+    try {
+      const store = ensureStoreInitialized();
+      const freePlan = store.pricingPlans.find(
+        (p) =>
+          p.slug === 'free-trial' ||
+          p.slug === 'free_trial' ||
+          p.id === 'plan_free_trial' ||
+          p.monthlyPrice === 0
+      );
+      if (freePlan) {
+        return Boolean(freePlan.isActive);
+      }
+    } catch {
+      // fallback
+    }
+
+    // 4. Prisma check if available
     try {
       const plans = await this.getPricingPlans();
       const freePlan = plans.find(
@@ -1830,15 +1893,8 @@ export class CmsRepository {
     } catch {
       // fallback
     }
-    const store = ensureStoreInitialized();
-    const freePlan = store.pricingPlans.find(
-      (p) =>
-        p.slug === 'free-trial' ||
-        p.slug === 'free_trial' ||
-        p.id === 'plan_free_trial' ||
-        p.monthlyPrice === 0
-    );
-    return freePlan ? Boolean(freePlan.isActive) : true;
+
+    return false;
   }
 
   // ===================== TESTIMONIALS =====================

@@ -211,7 +211,19 @@ export default function SubscriptionBillingPage() {
 
   const sub = subData?.subscription;
   const metrics = subData?.metrics;
-  const plans = subData?.availablePlans || [];
+  const isFreePlanDisabled =
+    typeof document !== 'undefined' && document.cookie.includes('quickpostly_free_plan_active=false');
+  const rawPlans = subData?.availablePlans || [];
+  const plans = rawPlans.filter((p) => {
+    if (p.isActive === false) return false;
+    if (
+      isFreePlanDisabled &&
+      (p.slug === 'free-trial' || p.slug === 'free_trial' || p.monthlyPrice === 0 || p.name.toLowerCase().includes('trial'))
+    ) {
+      return false;
+    }
+    return true;
+  });
   const invoices = subData?.invoices || [];
 
   const statusVariant =

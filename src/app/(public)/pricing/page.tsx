@@ -4,6 +4,7 @@ import { CmsRepository } from '@/lib/cms/repository';
 import { PricingView } from '@/components/public/pricing-view';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export const metadata = {
   title: 'Pricing & Plans | QuickPostly AI Social Media Management',

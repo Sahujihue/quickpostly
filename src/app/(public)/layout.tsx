@@ -6,6 +6,9 @@ import { PromoPopup } from '@/components/public/promo-popup';
 import { CmsService } from '@/modules/cms';
 import { CmsRepository } from '@/lib/cms/repository';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function PublicLayout({
   children,
 }: {

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Check, Sparkles, HelpCircle, ArrowRight, ShieldCheck } from 'lucide-react';
 import { PricingPlanDto, FaqItemDto } from '@/modules/cms/types';
@@ -14,6 +14,44 @@ interface PricingViewProps {
 export function PricingView({ plans, faqs, isFreePlanActive = true }: PricingViewProps) {
   const [isAnnual, setIsAnnual] = useState(true);
 
+  // Real-time cookie synchronization for instant toggle reflection
+  const [effectiveFreePlanActive, setEffectiveFreePlanActive] = useState(isFreePlanActive);
+
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      const match = document.cookie.match(/quickpostly_free_plan_active=([^;]+)/);
+      if (match) {
+        setEffectiveFreePlanActive(match[1] === 'true' || match[1] === '1');
+      }
+    }
+  }, []);
+
+  const displayedPlans = (effectiveFreePlanActive
+    ? plans
+    : plans.filter(
+        (p) =>
+          p.slug !== 'free-trial' &&
+          p.slug !== 'free_trial' &&
+          p.monthlyPrice > 0 &&
+          !p.name.toLowerCase().includes('trial')
+      )
+  ).map((p) => {
+    if (!effectiveFreePlanActive && /trial/i.test(p.ctaText)) {
+      return {
+        ...p,
+        ctaText:
+          p.slug === 'starter'
+            ? 'Get Started'
+            : p.slug === 'pro' || p.slug === 'professional'
+            ? 'Get Pro Growth'
+            : p.slug === 'agency'
+            ? 'Get Agency Scale'
+            : 'Choose Plan',
+      };
+    }
+    return p;
+  });
+
   return (
     <div className="flex flex-col w-full py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
@@ -26,7 +64,7 @@ export function PricingView({ plans, faqs, isFreePlanActive = true }: PricingVie
             Plans built to scale with your content ambition
           </h1>
           <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-            {isFreePlanActive
+            {effectiveFreePlanActive
               ? 'All plans include category scheduling, multi-channel publishing, and our 14-day free trial. No setup fees.'
               : 'All plans include category scheduling, multi-channel publishing, and instant workspace setup. No setup fees.'}
           </p>
@@ -73,7 +111,7 @@ export function PricingView({ plans, faqs, isFreePlanActive = true }: PricingVie
 
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-          {plans.map((plan) => {
+          {displayedPlans.map((plan) => {
             const price = isAnnual ? plan.annualPrice : plan.monthlyPrice;
             const isPro = plan.isPopular;
 

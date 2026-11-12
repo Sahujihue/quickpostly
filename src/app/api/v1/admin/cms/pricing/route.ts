@@ -147,10 +147,24 @@ export async function PATCH(req: NextRequest) {
     }
 
     const currentStatus = (updatedCms || updatedSub)?.isActive;
-    return apiResponse.success(
+    const response = apiResponse.success(
       updatedCms || updatedSub,
       `Plan '${identifier}' is now ${currentStatus ? 'Active (ON)' : 'Disabled (OFF)'}`
     );
+
+    if (
+      identifier.toLowerCase().includes('free') ||
+      identifier.toLowerCase().includes('trial') ||
+      updatedCms?.monthlyPrice === 0
+    ) {
+      response.cookies.set('quickpostly_free_plan_active', String(Boolean(currentStatus)), {
+        path: '/',
+        maxAge: 31536000,
+        sameSite: 'lax',
+      });
+    }
+
+    return response;
   } catch (error) {
     return apiResponse.handle(error, 'Admin Toggle Pricing Plan Status');
   }

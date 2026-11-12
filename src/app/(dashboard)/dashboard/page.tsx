@@ -282,7 +282,7 @@ export default function DashboardOverviewPage() {
                     </Badge>
                   </div>
                   <p className="text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-200 line-clamp-1">
-                    &quot;Free up 15 hours every week with SocialHive category queuing. Try our 14-day trial...&quot;
+                    &quot;Free up 15 hours every week with QuickPostly category queuing. Schedule posts across all channels seamlessly...&quot;
                   </p>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-slate-500 shrink-0">

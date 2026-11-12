@@ -554,11 +554,29 @@ export class SubscriptionRepository {
 
     const newState = forceState !== undefined ? forceState : !store.plans[idx].isActive;
     store.plans[idx].isActive = newState;
+
+    const isFree =
+      store.plans[idx].slug.includes('free') ||
+      store.plans[idx].slug.includes('trial') ||
+      store.plans[idx].monthlyPrice === 0;
+
+    if (isFree) {
+      (globalThis as any).__QUICKPOSTLY_FREE_PLAN_ACTIVE__ = newState;
+    }
+
     SubscriptionRepository.saveStore(store);
 
     try {
       await prisma.subscriptionPlan.updateMany({
-        where: { OR: [{ id: store.plans[idx].id }, { slug: store.plans[idx].slug }] },
+        where: {
+          OR: [
+            { id: store.plans[idx].id },
+            { slug: store.plans[idx].slug },
+            { slug: 'free-trial' },
+            { slug: 'free_trial' },
+            { monthlyPrice: 0 },
+          ],
+        },
         data: { isActive: newState },
       });
     } catch {

@@ -358,6 +358,10 @@ export default function AdminSubscriptionsPage() {
     const nextStatus = !freePlan.isActive;
 
     // Instant optimistic UI toggle
+    if (typeof document !== 'undefined') {
+      document.cookie = `quickpostly_free_plan_active=${nextStatus}; path=/; max-age=31536000; SameSite=Lax`;
+    }
+
     setAvailablePlans((prev) =>
       prev.map((p) =>
         p.id === freePlan.id || p.slug === freePlan.slug || p.monthlyPrice === 0

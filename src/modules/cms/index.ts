@@ -283,7 +283,16 @@ export const DEFAULT_CTA_BANNER: CtaBannerDto = {
 
 export class CmsService {
   public static async getHeaderSettings(): Promise<CmsHeaderRecord> {
-    return CmsRepository.getHeaderSettings();
+    const isFreePlanActive = await CmsRepository.isFreePlanActive();
+    const header = await CmsRepository.getHeaderSettings();
+    if (!isFreePlanActive) {
+      return {
+        ...header,
+        ctaText: /trial|free/i.test(header.ctaText) ? 'Get Started' : header.ctaText,
+        ctaLink: header.ctaLink === '/signup' || header.ctaLink === '/signup?plan=free-trial' ? '/pricing' : header.ctaLink,
+      };
+    }
+    return header;
   }
 
   public static async getFooterSettings(): Promise<CmsFooterRecord> {
@@ -321,10 +330,31 @@ export class CmsService {
   }
 
   public static async getPricingPlans(): Promise<PricingPlanDto[]> {
+    const isFreeActive = await CmsRepository.isFreePlanActive();
     const plans = await CmsRepository.getPricingPlans();
-    const active = plans.filter((p) => p.isActive);
-    if (active.length > 0) {
-      return active.map((p) => ({
+    const filtered = plans.filter((p) => {
+      if (!p.isActive) return false;
+      if (
+        !isFreeActive &&
+        (p.slug === 'free-trial' ||
+          p.slug === 'free_trial' ||
+          p.monthlyPrice === 0 ||
+          p.name.toLowerCase().includes('trial'))
+      ) {
+        return false;
+      }
+      return true;
+    });
+
+    return filtered.map((p) => {
+      let ctaText = p.ctaText;
+      if (!isFreeActive && /trial/i.test(ctaText)) {
+        if (p.slug === 'starter') ctaText = 'Get Started';
+        else if (p.slug === 'pro' || p.slug === 'professional') ctaText = 'Get Pro Growth';
+        else if (p.slug === 'agency') ctaText = 'Get Agency Scale';
+        else ctaText = 'Choose Plan';
+      }
+      return {
         id: p.id,
         slug: p.slug,
         name: p.name,
@@ -335,11 +365,10 @@ export class CmsService {
         currency: p.currency,
         features: p.features,
         isPopular: p.isPopular,
-        ctaText: p.ctaText,
+        ctaText,
         ctaLink: p.ctaLink,
-      }));
-    }
-    return [];
+      };
+    });
   }
 
   public static async getFaqs(): Promise<FaqItemDto[]> {
@@ -408,30 +437,29 @@ export class CmsService {
       // 1. Dynamic Hero adaptation
       const safeTrust = Array.isArray(hero.trustPoints) ? hero.trustPoints : DEFAULT_HERO_CONTENT.trustPoints;
       const sanitizedTrust = safeTrust
-        .filter((tp) => !/14[\s-]*day/i.test(tp) && !/trial/i.test(tp));
+        .filter((tp) => !/14[\s-]*day/i.test(tp) && !/trial/i.test(tp) && !/credit card/i.test(tp));
       if (!sanitizedTrust.includes('Instant setup in 60s')) {
         sanitizedTrust.push('Instant setup in 60s');
       }
-
-      const primaryCta = /trial|14[\s-]*day/i.test(hero.primaryCtaText) ? 'Get Started Now' : hero.primaryCtaText;
+      if (!sanitizedTrust.includes('Cancel in 1-click anytime')) {
+        sanitizedTrust.push('Cancel in 1-click anytime');
+      }
 
       hero = {
         ...hero,
-        primaryCtaText: primaryCta,
-        primaryCtaLink: hero.primaryCtaLink === '/signup?plan=free-trial' ? '/pricing' : hero.primaryCtaLink,
+        badgeText: hero.badgeText.replace(/14[\s-]*day/gi, 'Intelligent').replace(/trial/gi, 'Platform'),
+        primaryCtaText: 'Get Started Now',
+        primaryCtaLink: '/pricing',
         trustPoints: Array.from(new Set(sanitizedTrust)),
       };
 
       // 2. Dynamic CTA Banner adaptation
       cta = {
         ...cta,
-        title: cta.title.replace(/14[\s-]*day free trial/gi, 'QuickPostly platform'),
-        description: cta.description.replace(
-          /Start your 14-day free trial today\.\s*No credit card required\./gi,
-          'Accelerate your audience growth with intelligent category scheduling.'
-        ),
-        buttonText: /trial/i.test(cta.buttonText) ? 'Get Started Today' : cta.buttonText,
-        buttonLink: cta.buttonLink === '/signup?plan=free-trial' ? '/pricing' : cta.buttonLink,
+        title: cta.title.replace(/14[\s-]*day free trial/gi, 'QuickPostly Platform').replace(/free trial/gi, 'Platform'),
+        description: 'Accelerate your audience growth with intelligent category scheduling.',
+        buttonText: 'Get Started Today',
+        buttonLink: '/pricing',
       };
     }
 

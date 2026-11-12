@@ -4,13 +4,13 @@
       "id": "plan_free_trial",
       "name": "Free Trial",
       "slug": "free-trial",
-      "description": "14-day fully featured sandbox trial for exploring SocialHive automation.",
+      "description": "14-day fully featured sandbox trial for exploring QuickPostly automation.",
       "badge": "14 Days Free",
       "monthlyPrice": 0,
       "annualPrice": 0,
       "currency": "USD",
       "trialDays": 14,
-      "isActive": true,
+      "isActive": false,
       "isPopular": false,
       "order": 1,
       "limits": {
@@ -111,7 +111,7 @@
         "10 GB Cloud Asset Storage",
         "90-Day Advanced ROI Analytics"
       ],
-      "ctaText": "Choose Professional",
+      "ctaText": "Get Pro Growth",
       "ctaLink": "/signup?plan=professional"
     },
     {
@@ -198,7 +198,7 @@
         "365-Day Historical Analytics & White-Label Reports",
         "Dedicated Slack Support & Account Executive"
       ],
-      "ctaText": "Choose Agency",
+      "ctaText": "Get Agency Scale",
       "ctaLink": "/signup?plan=agency"
     }
   ],

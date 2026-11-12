@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   Sparkles,
@@ -48,6 +48,45 @@ export function HomepageView({ content }: HomepageViewProps) {
     isFreePlanActive = true,
   } = content;
 
+  // Real-time cookie-based synchronization
+  const [effectiveFreePlanActive, setEffectiveFreePlanActive] = useState(isFreePlanActive);
+
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      const match = document.cookie.match(/quickpostly_free_plan_active=([^;]+)/);
+      if (match) {
+        setEffectiveFreePlanActive(match[1] === 'true' || match[1] === '1');
+      }
+    }
+  }, []);
+
+  // Filter and sanitize pricing plans based on trial status
+  const displayedPricing = (effectiveFreePlanActive
+    ? pricing
+    : pricing.filter(
+        (p) =>
+          p.slug !== 'free-trial' &&
+          p.slug !== 'free_trial' &&
+          p.monthlyPrice > 0 &&
+          !p.name.toLowerCase().includes('trial')
+      )
+  ).map((p) => {
+    if (!effectiveFreePlanActive && /trial/i.test(p.ctaText)) {
+      return {
+        ...p,
+        ctaText:
+          p.slug === 'starter'
+            ? 'Get Started'
+            : p.slug === 'pro' || p.slug === 'professional'
+            ? 'Get Pro Growth'
+            : p.slug === 'agency'
+            ? 'Get Agency Scale'
+            : 'Choose Plan',
+      };
+    }
+    return p;
+  });
+
   // Interactive Product Preview Tab State
   const [activePreviewTab, setActivePreviewTab] = useState<'queue' | 'ai' | 'calendar'>('queue');
 
@@ -84,10 +123,10 @@ export function HomepageView({ content }: HomepageViewProps) {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
               <Link
-                href={hero.primaryCtaLink}
+                href={effectiveFreePlanActive ? hero.primaryCtaLink : '/pricing'}
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base font-bold text-slate-950 bg-amber-400 hover:bg-amber-500 shadow-lg shadow-amber-400/25 transition-all duration-200 hover:scale-105 active:scale-95"
               >
-                <span>{hero.primaryCtaText}</span>
+                <span>{effectiveFreePlanActive ? hero.primaryCtaText : 'Get Started Now'}</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
@@ -100,11 +139,14 @@ export function HomepageView({ content }: HomepageViewProps) {
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 pt-4 text-xs font-medium text-slate-500 dark:text-slate-400">
-              {(Array.isArray(hero?.trustPoints) ? hero.trustPoints : [
-                'No credit card required',
-                '14-day full feature trial',
-                'Cancel anytime with 1 click',
-              ]).map((point, i) => (
+              {(effectiveFreePlanActive
+                ? (Array.isArray(hero?.trustPoints)
+                    ? hero.trustPoints
+                    : ['No credit card required', '14-day full feature trial', 'Cancel anytime with 1 click'])
+                : (Array.isArray(hero?.trustPoints)
+                    ? hero.trustPoints.filter((tp: string) => !/14[\s-]*day/i.test(tp) && !/trial/i.test(tp) && !/credit card/i.test(tp))
+                    : ['Instant setup in 60s', 'Cancel anytime with 1 click', 'Official social API certified'])
+              ).map((point: string, i: number) => (
                 <div key={i} className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                   <span>{point}</span>
@@ -645,9 +687,9 @@ export function HomepageView({ content }: HomepageViewProps) {
               Invest in consistent organic brand growth
             </h2>
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300">
-              {isFreePlanActive
+              {effectiveFreePlanActive
                 ? 'Start with a 14-day free trial. Upgrade, downgrade, or cancel anytime.'
-                : 'Invest in consistent organic brand growth. Upgrade, downgrade, or cancel anytime.'}
+                : 'Choose your growth plan. Instant setup, upgrade, downgrade, or cancel anytime.'}
             </p>
 
             {/* Monthly / Annual Billing Toggle */}
@@ -688,7 +730,7 @@ export function HomepageView({ content }: HomepageViewProps) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {pricing.map((plan) => {
+            {displayedPricing.map((plan) => {
               const price = annualBilling ? plan.annualPrice : plan.monthlyPrice;
               return (
                 <div
@@ -832,18 +874,23 @@ export function HomepageView({ content }: HomepageViewProps) {
       <section className="py-16 md:py-24 bg-gradient-to-br from-amber-500 via-amber-600 to-amber-700 text-slate-950">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-slate-950">
-            {cta.title}
+            {effectiveFreePlanActive
+              ? cta.title
+              : cta.title.replace(/14[\s-]*day free trial/gi, 'QuickPostly Platform').replace(/free trial/gi, 'Platform')}
           </h2>
           <p className="text-base sm:text-lg text-slate-950/80 max-w-2xl mx-auto font-medium">
-            {cta.highlightText} {cta.description}
+            {cta.highlightText}{' '}
+            {effectiveFreePlanActive
+              ? cta.description
+              : 'Accelerate your audience growth with intelligent category scheduling.'}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <Link
-              href={cta.buttonLink}
+              href={effectiveFreePlanActive ? cta.buttonLink : '/pricing'}
               className="w-full sm:w-auto px-8 py-4 rounded-xl text-base font-bold bg-slate-950 text-white hover:bg-slate-900 shadow-xl transition-all duration-200 hover:scale-105 active:scale-95"
             >
-              {cta.buttonText}
+              {effectiveFreePlanActive ? cta.buttonText : 'Get Started Today'}
             </Link>
             <Link
               href={cta.secondaryButtonLink}

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from '@/components/theme/theme-toggle';
@@ -18,6 +18,18 @@ export function PublicHeader({ navItems = [], settings, isFreePlanActive = true 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
+  // Real-time cookie synchronization for instant toggle reflection
+  const [effectiveFreePlanActive, setEffectiveFreePlanActive] = useState(isFreePlanActive);
+
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      const match = document.cookie.match(/quickpostly_free_plan_active=([^;]+)/);
+      if (match) {
+        setEffectiveFreePlanActive(match[1] === 'true' || match[1] === '1');
+      }
+    }
+  }, []);
+
   const links = navItems.length > 0 ? navItems : [
     { label: 'Features', path: '/#features' },
     { label: 'Pricing', path: '/pricing' },
@@ -26,17 +38,17 @@ export function PublicHeader({ navItems = [], settings, isFreePlanActive = true 
     { label: 'Contact', path: '/contact' },
   ];
 
-  const logoText = settings?.logoText || 'SocialHive';
+  const logoText = settings?.logoText || 'QuickPostly';
   const isSticky = settings?.isSticky ?? true;
   const showThemeToggle = settings?.showThemeToggle ?? true;
   const showCta = settings?.showCtaButton ?? true;
   const rawCtaText = settings?.ctaText || 'Start Free Trial';
-  const ctaText = isFreePlanActive
+  const ctaText = effectiveFreePlanActive
     ? rawCtaText
-    : /trial/i.test(rawCtaText)
+    : /trial|free/i.test(rawCtaText)
     ? 'Get Started'
     : rawCtaText;
-  const ctaLink = settings?.ctaLink || (isFreePlanActive ? '/signup' : '/pricing');
+  const ctaLink = settings?.ctaLink || (effectiveFreePlanActive ? '/signup' : '/pricing');
   const showSignIn = settings?.showSignInButton ?? true;
   const signInText = settings?.signInText || 'Sign In';
 

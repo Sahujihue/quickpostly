@@ -86,6 +86,12 @@ export default function AdminPricingPage() {
     const nextStatus = !currentStatus;
 
     // Instant optimistic UI toggle
+    if (identifier.toLowerCase().includes('free') || identifier.toLowerCase().includes('trial')) {
+      if (typeof document !== 'undefined') {
+        document.cookie = `quickpostly_free_plan_active=${nextStatus}; path=/; max-age=31536000; SameSite=Lax`;
+      }
+    }
+
     setPlans((prev) =>
       prev.map((p) =>
         p.id === identifier || p.slug === identifier || (identifier.includes('free') && (p.monthlyPrice === 0 || p.slug.includes('free')))
