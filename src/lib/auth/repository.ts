@@ -3,6 +3,7 @@ import path from 'path';
 import bcrypt from 'bcryptjs';
 import { prisma } from '../prisma';
 import { logger } from '../logger';
+import { getStoreFilePath, safeWriteJson } from '../storage-dir';
 
 export type UserSystemRole = 'SUPER_ADMIN' | 'ADMIN' | 'CONTENT_MANAGER' | 'SUPPORT' | 'USER';
 export type UserStatus = 'ACTIVE' | 'SUSPENDED' | 'PENDING_VERIFICATION';
@@ -88,8 +89,7 @@ interface LocalAuthStore {
   activityLogs: ActivityLogRecord[];
 }
 
-const DATA_DIR = path.join(process.cwd(), '.data');
-const STORE_FILE = path.join(DATA_DIR, 'auth_store.json');
+const STORE_FILE = getStoreFilePath('auth_store.json');
 
 // Memory cache + file synchronization
 let memoryStore: LocalAuthStore | null = null;
@@ -98,10 +98,6 @@ function ensureStoreInitialized(): LocalAuthStore {
   if (memoryStore) return memoryStore;
 
   try {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
-    }
-
     if (fs.existsSync(STORE_FILE)) {
       const data = fs.readFileSync(STORE_FILE, 'utf-8');
       memoryStore = JSON.parse(data) as LocalAuthStore;
@@ -254,14 +250,7 @@ function ensureStoreInitialized(): LocalAuthStore {
 
 function persistStore(): void {
   if (!memoryStore) return;
-  try {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
-    }
-    fs.writeFileSync(STORE_FILE, JSON.stringify(memoryStore, null, 2), 'utf-8');
-  } catch (err) {
-    logger.error('Error persisting auth store to disk:', err);
-  }
+  safeWriteJson(STORE_FILE, memoryStore);
 }
 
 /**

@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { prisma } from '@/lib/prisma';
+import { getStoreFilePath, safeWriteJson } from '@/lib/storage-dir';
 import {
   SubscriptionPlanDTO,
   SubscriptionDTO,
@@ -24,8 +25,7 @@ interface SubscriptionStoreData {
   auditLogs: SubscriptionAuditLogDTO[];
 }
 
-const DATA_DIR = path.join(process.cwd(), '.data');
-const STORE_FILE = path.join(DATA_DIR, 'subscription_store.json');
+const STORE_FILE = getStoreFilePath('subscription_store.json');
 
 const INITIAL_COUPONS: CouponDTO[] = [
   {
@@ -282,10 +282,6 @@ export class SubscriptionRepository {
   private static isInitialized = false;
 
   private static ensureStore(): SubscriptionStoreData {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
-    }
-
     if (!fs.existsSync(STORE_FILE)) {
       const initial: SubscriptionStoreData = {
         plans: DEFAULT_COMMERCIAL_PLANS,
@@ -305,7 +301,7 @@ export class SubscriptionRepository {
           },
         ],
       };
-      fs.writeFileSync(STORE_FILE, JSON.stringify(initial, null, 2), 'utf-8');
+      safeWriteJson(STORE_FILE, initial);
       SubscriptionRepository.isInitialized = true;
       return initial;
     }
@@ -332,16 +328,13 @@ export class SubscriptionRepository {
         usages: INITIAL_USAGES,
         auditLogs: [],
       };
-      fs.writeFileSync(STORE_FILE, JSON.stringify(fallback, null, 2), 'utf-8');
+      safeWriteJson(STORE_FILE, fallback);
       return fallback;
     }
   }
 
   private static saveStore(data: SubscriptionStoreData): void {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
-    }
-    fs.writeFileSync(STORE_FILE, JSON.stringify(data, null, 2), 'utf-8');
+    safeWriteJson(STORE_FILE, data);
   }
 
   // ============================================================================
@@ -553,7 +546,9 @@ export class SubscriptionRepository {
         p.slug === identifier ||
         p.id === identifier ||
         p.slug === cleanId ||
-        p.slug.replace(/_/g, '-') === identifier.replace(/_/g, '-')
+        p.slug.replace(/_/g, '-') === identifier.replace(/_/g, '-') ||
+        ((identifier.toLowerCase().includes('free') || identifier.toLowerCase().includes('trial')) &&
+          (p.slug.includes('free') || p.slug.includes('trial') || p.monthlyPrice === 0))
     );
     if (idx < 0) return null;
 

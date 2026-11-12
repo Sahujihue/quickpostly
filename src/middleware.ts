@@ -8,7 +8,10 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const authHeader = request.headers.get('authorization');
   const bearerToken = authHeader?.startsWith('Bearer ') ? authHeader.substring(7).trim() : null;
-  const token = request.cookies.get(SESSION_COOKIE_NAME)?.value || bearerToken;
+  const token =
+    request.cookies.get('quickpostly_session')?.value ||
+    request.cookies.get(SESSION_COOKIE_NAME)?.value ||
+    bearerToken;
   const session = token ? decodeEdgeSessionToken(token) : null;
 
   // 1. Protected Admin Panel Routes (/admin, /admin/*)

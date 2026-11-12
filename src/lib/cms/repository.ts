@@ -3,6 +3,7 @@ import path from 'path';
 import { prisma } from '../prisma';
 import { logger } from '../logger';
 import { sanitizeHtml } from '../sanitize';
+import { getStoreFilePath, safeWriteJson } from '../storage-dir';
 
 export interface CmsHeaderRecord {
   id: string;
@@ -290,8 +291,7 @@ interface LocalCmsStore {
   security: CmsSecuritySettingRecord;
 }
 
-const DATA_DIR = path.join(process.cwd(), '.data');
-const STORE_FILE = path.join(DATA_DIR, 'cms_store.json');
+const STORE_FILE = getStoreFilePath('cms_store.json');
 
 let memoryStore: LocalCmsStore | null = null;
 
@@ -989,10 +989,6 @@ function ensureStoreInitialized(): LocalCmsStore {
   if (memoryStore) return memoryStore;
 
   try {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
-    }
-
     if (fs.existsSync(STORE_FILE)) {
       const data = fs.readFileSync(STORE_FILE, 'utf-8');
       memoryStore = JSON.parse(data) as LocalCmsStore;
@@ -1027,7 +1023,7 @@ function ensureStoreInitialized(): LocalCmsStore {
       }
     } else {
       memoryStore = getInitialStore();
-      fs.writeFileSync(STORE_FILE, JSON.stringify(memoryStore, null, 2), 'utf-8');
+      safeWriteJson(STORE_FILE, memoryStore);
     }
   } catch (err) {
     logger.error('Failed reading CMS local store, falling back to memory store', err);
@@ -1038,16 +1034,7 @@ function ensureStoreInitialized(): LocalCmsStore {
 }
 
 function persistStore(store: LocalCmsStore): void {
-  try {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
-    }
-    const tempFile = `${STORE_FILE}.tmp.${Date.now()}`;
-    fs.writeFileSync(tempFile, JSON.stringify(store, null, 2), 'utf-8');
-    fs.renameSync(tempFile, STORE_FILE);
-  } catch (err) {
-    logger.error('Failed writing CMS local store file', err);
-  }
+  safeWriteJson(STORE_FILE, store);
 }
 
 export class CmsRepository {
@@ -1803,7 +1790,9 @@ export class CmsRepository {
         p.id === identifier ||
         p.slug === identifier ||
         p.slug === cleanId ||
-        p.slug.replace(/_/g, '-') === identifier.replace(/_/g, '-')
+        p.slug.replace(/_/g, '-') === identifier.replace(/_/g, '-') ||
+        ((identifier.toLowerCase().includes('free') || identifier.toLowerCase().includes('trial')) &&
+          (p.slug.includes('free') || p.slug.includes('trial') || p.monthlyPrice === 0))
     );
     if (idx < 0) return null;
 

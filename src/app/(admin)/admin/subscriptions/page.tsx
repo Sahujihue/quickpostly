@@ -355,13 +355,23 @@ export default function AdminSubscriptionsPage() {
       setMessage({ type: 'error', text: 'Free plan not found in pricing registry' });
       return;
     }
+    const nextStatus = !freePlan.isActive;
+
+    // Instant optimistic UI toggle
+    setAvailablePlans((prev) =>
+      prev.map((p) =>
+        p.id === freePlan.id || p.slug === freePlan.slug || p.monthlyPrice === 0
+          ? { ...p, isActive: nextStatus }
+          : p
+      )
+    );
+
     try {
       setFreePlanToggling(true);
-      const nextStatus = !freePlan.isActive;
       const res = await fetch('/api/v1/admin/cms/pricing', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: freePlan.id, isActive: nextStatus }),
+        body: JSON.stringify({ id: freePlan.id, slug: 'free-trial', isActive: nextStatus }),
       });
       const data = await res.json();
       if (data.success) {
@@ -371,9 +381,25 @@ export default function AdminSubscriptionsPage() {
         });
         fetchData();
       } else {
+        // Revert on error
+        setAvailablePlans((prev) =>
+          prev.map((p) =>
+            p.id === freePlan.id || p.slug === freePlan.slug || p.monthlyPrice === 0
+              ? { ...p, isActive: !nextStatus }
+              : p
+          )
+        );
         setMessage({ type: 'error', text: data.error?.message || 'Failed to update free plan status' });
       }
     } catch {
+      // Revert on network error
+      setAvailablePlans((prev) =>
+        prev.map((p) =>
+          p.id === freePlan.id || p.slug === freePlan.slug || p.monthlyPrice === 0
+            ? { ...p, isActive: !nextStatus }
+            : p
+        )
+      );
       setMessage({ type: 'error', text: 'Error toggling free plan' });
     } finally {
       setFreePlanToggling(false);

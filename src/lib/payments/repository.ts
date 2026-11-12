@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { prisma } from '@/lib/prisma';
+import { getStoreFilePath, safeWriteJson } from '@/lib/storage-dir';
 import {
   PAYMENT_GATEWAY_CATALOG,
   PaymentGatewayConfigDTO,
@@ -40,8 +41,7 @@ interface PaymentsStoreData {
   transactions: PaymentTransactionDTO[];
 }
 
-const DATA_DIR = path.join(process.cwd(), '.data');
-const STORE_FILE = path.join(DATA_DIR, 'payments_store.json');
+const STORE_FILE = getStoreFilePath('payments_store.json');
 
 const INITIAL_GATEWAY_CONFIGS: Record<string, PaymentGatewayConfigDTO> = {};
 
@@ -178,16 +178,12 @@ const INITIAL_TRANSACTIONS: PaymentTransactionDTO[] = [
 
 export class PaymentRepository {
   private static ensureStore(): PaymentsStoreData {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
-    }
-
     if (!fs.existsSync(STORE_FILE)) {
       const initial: PaymentsStoreData = {
         gateways: INITIAL_GATEWAY_CONFIGS,
         transactions: INITIAL_TRANSACTIONS,
       };
-      fs.writeFileSync(STORE_FILE, JSON.stringify(initial, null, 2), 'utf-8');
+      safeWriteJson(STORE_FILE, initial);
       return initial;
     }
 
@@ -209,16 +205,13 @@ export class PaymentRepository {
         gateways: INITIAL_GATEWAY_CONFIGS,
         transactions: INITIAL_TRANSACTIONS,
       };
-      fs.writeFileSync(STORE_FILE, JSON.stringify(fallback, null, 2), 'utf-8');
+      safeWriteJson(STORE_FILE, fallback);
       return fallback;
     }
   }
 
   private static saveStore(data: PaymentsStoreData): void {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
-    }
-    fs.writeFileSync(STORE_FILE, JSON.stringify(data, null, 2), 'utf-8');
+    safeWriteJson(STORE_FILE, data);
   }
 
   // ============================================================================

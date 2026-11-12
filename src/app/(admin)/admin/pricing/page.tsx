@@ -83,9 +83,19 @@ export default function AdminPricingPage() {
   }, []);
 
   const handleTogglePlanActive = async (identifier: string, currentStatus: boolean) => {
+    const nextStatus = !currentStatus;
+
+    // Instant optimistic UI toggle
+    setPlans((prev) =>
+      prev.map((p) =>
+        p.id === identifier || p.slug === identifier || (identifier.includes('free') && (p.monthlyPrice === 0 || p.slug.includes('free')))
+          ? { ...p, isActive: nextStatus }
+          : p
+      )
+    );
+
     try {
       setTogglingId(identifier);
-      const nextStatus = !currentStatus;
       const res = await fetch('/api/v1/admin/cms/pricing', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
@@ -99,9 +109,25 @@ export default function AdminPricingPage() {
         });
         fetchPlans();
       } else {
+        // Revert on error
+        setPlans((prev) =>
+          prev.map((p) =>
+            p.id === identifier || p.slug === identifier || (identifier.includes('free') && (p.monthlyPrice === 0 || p.slug.includes('free')))
+              ? { ...p, isActive: currentStatus }
+              : p
+          )
+        );
         setMessage({ text: data.error?.message || 'Failed to update plan status', type: 'error' });
       }
     } catch {
+      // Revert on network error
+      setPlans((prev) =>
+        prev.map((p) =>
+          p.id === identifier || p.slug === identifier || (identifier.includes('free') && (p.monthlyPrice === 0 || p.slug.includes('free')))
+            ? { ...p, isActive: currentStatus }
+            : p
+        )
+      );
       setMessage({ text: 'Error toggling plan status', type: 'error' });
     } finally {
       setTogglingId(null);
