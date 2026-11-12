@@ -60,6 +60,8 @@ export function PublicHeader({ navItems = [], settings, isFreePlanActive = true 
           <BrandLogo
             size="md"
             brandName={logoText}
+            customLogoUrl={settings?.logoLight || undefined}
+            customLogoDarkUrl={settings?.logoDark || undefined}
             showBadge={true}
             badgeText="AI SaaS"
             showTagline={true}

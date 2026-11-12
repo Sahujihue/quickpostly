@@ -75,7 +75,13 @@ export default async function PublicLayout({
       <AnnouncementBar announcements={announcements} />
       <PublicHeader navItems={headerNav} settings={headerSettings} isFreePlanActive={isFreePlanActive} />
       <main className="flex-1">{children}</main>
-      <PublicFooter primaryLinks={footerNav.primary} legalLinks={footerNav.legal} settings={footerSettings} />
+      <PublicFooter
+        primaryLinks={footerNav.primary}
+        legalLinks={footerNav.legal}
+        settings={footerSettings}
+        customLogoUrl={headerSettings?.logoLight}
+        customLogoDarkUrl={headerSettings?.logoDark}
+      />
       <PromoPopup announcements={announcements} />
     </div>
   );

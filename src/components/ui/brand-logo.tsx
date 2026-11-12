@@ -13,6 +13,8 @@ export interface BrandLogoProps {
   className?: string;
   href?: string;
   brandName?: string;
+  customLogoUrl?: string | null;
+  customLogoDarkUrl?: string | null;
 }
 
 export function BrandLogoMark({ size = 'md', className = '' }: { size?: 'sm' | 'md' | 'lg' | 'xl'; className?: string }) {
@@ -93,6 +95,8 @@ export function BrandLogo({
   className = '',
   href = '/',
   brandName = 'QuickPostly',
+  customLogoUrl,
+  customLogoDarkUrl,
 }: BrandLogoProps) {
   const textSizeMap = {
     sm: 'text-base',
@@ -101,12 +105,62 @@ export function BrandLogo({
     xl: 'text-3xl',
   };
 
+  const logoHeightMap = {
+    sm: 'h-6 max-w-[120px]',
+    md: 'h-8 max-w-[160px]',
+    lg: 'h-10 max-w-[200px]',
+    xl: 'h-12 max-w-[240px]',
+  };
+
   const badgeSizeMap = {
     sm: 'text-[9px] px-1 py-0.2',
     md: 'text-[10px] px-1.5 py-0.5',
     lg: 'text-xs px-2 py-0.5',
     xl: 'text-xs px-2.5 py-1',
   };
+
+  // If a custom logo image has been uploaded by the admin
+  if (customLogoUrl || customLogoDarkUrl) {
+    const lightImg = customLogoUrl || customLogoDarkUrl;
+    const darkImg = customLogoDarkUrl || customLogoUrl;
+
+    const customContent = (
+      <div className={`flex items-center gap-2.5 group select-none ${className}`}>
+        {lightImg && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={lightImg}
+            alt={brandName}
+            className={`${logoHeightMap[size]} object-contain ${customLogoDarkUrl ? 'dark:hidden' : ''}`}
+          />
+        )}
+        {customLogoDarkUrl && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={darkImg!}
+            alt={brandName}
+            className={`${logoHeightMap[size]} object-contain hidden dark:block`}
+          />
+        )}
+        {showBadge && (
+          <span
+            className={`font-bold tracking-wide uppercase bg-amber-100 dark:bg-amber-950/70 text-amber-700 dark:text-amber-400 border border-amber-200/60 dark:border-amber-800/60 rounded ${badgeSizeMap[size]}`}
+          >
+            {badgeText}
+          </span>
+        )}
+      </div>
+    );
+
+    if (href) {
+      return (
+        <Link href={href} className="inline-flex items-center focus:outline-hidden">
+          {customContent}
+        </Link>
+      );
+    }
+    return customContent;
+  }
 
   const content = (
     <div className={`flex items-center gap-2.5 group select-none ${className}`}>

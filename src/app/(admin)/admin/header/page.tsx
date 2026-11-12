@@ -16,6 +16,7 @@ import {
   Sliders,
 } from 'lucide-react';
 import { CmsHeaderRecord, CmsNavigationItemRecord } from '@/lib/cms/repository';
+import { ImageUploadField } from '@/components/admin/image-upload-field';
 
 export default function AdminHeaderPage() {
   const [header, setHeader] = useState<CmsHeaderRecord | null>(null);
@@ -168,31 +169,39 @@ export default function AdminHeaderPage() {
             Header Branding & Layout Controls
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                Brand Text Logo
-              </label>
-              <input
-                type="text"
-                value={header.logoText}
-                onChange={(e) => setHeader({ ...header, logoText: e.target.value })}
-                className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
-              />
-            </div>
+          <div>
+            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+              Brand Text Name
+            </label>
+            <input
+              type="text"
+              value={header.logoText}
+              onChange={(e) => setHeader({ ...header, logoText: e.target.value })}
+              className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
+            />
+          </div>
 
-            <div>
-              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                Custom Logo URL (Optional)
-              </label>
-              <input
-                type="text"
-                placeholder="https://.../logo.png"
-                value={header.logoLight || ''}
-                onChange={(e) => setHeader({ ...header, logoLight: e.target.value })}
-                className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
-              />
-            </div>
+          {/* Logo Uploads for Header */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <ImageUploadField
+              label="Header Logo (Light Mode)"
+              description="Logo displayed on the public header in light mode."
+              value={header.logoLight || ''}
+              onChange={(url) => setHeader({ ...header, logoLight: url || null })}
+              folder="logos"
+              aspectRatioHint="Recommended: 250×60 px (PNG/SVG)"
+              previewVariant="logo-light"
+            />
+
+            <ImageUploadField
+              label="Header Logo (Dark Mode)"
+              description="Logo displayed on the public header in dark mode."
+              value={header.logoDark || ''}
+              onChange={(url) => setHeader({ ...header, logoDark: url || null })}
+              folder="logos"
+              aspectRatioHint="Recommended: 250×60 px (PNG/SVG)"
+              previewVariant="logo-dark"
+            />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

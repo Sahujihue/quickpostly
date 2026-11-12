@@ -69,12 +69,20 @@ export async function POST(req: NextRequest) {
     const uniqueFileName = `${Date.now()}_${baseName}${ext}`;
     const targetFilePath = path.join(uploadsDir, uniqueFileName);
 
-    // Write file to public/uploads
+    // Write file to public/uploads (local or Node/Hostinger server) with serverless fallback
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
-    fs.writeFileSync(targetFilePath, buffer);
+    let publicUrl = `/uploads/${uniqueFileName}`;
 
-    const publicUrl = `/uploads/${uniqueFileName}`;
+    try {
+      if (!fs.existsSync(uploadsDir)) {
+        fs.mkdirSync(uploadsDir, { recursive: true });
+      }
+      fs.writeFileSync(targetFilePath, buffer);
+    } catch {
+      // Fallback for serverless environments (e.g. Vercel read-only filesystem)
+      publicUrl = `data:${mimeType};base64,${buffer.toString('base64')}`;
+    }
 
     return apiResponse.success(
       {

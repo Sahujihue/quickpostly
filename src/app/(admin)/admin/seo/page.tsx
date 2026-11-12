@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Search, Save, Loader2, Globe, FileCode, CheckCircle2 } from 'lucide-react';
+import { Search, Save, Loader2, Globe, FileCode, CheckCircle2, Sparkles } from 'lucide-react';
 import { CmsSeoSettingRecord } from '@/lib/cms/repository';
+import { ImageUploadField } from '@/components/admin/image-upload-field';
 
 export default function AdminSeoSettingsPage() {
   const [seo, setSeo] = useState<CmsSeoSettingRecord | null>(null);
@@ -118,18 +119,33 @@ export default function AdminSeoSettingsPage() {
               />
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Meta Banner / OpenGraph Banner with Upload & Live Preview */}
+            <div className="pt-2">
+              <ImageUploadField
+                label="Meta Banner (Default OpenGraph / Social Share Image)"
+                description="Social preview banner card displayed when pages on your website are shared on WhatsApp, Facebook, Twitter/X, and LinkedIn."
+                value={seo.defaultOgImage || ''}
+                onChange={(url) => setSeo({ ...seo, defaultOgImage: url || null })}
+                folder="banners"
+                aspectRatioHint="1200 × 630 px (1.91:1 ratio)"
+                previewVariant="banner"
+                siteTitle={seo.defaultMetaTitle}
+              />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               <div>
                 <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                  Default OpenGraph Image URL
+                  Twitter Card Layout Type
                 </label>
-                <input
-                  type="text"
-                  value={seo.defaultOgImage || ''}
-                  onChange={(e) => setSeo({ ...seo, defaultOgImage: e.target.value })}
-                  placeholder="https://.../og-banner.png"
+                <select
+                  value={seo.twitterCardType || 'summary_large_image'}
+                  onChange={(e) => setSeo({ ...seo, twitterCardType: e.target.value })}
                   className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
-                />
+                >
+                  <option value="summary_large_image">summary_large_image (Full Width Banner - Recommended)</option>
+                  <option value="summary">summary (Small Square Thumbnail)</option>
+                </select>
               </div>
 
               <div>
@@ -140,7 +156,7 @@ export default function AdminSeoSettingsPage() {
                   type="text"
                   value={seo.twitterHandle}
                   onChange={(e) => setSeo({ ...seo, twitterHandle: e.target.value })}
-                  placeholder="@SocialHiveHQ"
+                  placeholder="@QuickPostly"
                   className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                 />
               </div>

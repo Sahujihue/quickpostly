@@ -10,9 +10,17 @@ interface PublicFooterProps {
   primaryLinks?: Array<{ label: string; path: string }>;
   legalLinks?: Array<{ label: string; path: string }>;
   settings?: CmsFooterRecord | null;
+  customLogoUrl?: string | null;
+  customLogoDarkUrl?: string | null;
 }
 
-export function PublicFooter({ primaryLinks = [], legalLinks = [], settings }: PublicFooterProps) {
+export function PublicFooter({
+  primaryLinks = [],
+  legalLinks = [],
+  settings,
+  customLogoUrl,
+  customLogoDarkUrl,
+}: PublicFooterProps) {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -37,7 +45,12 @@ export function PublicFooter({ primaryLinks = [], legalLinks = [], settings }: P
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
-            <BrandLogo size="md" showTagline={false} />
+            <BrandLogo
+              size="md"
+              showTagline={false}
+              customLogoUrl={customLogoUrl}
+              customLogoDarkUrl={customLogoDarkUrl}
+            />
             <p className="text-sm text-slate-600 dark:text-slate-400 max-w-sm leading-relaxed">
               {brandDesc}
             </p>
