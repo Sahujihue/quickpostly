@@ -157,6 +157,7 @@ export async function PATCH(req: NextRequest) {
       identifier.toLowerCase().includes('trial') ||
       updatedCms?.monthlyPrice === 0
     ) {
+      (globalThis as any).__QUICKPOSTLY_FREE_PLAN_ACTIVE__ = Boolean(currentStatus);
       response.cookies.set('quickpostly_free_plan_active', String(Boolean(currentStatus)), {
         path: '/',
         maxAge: 31536000,

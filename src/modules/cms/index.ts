@@ -292,7 +292,11 @@ export class CmsService {
         ctaLink: header.ctaLink === '/signup' || header.ctaLink === '/signup?plan=free-trial' ? '/pricing' : header.ctaLink,
       };
     }
-    return header;
+    return {
+      ...header,
+      ctaText: 'Start Free Trial',
+      ctaLink: '/signup?plan=free-trial',
+    };
   }
 
   public static async getFooterSettings(): Promise<CmsFooterRecord> {
@@ -332,28 +336,66 @@ export class CmsService {
   public static async getPricingPlans(): Promise<PricingPlanDto[]> {
     const isFreeActive = await CmsRepository.isFreePlanActive();
     const plans = await CmsRepository.getPricingPlans();
-    const filtered = plans.filter((p) => {
-      if (!p.isActive) return false;
-      if (
-        !isFreeActive &&
-        (p.slug === 'free-trial' ||
-          p.slug === 'free_trial' ||
-          p.monthlyPrice === 0 ||
-          p.name.toLowerCase().includes('trial'))
-      ) {
+
+    // Ensure Free Trial plan status accurately mirrors isFreeActive
+    const mapped = plans.map((p) => {
+      const isFree =
+        p.slug === 'free-trial' ||
+        p.slug === 'free_trial' ||
+        p.id === 'plan_free_trial' ||
+        p.monthlyPrice === 0;
+      if (isFree) {
+        return {
+          ...p,
+          isActive: isFreeActive,
+          ctaText: 'Start 14-Day Free Trial',
+          ctaLink: '/signup?plan=free-trial',
+        };
+      }
+      return p;
+    });
+
+    const filtered = mapped.filter((p) => {
+      const isFree =
+        p.slug === 'free-trial' ||
+        p.slug === 'free_trial' ||
+        p.id === 'plan_free_trial' ||
+        p.monthlyPrice === 0 ||
+        p.name.toLowerCase().includes('trial');
+      if (!isFreeActive && isFree) {
         return false;
       }
-      return true;
+      if (isFreeActive && isFree) {
+        return true;
+      }
+      return p.isActive;
     });
 
     return filtered.map((p) => {
+      const isFree =
+        p.slug === 'free-trial' ||
+        p.slug === 'free_trial' ||
+        p.id === 'plan_free_trial' ||
+        p.monthlyPrice === 0;
+
       let ctaText = p.ctaText;
-      if (!isFreeActive && /trial/i.test(ctaText)) {
-        if (p.slug === 'starter') ctaText = 'Get Started';
-        else if (p.slug === 'pro' || p.slug === 'professional') ctaText = 'Get Pro Growth';
-        else if (p.slug === 'agency') ctaText = 'Get Agency Scale';
-        else ctaText = 'Choose Plan';
+      let ctaLink = p.ctaLink;
+
+      if (isFreeActive) {
+        ctaText = 'Start 14-Day Free Trial';
+        ctaLink = isFree ? '/signup?plan=free-trial' : `/signup?plan=${p.slug}`;
+      } else {
+        if (/trial/i.test(ctaText)) {
+          if (p.slug === 'starter') ctaText = 'Get Started';
+          else if (p.slug === 'pro' || p.slug === 'professional') ctaText = 'Get Pro Growth';
+          else if (p.slug === 'agency') ctaText = 'Get Agency Scale';
+          else ctaText = 'Choose Plan';
+        }
+        if (ctaLink?.includes('plan=free-trial')) {
+          ctaLink = `/signup?plan=${p.slug}`;
+        }
       }
+
       return {
         id: p.id,
         slug: p.slug,
@@ -366,7 +408,7 @@ export class CmsService {
         features: p.features,
         isPopular: p.isPopular,
         ctaText,
-        ctaLink: p.ctaLink,
+        ctaLink,
       };
     });
   }
@@ -447,9 +489,36 @@ export class CmsService {
       if (json.cta) cta = { ...DEFAULT_CTA_BANNER, ...json.cta };
     }
 
-    // Dynamic adaptation when Free Subscription / Trial is toggled OFF
-    if (!isFreePlanActive) {
-      // 1. Dynamic Hero adaptation
+    // Dynamic adaptation when Free Subscription / Trial is toggled ON vs OFF
+    if (isFreePlanActive) {
+      // 1. Dynamic Hero adaptation when Trial is ON
+      const trialTrust = [
+        'No credit card required',
+        '14-day full feature trial',
+        'Cancel in 1-click anytime',
+        'Official social API certified',
+      ];
+
+      hero = {
+        ...hero,
+        badgeText: '✨ 14-Day Free Trial • No Credit Card Required',
+        primaryCtaText: 'Start Free 14-Day Trial',
+        primaryCtaLink: '/signup?plan=free-trial',
+        trustPoints: trialTrust,
+      };
+
+      // 2. Dynamic CTA Banner adaptation when Trial is ON
+      cta = {
+        ...cta,
+        title: 'Ready to put your social media marketing on autopilot?',
+        highlightText: 'Join 12,000+ creators, growth marketers, and modern agencies.',
+        description:
+          'Start your 14-day free trial today. No credit card required. Experience category-based scheduling, AI content generation, and multi-network automation in minutes.',
+        buttonText: 'Start Free 14-Day Trial',
+        buttonLink: '/signup?plan=free-trial',
+      };
+    } else {
+      // 1. Dynamic Hero adaptation when Trial is OFF
       const safeTrust = Array.isArray(hero.trustPoints) ? hero.trustPoints : DEFAULT_HERO_CONTENT.trustPoints;
       const sanitizedTrust = safeTrust
         .filter((tp) => !/14[\s-]*day/i.test(tp) && !/trial/i.test(tp) && !/credit card/i.test(tp));
@@ -468,7 +537,7 @@ export class CmsService {
         trustPoints: Array.from(new Set(sanitizedTrust)),
       };
 
-      // 2. Dynamic CTA Banner adaptation
+      // 2. Dynamic CTA Banner adaptation when Trial is OFF
       cta = {
         ...cta,
         title: cta.title.replace(/14[\s-]*day free trial/gi, 'QuickPostly Platform').replace(/free trial/gi, 'Platform'),

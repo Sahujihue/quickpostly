@@ -48,22 +48,56 @@ export function HomepageView({ content }: HomepageViewProps) {
     isFreePlanActive = true,
   } = content;
 
-  // Real-time cookie-based synchronization
+  // Real-time synchronization
   const [effectiveFreePlanActive, setEffectiveFreePlanActive] = useState(isFreePlanActive);
 
   useEffect(() => {
+    setEffectiveFreePlanActive(isFreePlanActive);
     if (typeof document !== 'undefined') {
       const match = document.cookie.match(/quickpostly_free_plan_active=([^;]+)/);
       if (match) {
         setEffectiveFreePlanActive(match[1] === 'true' || match[1] === '1');
       }
     }
-  }, []);
+  }, [isFreePlanActive]);
+
+  const defaultFreePlan = {
+    id: 'plan_free_trial',
+    slug: 'free-trial',
+    name: 'Free Trial',
+    description: '14-day fully featured sandbox trial for exploring QuickPostly automation.',
+    badge: '14 Days Free',
+    monthlyPrice: 0,
+    annualPrice: 0,
+    currency: 'USD',
+    features: [
+      '3 Social Media Profiles',
+      '30 Scheduled Queue Slots',
+      '25 AI Copilot Text Generations',
+      '5 AI Social Image Credits',
+      'Basic Performance Analytics (14 Days)',
+      'Evergreen Category Recycling',
+      'Single User Workspace',
+    ],
+    isPopular: false,
+    ctaText: 'Start 14-Day Free Trial',
+    ctaLink: '/signup?plan=free-trial',
+  };
+
+  const allPricing = [...pricing];
+  if (effectiveFreePlanActive) {
+    const hasFree = allPricing.some(
+      (p) => p.slug === 'free-trial' || p.slug === 'free_trial' || p.monthlyPrice === 0
+    );
+    if (!hasFree) {
+      allPricing.unshift(defaultFreePlan as any);
+    }
+  }
 
   // Filter and sanitize pricing plans based on trial status
   const displayedPricing = (effectiveFreePlanActive
-    ? pricing
-    : pricing.filter(
+    ? allPricing
+    : allPricing.filter(
         (p) =>
           p.slug !== 'free-trial' &&
           p.slug !== 'free_trial' &&
@@ -71,20 +105,25 @@ export function HomepageView({ content }: HomepageViewProps) {
           !p.name.toLowerCase().includes('trial')
       )
   ).map((p) => {
-    if (!effectiveFreePlanActive && /trial/i.test(p.ctaText)) {
+    if (effectiveFreePlanActive) {
       return {
         ...p,
-        ctaText:
-          p.slug === 'starter'
-            ? 'Get Started'
-            : p.slug === 'pro' || p.slug === 'professional'
-            ? 'Get Pro Growth'
-            : p.slug === 'agency'
-            ? 'Get Agency Scale'
-            : 'Choose Plan',
+        ctaText: 'Start 14-Day Free Trial',
+        ctaLink: p.monthlyPrice === 0 ? '/signup?plan=free-trial' : `/signup?plan=${p.slug}`,
       };
     }
-    return p;
+    return {
+      ...p,
+      ctaText:
+        p.slug === 'starter'
+          ? 'Get Started'
+          : p.slug === 'pro' || p.slug === 'professional'
+          ? 'Get Pro Growth'
+          : p.slug === 'agency'
+          ? 'Get Agency Scale'
+          : 'Choose Plan',
+      ctaLink: `/signup?plan=${p.slug}`,
+    };
   });
 
   // Interactive Product Preview Tab State

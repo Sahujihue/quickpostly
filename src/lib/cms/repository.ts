@@ -541,7 +541,7 @@ function getInitialStore(): LocalCmsStore {
         ],
         limitsJson: { maxSocialAccounts: 3, maxScheduledPosts: 30, aiGenerationsMonthly: 25, aiImageCreditsMonthly: 5, aiVideoCreditsMonthly: 0, maxTeamMembers: 1, maxWorkspaces: 1, maxClients: 0, storageMb: 500, analyticsRetentionDays: 14, hasSocialInbox: false },
         isPopular: false,
-        isActive: false,
+        isActive: true,
         ctaText: 'Start 14-Day Free Trial',
         ctaLink: '/signup?plan=free-trial',
         order: 1,
@@ -1843,7 +1843,29 @@ export class CmsRepository {
   }
 
   public static async isFreePlanActive(): Promise<boolean> {
-    // 1. Check request cookie from Next.js headers if in SSR / Server Action context
+    // 1. Check memory flag first (set dynamically by admin toggle)
+    if (typeof (globalThis as any).__QUICKPOSTLY_FREE_PLAN_ACTIVE__ === 'boolean') {
+      return (globalThis as any).__QUICKPOSTLY_FREE_PLAN_ACTIVE__;
+    }
+
+    // 2. Check memory / file store
+    try {
+      const store = ensureStoreInitialized();
+      const freePlan = store.pricingPlans.find(
+        (p) =>
+          p.slug === 'free-trial' ||
+          p.slug === 'free_trial' ||
+          p.id === 'plan_free_trial' ||
+          p.monthlyPrice === 0
+      );
+      if (freePlan && typeof freePlan.isActive === 'boolean') {
+        return freePlan.isActive;
+      }
+    } catch {
+      // fallback
+    }
+
+    // 3. Fallback to request cookie
     try {
       const { cookies } = await import('next/headers');
       const cookieStore = await cookies();
@@ -1855,46 +1877,7 @@ export class CmsRepository {
       // Outside request context
     }
 
-    // 2. Check memory flag
-    if (typeof (globalThis as any).__QUICKPOSTLY_FREE_PLAN_ACTIVE__ === 'boolean') {
-      return (globalThis as any).__QUICKPOSTLY_FREE_PLAN_ACTIVE__;
-    }
-
-    // 3. Check memory / file store
-    try {
-      const store = ensureStoreInitialized();
-      const freePlan = store.pricingPlans.find(
-        (p) =>
-          p.slug === 'free-trial' ||
-          p.slug === 'free_trial' ||
-          p.id === 'plan_free_trial' ||
-          p.monthlyPrice === 0
-      );
-      if (freePlan) {
-        return Boolean(freePlan.isActive);
-      }
-    } catch {
-      // fallback
-    }
-
-    // 4. Prisma check if available
-    try {
-      const plans = await this.getPricingPlans();
-      const freePlan = plans.find(
-        (p) =>
-          p.slug === 'free-trial' ||
-          p.slug === 'free_trial' ||
-          p.id === 'plan_free_trial' ||
-          p.monthlyPrice === 0
-      );
-      if (freePlan) {
-        return Boolean(freePlan.isActive);
-      }
-    } catch {
-      // fallback
-    }
-
-    return false;
+    return true;
   }
 
   // ===================== TESTIMONIALS =====================

@@ -42,13 +42,8 @@ export function PublicHeader({ navItems = [], settings, isFreePlanActive = true 
   const isSticky = settings?.isSticky ?? true;
   const showThemeToggle = settings?.showThemeToggle ?? true;
   const showCta = settings?.showCtaButton ?? true;
-  const rawCtaText = settings?.ctaText || 'Start Free Trial';
-  const ctaText = effectiveFreePlanActive
-    ? rawCtaText
-    : /trial|free/i.test(rawCtaText)
-    ? 'Get Started'
-    : rawCtaText;
-  const ctaLink = settings?.ctaLink || (effectiveFreePlanActive ? '/signup' : '/pricing');
+  const ctaText = effectiveFreePlanActive ? 'Start Free Trial' : 'Get Started';
+  const ctaLink = effectiveFreePlanActive ? '/signup?plan=free-trial' : '/pricing';
   const showSignIn = settings?.showSignInButton ?? true;
   const signInText = settings?.signInText || 'Sign In';
 
