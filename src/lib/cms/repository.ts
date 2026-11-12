@@ -2891,6 +2891,14 @@ export class CmsRepository {
       ...data,
       updatedAt: now,
     };
+
+    if (data.maintenanceMode !== undefined) {
+      (globalThis as any).__QUICKPOSTLY_MAINTENANCE_MODE__ = Boolean(data.maintenanceMode);
+    }
+    if (data.maintenanceMessage !== undefined) {
+      (globalThis as any).__QUICKPOSTLY_MAINTENANCE_MESSAGE__ = data.maintenanceMessage;
+    }
+
     persistStore(store);
 
     try {
@@ -2923,5 +2931,55 @@ export class CmsRepository {
     }
 
     return store.security;
+  }
+
+  public static async isMaintenanceMode(): Promise<{ enabled: boolean; message: string | null }> {
+    // 1. Check request cookie from Next.js headers if in SSR context
+    try {
+      const { cookies } = await import('next/headers');
+      const cookieStore = await cookies();
+      const cookieVal = cookieStore.get('quickpostly_maintenance_mode')?.value;
+      if (cookieVal !== undefined) {
+        const store = ensureStoreInitialized();
+        return {
+          enabled: cookieVal === 'true' || cookieVal === '1',
+          message:
+            store.security?.maintenanceMessage ||
+            'QuickPostly is undergoing scheduled platform upgrades. We will be back online shortly.',
+        };
+      }
+    } catch {
+      // Outside request context
+    }
+
+    // 2. Check global memory flag
+    if (typeof (globalThis as any).__QUICKPOSTLY_MAINTENANCE_MODE__ === 'boolean') {
+      return {
+        enabled: (globalThis as any).__QUICKPOSTLY_MAINTENANCE_MODE__,
+        message:
+          (globalThis as any).__QUICKPOSTLY_MAINTENANCE_MESSAGE__ ||
+          'QuickPostly is undergoing scheduled platform upgrades. We will be back online shortly.',
+      };
+    }
+
+    // 3. Check memory / file store
+    try {
+      const store = ensureStoreInitialized();
+      if (store.security) {
+        return {
+          enabled: Boolean(store.security.maintenanceMode),
+          message:
+            store.security.maintenanceMessage ||
+            'QuickPostly is undergoing scheduled platform upgrades. We will be back online shortly.',
+        };
+      }
+    } catch {
+      // fallback
+    }
+
+    return {
+      enabled: false,
+      message: null,
+    };
   }
 }

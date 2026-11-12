@@ -13,6 +13,46 @@ export async function middleware(request: NextRequest) {
     request.cookies.get(SESSION_COOKIE_NAME)?.value ||
     bearerToken;
   const session = token ? decodeEdgeSessionToken(token) : null;
+  const isAdmin = Boolean(
+    session?.isSuperAdmin ||
+    session?.role === 'SUPER_ADMIN' ||
+    session?.role === 'ADMIN' ||
+    session?.role === 'CONTENT_MANAGER' ||
+    session?.role === 'SUPPORT'
+  );
+
+  // =========================================================================
+  // 0. GLOBAL MAINTENANCE MODE ENFORCEMENT
+  // =========================================================================
+  const isMaintenanceActive =
+    request.cookies.get('quickpostly_maintenance_mode')?.value === 'true';
+
+  if (isMaintenanceActive) {
+    const isWhitelisted =
+      pathname.startsWith('/admin') ||
+      pathname === '/login' ||
+      pathname.startsWith('/api/v1/auth') ||
+      pathname.startsWith('/api/v1/admin') ||
+      pathname === '/maintenance';
+
+    // Allow whitelisted routes for admin operations and login
+    if (isWhitelisted) {
+      return NextResponse.next();
+    }
+
+    // Authenticated administrators can bypass maintenance mode
+    if (isAdmin) {
+      return NextResponse.next();
+    }
+
+    // All public traffic and regular users are redirected to /maintenance
+    return NextResponse.redirect(new URL('/maintenance', request.url));
+  } else {
+    // If maintenance mode is OFF, redirect anyone on /maintenance back to homepage
+    if (pathname === '/maintenance') {
+      return NextResponse.redirect(new URL('/', request.url));
+    }
+  }
 
   // 1. Protected Admin Panel Routes (/admin, /admin/*)
   if (pathname.startsWith('/admin')) {
@@ -57,11 +97,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/admin/:path*',
-    '/dashboard/:path*',
-    '/login',
-    '/signup',
-    '/forgot-password',
-    '/reset-password',
+    '/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|icon|apple-icon).*)',
   ],
 };

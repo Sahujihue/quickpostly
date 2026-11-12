@@ -33,6 +33,10 @@ export default function AdminSecuritySettingsPage() {
     e.preventDefault();
     if (!security) return;
 
+    if (typeof document !== 'undefined') {
+      document.cookie = `quickpostly_maintenance_mode=${security.maintenanceMode}; path=/; max-age=31536000; SameSite=Lax`;
+    }
+
     setSaving(true);
     try {
       const res = await fetch('/api/v1/admin/cms/security', {
@@ -48,6 +52,38 @@ export default function AdminSecuritySettingsPage() {
       setMessage({ text: 'Error saving security policies', type: 'error' });
     } finally {
       setSaving(false);
+    }
+  };
+
+  const handleToggleMaintenance = async () => {
+    if (!security) return;
+    const nextStatus = !security.maintenanceMode;
+    const updated = { ...security, maintenanceMode: nextStatus };
+    setSecurity(updated);
+
+    if (typeof document !== 'undefined') {
+      document.cookie = `quickpostly_maintenance_mode=${nextStatus}; path=/; max-age=31536000; SameSite=Lax`;
+    }
+
+    try {
+      const res = await fetch('/api/v1/admin/cms/security', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updated),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setMessage({
+          text: `Global Maintenance Mode is now ${
+            nextStatus
+              ? 'ACTIVATED (ON) - Public traffic redirected to /maintenance'
+              : 'DISABLED (OFF) - Normal traffic resumed'
+          }`,
+          type: 'success',
+        });
+      }
+    } catch {
+      setMessage({ text: 'Error toggling maintenance mode', type: 'error' });
     }
   };
 
@@ -197,25 +233,57 @@ export default function AdminSecuritySettingsPage() {
 
           {/* Maintenance Mode */}
           <div className="rounded-2xl bg-rose-50/40 dark:bg-rose-950/20 border border-rose-200 dark:border-rose-900/60 p-6 space-y-4">
-            <div className="flex items-center justify-between border-b border-rose-200 dark:border-rose-900/40 pb-2">
-              <div className="flex items-center gap-2">
-                <AlertTriangle className="w-5 h-5 text-rose-500" />
-                <h2 className="text-base font-bold text-rose-950 dark:text-rose-200">
-                  Global Maintenance Mode
-                </h2>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-rose-200 dark:border-rose-900/40 pb-3">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <AlertTriangle className="w-5 h-5 text-rose-500" />
+                  <h2 className="text-base font-bold text-rose-950 dark:text-rose-200">
+                    Global Maintenance Mode
+                  </h2>
+                  <span
+                    className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                      security.maintenanceMode
+                        ? 'bg-rose-500 text-white animate-pulse'
+                        : 'bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                    }`}
+                  >
+                    {security.maintenanceMode ? 'Active (ON)' : 'Disabled (OFF)'}
+                  </span>
+                </div>
+                <p className="text-xs text-rose-800/80 dark:text-rose-300/80 max-w-xl">
+                  When enabled, all public visitors and users are redirected to the dedicated{' '}
+                  <a
+                    href="/maintenance"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline font-bold hover:opacity-80"
+                  >
+                    /maintenance
+                  </a>{' '}
+                  page. Authenticated administrators can still access this admin panel.
+                </p>
               </div>
 
-              <label className="flex items-center gap-2 cursor-pointer text-xs font-bold text-rose-600 dark:text-rose-400">
-                <input
-                  type="checkbox"
-                  checked={security.maintenanceMode}
-                  onChange={(e) =>
-                    setSecurity({ ...security, maintenanceMode: e.target.checked })
-                  }
-                  className="rounded text-rose-600 focus:ring-rose-500"
-                />
-                <span>Enable Maintenance Mode</span>
-              </label>
+              {/* Instant Toggle Switch */}
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={handleToggleMaintenance}
+                  className={`relative inline-flex h-7 w-14 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-hidden ${
+                    security.maintenanceMode ? 'bg-rose-500' : 'bg-slate-300 dark:bg-slate-700'
+                  }`}
+                  title="Click to toggle Global Maintenance Mode ON/OFF"
+                >
+                  <span
+                    className={`pointer-events-none inline-block h-6 w-6 transform rounded-full bg-white shadow-md ring-0 transition duration-200 ease-in-out ${
+                      security.maintenanceMode ? 'translate-x-7' : 'translate-x-0'
+                    }`}
+                  />
+                </button>
+                <span className="text-xs font-bold text-slate-900 dark:text-white min-w-8">
+                  {security.maintenanceMode ? 'ON' : 'OFF'}
+                </span>
+              </div>
             </div>
 
             <div>
@@ -228,6 +296,7 @@ export default function AdminSecuritySettingsPage() {
                 onChange={(e) =>
                   setSecurity({ ...security, maintenanceMessage: e.target.value })
                 }
+                placeholder="QuickPostly is undergoing scheduled platform upgrades. We will be back online shortly."
                 className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white"
               />
             </div>

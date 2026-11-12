@@ -21,7 +21,17 @@ export async function PUT(req: NextRequest) {
     const body = await req.json();
 
     const updated = await CmsRepository.updateSecuritySettings(body);
-    return apiResponse.success(updated, 'Security policies updated successfully');
+    const response = apiResponse.success(updated, 'Security policies updated successfully');
+
+    if (body.maintenanceMode !== undefined) {
+      response.cookies.set('quickpostly_maintenance_mode', String(Boolean(updated.maintenanceMode)), {
+        path: '/',
+        maxAge: 31536000,
+        sameSite: 'lax',
+      });
+    }
+
+    return response;
   } catch (error) {
     return apiResponse.handle(error, 'Admin Update Security Settings');
   }
