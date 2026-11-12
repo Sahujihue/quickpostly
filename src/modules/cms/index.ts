@@ -372,16 +372,31 @@ export class CmsService {
   }
 
   public static async getFaqs(): Promise<FaqItemDto[]> {
+    const isFreePlanActive = await CmsRepository.isFreePlanActive();
     const faqs = await CmsRepository.getFaqs();
     const active = faqs.filter((f) => f.isActive);
     if (active.length > 0) {
-      return active.map((f) => ({
-        id: f.id,
-        question: f.question,
-        answer: f.answer,
-        category: f.category,
-        order: f.order,
-      }));
+      return active.map((f) => {
+        let question = f.question.replace(/SocialHive/gi, 'QuickPostly');
+        let answer = f.answer.replace(/SocialHive/gi, 'QuickPostly');
+        if (!isFreePlanActive) {
+          question = question.replace(
+            /Is there a free trial and can I cancel anytime\?/i,
+            'Can I switch or cancel my plan anytime?'
+          );
+          answer = answer.replace(
+            /We offer an unrestricted 14-day free trial on all plans without requiring upfront contracts or credit cards\.\s*/i,
+            ''
+          );
+        }
+        return {
+          id: f.id,
+          question,
+          answer,
+          category: f.category,
+          order: f.order,
+        };
+      });
     }
     return [];
   }

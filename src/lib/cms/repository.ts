@@ -765,8 +765,8 @@ function getInitialStore(): LocalCmsStore {
       {
         id: 'faq_5',
         category: 'Security',
-        question: 'How does SocialHive protect our social media credentials?',
-        answer: 'SocialHive never stores your actual account passwords. We utilize official OAuth 2.0 API integrations certified by Meta, LinkedIn, X, and Google, with bank-grade encryption at rest and in transit.',
+        question: 'How does QuickPostly protect our social media credentials?',
+        answer: 'QuickPostly never stores your actual account passwords. We utilize official OAuth 2.0 API integrations certified by Meta, LinkedIn, X, and Google, with bank-grade encryption at rest and in transit.',
         order: 5,
         isActive: true,
         createdAt: now,
