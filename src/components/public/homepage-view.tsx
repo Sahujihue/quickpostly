@@ -24,6 +24,11 @@ import {
   Smartphone,
   Eye,
   Hash,
+  Lock,
+  TrendingUp,
+  Heart,
+  MessageCircle,
+  ThumbsUp,
 } from 'lucide-react';
 import { HomepageContentDto, SocialIntegrationDto } from '@/modules/cms/types';
 import { Accordion } from '@/components/ui/accordion';
@@ -161,11 +166,22 @@ export function HomepageView({ content }: HomepageViewProps) {
       {/* ==================================================================== */}
       {/* 1. HERO SECTION */}
       {/* ==================================================================== */}
-      <section className="relative pt-12 pb-20 md:pt-24 md:pb-32 bg-gradient-to-b from-amber-500/5 via-slate-50/50 to-transparent dark:from-amber-500/5 dark:via-slate-950/20 dark:to-transparent">
+      <section className="relative pt-12 pb-20 md:pt-24 md:pb-32 overflow-hidden">
+        {/* Ambient Glow Lights Behind Hero */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[650px] pointer-events-none overflow-hidden -z-10">
+          <div className="absolute -top-[10%] left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-gradient-to-tr from-amber-500/25 via-orange-500/15 to-amber-300/10 blur-[130px] rounded-full" />
+          <div className="absolute top-[20%] left-[10%] w-[380px] h-[320px] bg-indigo-500/10 blur-[120px] rounded-full" />
+          <div className="absolute top-[25%] right-[10%] w-[380px] h-[320px] bg-amber-500/15 blur-[120px] rounded-full" />
+        </div>
+
+        {/* High-Tech Subtle Grid Overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:28px_28px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none -z-10" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-800 text-amber-900 dark:text-amber-300 text-xs font-semibold tracking-wide shadow-xs animate-in fade-in slide-in-from-top-3 duration-500">
-              <Sparkles className="w-3.5 h-3.5 text-amber-500 animate-spin-slow" />
+          <div className="text-center max-w-4xl mx-auto space-y-6">
+            {/* Pill Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-amber-500/30 text-amber-900 dark:text-amber-300 text-xs font-semibold tracking-wide shadow-sm shadow-amber-500/10 animate-in fade-in slide-in-from-top-3 duration-500 hover:border-amber-400 transition-colors">
+              <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
               <span>
                 {effectiveFreePlanActive
                   ? hero.badgeText
@@ -174,38 +190,43 @@ export function HomepageView({ content }: HomepageViewProps) {
                       .replace(/trial/gi, 'Platform')
                       .replace(/no credit card required/gi, 'Automated Publishing')}
               </span>
+              <ChevronRight className="w-3.5 h-3.5 text-amber-500/70" />
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.12]">
-              {hero.headlinePrefix}
-              <span className="bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 bg-clip-text text-transparent">
+            {/* Main Headline */}
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.08]">
+              {hero.headlinePrefix}{' '}
+              <span className="bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 bg-clip-text text-transparent drop-shadow-xs">
                 {hero.highlightedPhrase}
-              </span>
+              </span>{' '}
               {hero.headlineSuffix}
             </h1>
 
+            {/* Subtitle */}
             <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 leading-relaxed font-normal max-w-2xl mx-auto">
               {hero.description}
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
+            {/* Primary & Secondary CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
               <Link
                 href={effectiveFreePlanActive ? hero.primaryCtaLink : '/pricing'}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base font-bold text-slate-950 bg-amber-400 hover:bg-amber-500 shadow-lg shadow-amber-400/25 transition-all duration-200 hover:scale-105 active:scale-95"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-base font-bold text-slate-950 bg-gradient-to-r from-amber-400 via-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 shadow-xl shadow-amber-400/25 hover:shadow-amber-400/40 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
               >
                 <span>{effectiveFreePlanActive ? hero.primaryCtaText : 'Get Started Now'}</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href={hero.secondaryCtaLink}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base font-semibold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/80 shadow-xs transition-all duration-200"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base font-semibold text-slate-700 dark:text-slate-200 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 shadow-xs transition-all duration-200 hover:scale-[1.02]"
               >
                 <span>{hero.secondaryCtaText}</span>
                 <ChevronRight className="w-4 h-4 text-slate-400" />
               </Link>
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 pt-4 text-xs font-medium text-slate-500 dark:text-slate-400">
+            {/* Trust Chips with Frosted Capsules */}
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2.5 pt-3 text-xs font-medium text-slate-500 dark:text-slate-400">
               {(effectiveFreePlanActive
                 ? (Array.isArray(hero?.trustPoints)
                     ? hero.trustPoints
@@ -214,8 +235,11 @@ export function HomepageView({ content }: HomepageViewProps) {
                     ? hero.trustPoints.filter((tp: string) => !/14[\s-]*day/i.test(tp) && !/trial/i.test(tp) && !/credit card/i.test(tp))
                     : ['Instant setup in 60s', 'Cancel anytime with 1 click', 'Official social API certified'])
               ).map((point: string, i: number) => (
-                <div key={i} className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                <div
+                  key={i}
+                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-100/80 dark:bg-slate-900/80 border border-slate-200/70 dark:border-slate-800/70 shadow-2xs"
+                >
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
                   <span>{point}</span>
                 </div>
               ))}
@@ -225,251 +249,340 @@ export function HomepageView({ content }: HomepageViewProps) {
           {/* ==================================================================== */}
           {/* 2. PRODUCT PREVIEW (Interactive Live Scheduler & Queues) */}
           {/* ==================================================================== */}
-          <div className="mt-14 max-w-5xl mx-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl overflow-hidden">
-            {/* Header / Tabs */}
-            <div className="h-14 px-4 sm:px-6 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 flex flex-col sm:flex-row items-center justify-between gap-2 py-2 sm:py-0">
-              <div className="flex items-center gap-2 w-full sm:w-auto">
-                <div className="w-3 h-3 rounded-full bg-red-400" />
-                <div className="w-3 h-3 rounded-full bg-amber-400" />
-                <div className="w-3 h-3 rounded-full bg-emerald-400" />
-                <span className="ml-3 text-xs font-mono text-slate-400 hidden sm:inline">
-                  app.quickpostly.com/dashboard/queue
-                </span>
+          <div className="relative mt-14 max-w-5xl mx-auto">
+            {/* Ambient Glow Aura Behind Window */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-amber-500/20 via-orange-500/10 to-indigo-500/20 rounded-3xl blur-2xl opacity-70 dark:opacity-40 -z-10" />
+
+            <div className="rounded-2xl border border-slate-200/90 dark:border-slate-800/90 bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl shadow-2xl overflow-hidden ring-1 ring-slate-900/5 dark:ring-white/10">
+              {/* Chrome Top Bar */}
+              <div className="h-14 px-4 sm:px-6 border-b border-slate-200/80 dark:border-slate-800/80 bg-slate-50/90 dark:bg-slate-900/80 flex flex-col sm:flex-row items-center justify-between gap-2 py-2 sm:py-0">
+                {/* Window Dots & URL Bar */}
+                <div className="flex items-center gap-3 w-full sm:w-auto">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e]" />
+                    <div className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123]" />
+                    <div className="w-3 h-3 rounded-full bg-[#27c93f] border border-[#1aab29]" />
+                  </div>
+                  <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-lg bg-white/80 dark:bg-slate-950/80 border border-slate-200/80 dark:border-slate-800 text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                    <Lock className="w-3 h-3 text-emerald-500" />
+                    <span>app.quickpostly.com/autopilot-queue</span>
+                  </div>
+                  <span className="hidden md:inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[10px] font-bold">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    7 Channels Active
+                  </span>
+                </div>
+
+                {/* View Switcher Tabs */}
+                <div className="flex items-center gap-1 bg-slate-200/70 dark:bg-slate-900 p-1 rounded-xl border border-slate-300/40 dark:border-slate-800">
+                  <button
+                    onClick={() => setActivePreviewTab('queue')}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                      activePreviewTab === 'queue'
+                        ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs'
+                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    }`}
+                  >
+                    <Layers className="w-3.5 h-3.5 text-amber-500" />
+                    <span>Category Queue</span>
+                  </button>
+                  <button
+                    onClick={() => setActivePreviewTab('ai')}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                      activePreviewTab === 'ai'
+                        ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs'
+                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    }`}
+                  >
+                    <Bot className="w-3.5 h-3.5 text-indigo-500" />
+                    <span>AI Studio</span>
+                  </button>
+                  <button
+                    onClick={() => setActivePreviewTab('calendar')}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                      activePreviewTab === 'calendar'
+                        ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs'
+                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    }`}
+                  >
+                    <Calendar className="w-3.5 h-3.5 text-emerald-500" />
+                    <span>Publishing Grid</span>
+                  </button>
+                </div>
               </div>
 
-              {/* View Switcher Tabs */}
-              <div className="flex items-center gap-1 bg-slate-200/70 dark:bg-slate-900 p-1 rounded-xl">
-                <button
-                  onClick={() => setActivePreviewTab('queue')}
-                  className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                    activePreviewTab === 'queue'
-                      ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
-                  }`}
-                >
-                  Category Queue
-                </button>
-                <button
-                  onClick={() => setActivePreviewTab('ai')}
-                  className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                    activePreviewTab === 'ai'
-                      ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
-                  }`}
-                >
-                  AI Studio
-                </button>
-                <button
-                  onClick={() => setActivePreviewTab('calendar')}
-                  className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                    activePreviewTab === 'calendar'
-                      ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
-                  }`}
-                >
-                  Publishing Grid
-                </button>
-              </div>
+              {/* TAB CONTENT 1: Category Queue */}
+              {activePreviewTab === 'queue' && (
+                <div className="p-6 md:p-8 space-y-6">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100 dark:border-slate-800/80">
+                    <div>
+                      <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <Layers className="w-4 h-4 text-amber-500" />
+                        <span>Intelligent Category Queues</span>
+                      </h3>
+                      <p className="text-xs text-slate-500 dark:text-slate-400">
+                        Posts automatically slot into optimized recurrent timetable slots
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="hidden sm:inline-flex items-center gap-1 text-[11px] text-slate-400 font-mono">
+                        <Clock className="w-3 h-3 text-amber-500" /> Next: Mon 09:30 AM
+                      </span>
+                      <Badge variant="amber" size="sm">
+                        4 Active Queues • 28 Posts Ready
+                      </Badge>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    {/* Category Card 1 */}
+                    <div className="p-4 rounded-xl border border-amber-200 dark:border-amber-950/60 bg-amber-50/40 dark:bg-amber-950/20 space-y-3 hover:border-amber-400 transition-colors">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse" />
+                          <span className="font-bold text-sm text-slate-900 dark:text-slate-100">
+                            Evergreen Insights
+                          </span>
+                        </div>
+                        <Badge variant="amber" size="sm">
+                          <Repeat className="w-3 h-3 mr-1" />
+                          Recycling 4x
+                        </Badge>
+                      </div>
+                      <div className="p-3.5 rounded-lg bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-300 space-y-2.5 shadow-2xs">
+                        <p className="font-medium leading-relaxed">
+                          &quot;Stop writing single-use posts that vanish after 6 hours. Build an evergreen content library that compounds reach on autopilot.&quot;
+                        </p>
+                        <div className="flex items-center justify-between text-[11px] text-slate-400 pt-2 border-t border-slate-100 dark:border-slate-800">
+                          <span className="flex items-center gap-1 text-slate-500 dark:text-slate-400 font-medium">
+                            <Clock className="w-3 h-3 text-amber-500" /> Mon 09:30 AM
+                          </span>
+                          <span className="font-semibold text-amber-600 dark:text-amber-400">
+                            X &amp; LinkedIn
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Category Card 2 */}
+                    <div className="p-4 rounded-xl border border-indigo-200 dark:border-indigo-950/60 bg-indigo-50/40 dark:bg-indigo-950/20 space-y-3 hover:border-indigo-400 transition-colors">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2.5 h-2.5 rounded-full bg-indigo-500" />
+                          <span className="font-bold text-sm text-slate-900 dark:text-slate-100">
+                            Curated Industry News
+                          </span>
+                        </div>
+                        <Badge variant="indigo" size="sm">
+                          12 queued
+                        </Badge>
+                      </div>
+                      <div className="p-3.5 rounded-lg bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-300 space-y-2.5 shadow-2xs">
+                        <p className="font-medium leading-relaxed">
+                          &quot;Meta &amp; LinkedIn updated their 2026 distribution criteria. 3 key tactics growth teams must know to stay ahead...&quot;
+                        </p>
+                        <div className="flex items-center justify-between text-[11px] text-slate-400 pt-2 border-t border-slate-100 dark:border-slate-800">
+                          <span className="flex items-center gap-1 text-slate-500 dark:text-slate-400 font-medium">
+                            <Clock className="w-3 h-3 text-indigo-500" /> Tue 02:00 PM
+                          </span>
+                          <span className="font-semibold text-indigo-600 dark:text-indigo-400">
+                            LinkedIn &amp; Threads
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Category Card 3 */}
+                    <div className="p-4 rounded-xl border border-emerald-200 dark:border-emerald-950/60 bg-emerald-50/40 dark:bg-emerald-950/20 space-y-3 hover:border-emerald-400 transition-colors">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                          <span className="font-bold text-sm text-slate-900 dark:text-slate-100">
+                            Product Promo &amp; Offers
+                          </span>
+                        </div>
+                        <Badge variant="emerald" size="sm">
+                          Buffer: 1/week
+                        </Badge>
+                      </div>
+                      <div className="p-3.5 rounded-lg bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-300 space-y-2.5 shadow-2xs">
+                        <p className="font-medium leading-relaxed">
+                          &quot;Free up 15 hours each week: put your social media queuing on intelligent autopilot with zero spreadsheet burnout.&quot;
+                        </p>
+                        <div className="flex items-center justify-between text-[11px] text-slate-400 pt-2 border-t border-slate-100 dark:border-slate-800">
+                          <span className="flex items-center gap-1 text-slate-500 dark:text-slate-400 font-medium">
+                            <Clock className="w-3 h-3 text-emerald-500" /> Thu 11:15 AM
+                          </span>
+                          <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                            All 7 Channels
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* TAB CONTENT 2: AI Multi-Channel Studio */}
+              {activePreviewTab === 'ai' && (
+                <div className="p-6 md:p-8 space-y-6">
+                  <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-lg bg-amber-500/10 text-amber-500 flex items-center justify-center font-bold shrink-0">
+                        <Bot className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                            AI Copilot Engine
+                          </span>
+                          <span className="px-1.5 py-0.5 rounded text-[10px] bg-indigo-500/10 text-indigo-500 font-mono font-medium">
+                            Gemini 2.5 &amp; Claude 3.5
+                          </span>
+                        </div>
+                        <p className="text-sm font-semibold text-slate-900 dark:text-white mt-0.5">
+                          &quot;Announce our category-based queue scheduling with a focus on agency time savings&quot;
+                        </p>
+                      </div>
+                    </div>
+                    <Badge variant="indigo" size="sm">
+                      Tone: Thought Leader
+                    </Badge>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    {/* LinkedIn Preview Card */}
+                    <div className="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-3 shadow-2xs">
+                      <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-full bg-[#0077b5] text-white flex items-center justify-center font-black text-xs">
+                            in
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-1">
+                              <span className="text-xs font-bold text-slate-900 dark:text-white">QuickPostly</span>
+                              <span className="w-3 h-3 rounded-full bg-blue-500 text-white text-[8px] flex items-center justify-center">✓</span>
+                            </div>
+                            <span className="text-[10px] text-slate-400">24,500 followers • 2h • 🌐</span>
+                          </div>
+                        </div>
+                        <span className="text-[11px] font-mono text-emerald-500 font-semibold">14.2K est. reach</span>
+                      </div>
+                      <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+                        Managing 10+ client social channels shouldn&apos;t feel like a 24/7 spreadsheet sprint.
+                        <br /><br />
+                        With category-based queuing, agency teams set up evergreen, promotional, and educational buckets once. QuickPostly handles the rest on autopilot.
+                      </p>
+                      <div className="pt-2 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+                        <div className="flex items-center gap-1.5">
+                          <span className="flex -space-x-1">
+                            <span className="w-4 h-4 rounded-full bg-blue-500 text-white text-[8px] flex items-center justify-center">👍</span>
+                            <span className="w-4 h-4 rounded-full bg-rose-500 text-white text-[8px] flex items-center justify-center">❤️</span>
+                            <span className="w-4 h-4 rounded-full bg-amber-500 text-white text-[8px] flex items-center justify-center">👏</span>
+                          </span>
+                          <span className="font-medium text-slate-600 dark:text-slate-300">342 reactions</span>
+                        </div>
+                        <span>58 comments • 14 reposts</span>
+                      </div>
+                    </div>
+
+                    {/* X / Twitter Preview Card */}
+                    <div className="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-3 shadow-2xs">
+                      <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-full bg-slate-950 text-white flex items-center justify-center font-bold text-xs border border-slate-800">
+                            𝕏
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-1">
+                              <span className="text-xs font-bold text-slate-900 dark:text-white">QuickPostly</span>
+                              <span className="w-3 h-3 rounded-full bg-amber-500 text-slate-950 text-[8px] font-bold flex items-center justify-center">✓</span>
+                            </div>
+                            <span className="text-[10px] text-slate-400">@QuickPostly • 1h</span>
+                          </div>
+                        </div>
+                        <Badge variant="amber" size="sm">Thread 1/4 🧵</Badge>
+                      </div>
+                      <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+                        Most social posts die in 6 hours.
+                        <br /><br />
+                        If you aren&apos;t recycling evergreen content through smart category queues, you&apos;re leaving 70% of potential reach on the table.
+                        <br /><br />
+                        Here is the exact growth playbook 🧵👇
+                      </p>
+                      <div className="pt-2 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                        <span>💬 84</span>
+                        <span>🔄 128</span>
+                        <span>❤️ 942</span>
+                        <span>📊 24.8K</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* TAB CONTENT 3: Publishing Grid */}
+              {activePreviewTab === 'calendar' && (
+                <div className="p-6 md:p-8 space-y-4">
+                  <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                      <Calendar className="w-4 h-4 text-amber-500" />
+                      <span>Weekly Queue Timetable</span>
+                    </h4>
+                    <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">Timezone: UTC (Global Autopilot)</span>
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2 text-center text-xs">
+                    {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day, idx) => (
+                      <div key={day} className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60 space-y-2 hover:border-amber-400/60 transition-colors">
+                        <span className="font-bold text-slate-700 dark:text-slate-300 block">{day}</span>
+                        <div className="space-y-1.5">
+                          <div className="p-1.5 rounded-lg text-[10px] bg-amber-100 text-amber-900 dark:bg-amber-950/80 dark:text-amber-300 font-semibold truncate shadow-2xs">
+                            09:30 Insights
+                          </div>
+                          {idx % 2 === 0 && (
+                            <div className="p-1.5 rounded-lg text-[10px] bg-indigo-100 text-indigo-900 dark:bg-indigo-950/80 dark:text-indigo-300 font-semibold truncate shadow-2xs">
+                              14:00 News
+                            </div>
+                          )}
+                          {idx === 3 && (
+                            <div className="p-1.5 rounded-lg text-[10px] bg-emerald-100 text-emerald-900 dark:bg-emerald-950/80 dark:text-emerald-300 font-semibold truncate shadow-2xs">
+                              16:00 Promo
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
-            {/* TAB CONTENT 1: Category Queue */}
-            {activePreviewTab === 'queue' && (
-              <div className="p-6 md:p-8 space-y-6">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                  <div>
-                    <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                      <Layers className="w-4 h-4 text-amber-500" />
-                      <span>Intelligent Category Queues</span>
-                    </h3>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">
-                      Posts automatically slot into their corresponding recurrent timetable slots
-                    </p>
+            {/* Certified API Partners Banner */}
+            <div className="mt-12 text-center space-y-4">
+              <p className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+                Official Certified OAuth 2.0 API Integrations
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-4">
+                {[
+                  { name: 'X / Twitter', icon: 'x' },
+                  { name: 'LinkedIn', icon: 'linkedin' },
+                  { name: 'Instagram', icon: 'instagram' },
+                  { name: 'Facebook', icon: 'facebook' },
+                  { name: 'TikTok', icon: 'tiktok' },
+                  { name: 'Pinterest', icon: 'pinterest' },
+                  { name: 'YouTube', icon: 'youtube' },
+                ].map((plat) => (
+                  <div
+                    key={plat.name}
+                    className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-300 shadow-2xs hover:border-amber-400 transition-colors"
+                  >
+                    <SocialPlatformIcon platform={plat.icon} size="sm" />
+                    <span>{plat.name}</span>
                   </div>
-                  <Badge variant="amber" size="sm">
-                    4 Active Categories • 28 Queued Posts
-                  </Badge>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                  {/* Category Card 1 */}
-                  <div className="p-4 rounded-xl border border-amber-200 dark:border-amber-950/60 bg-amber-50/40 dark:bg-amber-950/20 space-y-3">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <div className="w-2.5 h-2.5 rounded-full bg-amber-500" />
-                        <span className="font-bold text-sm text-slate-900 dark:text-slate-100">
-                          Evergreen Insights
-                        </span>
-                      </div>
-                      <Badge variant="amber" size="sm">
-                        <Repeat className="w-3 h-3 mr-1" />
-                        Recycling
-                      </Badge>
-                    </div>
-                    <div className="p-3 rounded-lg bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-300 space-y-2">
-                      <p className="font-medium line-clamp-2">
-                        &quot;Consistency beats intensity every single time in organic B2B audience building. Here are 3 habits...&quot;
-                      </p>
-                      <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1 border-t border-slate-100 dark:border-slate-800">
-                        <span className="flex items-center gap-1">
-                          <Clock className="w-3 h-3 text-amber-500" /> Mon 09:30 AM
-                        </span>
-                        <span className="font-semibold text-slate-600 dark:text-slate-300">
-                          X &amp; LinkedIn
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Category Card 2 */}
-                  <div className="p-4 rounded-xl border border-indigo-200 dark:border-indigo-950/60 bg-indigo-50/40 dark:bg-indigo-950/20 space-y-3">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <div className="w-2.5 h-2.5 rounded-full bg-indigo-500" />
-                        <span className="font-bold text-sm text-slate-900 dark:text-slate-100">
-                          Curated Industry News
-                        </span>
-                      </div>
-                      <Badge variant="indigo" size="sm">
-                        12 queued
-                      </Badge>
-                    </div>
-                    <div className="p-3 rounded-lg bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-300 space-y-2">
-                      <p className="font-medium line-clamp-2">
-                        &quot;Meta announces new creator monetization updates for 2026. What growth managers must know...&quot;
-                      </p>
-                      <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1 border-t border-slate-100 dark:border-slate-800">
-                        <span className="flex items-center gap-1">
-                          <Clock className="w-3 h-3 text-indigo-500" /> Tue 02:00 PM
-                        </span>
-                        <span className="font-semibold text-slate-600 dark:text-slate-300">
-                          LinkedIn &amp; Threads
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Category Card 3 */}
-                  <div className="p-4 rounded-xl border border-emerald-200 dark:border-emerald-950/60 bg-emerald-50/40 dark:bg-emerald-950/20 space-y-3">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-                        <span className="font-bold text-sm text-slate-900 dark:text-slate-100">
-                          Product Promo &amp; Offers
-                        </span>
-                      </div>
-                      <Badge variant="emerald" size="sm">
-                        Buffer: 1/week
-                      </Badge>
-                    </div>
-                    <div className="p-3 rounded-lg bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-300 space-y-2">
-                      <p className="font-medium line-clamp-2">
-                        &quot;Ready to free up 15 hours each week? Put your social queue on intelligent autopilot with zero stress...&quot;
-                      </p>
-                      <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1 border-t border-slate-100 dark:border-slate-800">
-                        <span className="flex items-center gap-1">
-                          <Clock className="w-3 h-3 text-emerald-500" /> Thu 11:15 AM
-                        </span>
-                        <span className="font-semibold text-slate-600 dark:text-slate-300">
-                          All 5 Channels
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
-            )}
-
-            {/* TAB CONTENT 2: AI Multi-Channel Studio */}
-            {activePreviewTab === 'ai' && (
-              <div className="p-6 md:p-8 space-y-6">
-                <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-lg bg-amber-500/10 text-amber-500 flex items-center justify-center font-bold">
-                      <Bot className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">
-                        AI Input Prompt
-                      </span>
-                      <p className="text-sm font-semibold text-slate-900 dark:text-white">
-                        &quot;Announce our category-based queue scheduling with a focus on time savings for agencies&quot;
-                      </p>
-                    </div>
-                  </div>
-                  <Badge variant="indigo" size="sm">
-                    Tone: Thought Leader
-                  </Badge>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
-                    <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
-                      <span className="text-xs font-bold text-[#0077b5] flex items-center gap-1.5">
-                        <Share2 className="w-3.5 h-3.5" /> LinkedIn Post Preview
-                      </span>
-                      <span className="text-[11px] text-slate-400">1,120 chars</span>
-                    </div>
-                    <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
-                      Managing 10+ client social channels shouldn&apos;t feel like a 24/7 spreadsheet sprint.
-                      <br /><br />
-                      With category-based queuing, agency teams allocate evergreen, promotional, and educational buckets once. QuickPostly handles the rest.
-                    </p>
-                  </div>
-
-                  <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
-                    <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
-                      <span className="text-xs font-bold text-slate-900 dark:text-slate-100 flex items-center gap-1.5">
-                        <Share2 className="w-3.5 h-3.5" /> X Thread Preview (1/4)
-                      </span>
-                      <span className="text-[11px] text-slate-400">242 / 280 chars</span>
-                    </div>
-                    <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
-                      Most social posts die in 6 hours.
-                      <br /><br />
-                      If you aren’t recycling evergreen content through smart category queues, you’re leaving 70% of potential reach on the table.
-                      <br /><br />
-                      Here is the exact playbook 🧵👇
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* TAB CONTENT 3: Publishing Grid */}
-            {activePreviewTab === 'calendar' && (
-              <div className="p-6 md:p-8 space-y-4">
-                <div className="flex items-center justify-between">
-                  <h4 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-amber-500" />
-                    <span>Weekly Queue Schedule</span>
-                  </h4>
-                  <span className="text-xs text-slate-500 dark:text-slate-400">Timezone: UTC (Global)</span>
-                </div>
-
-                <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2 text-center text-xs">
-                  {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day, idx) => (
-                    <div key={day} className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60 space-y-2">
-                      <span className="font-bold text-slate-700 dark:text-slate-300">{day}</span>
-                      <div className="space-y-1">
-                        <div className="p-1 rounded text-[10px] bg-amber-100 text-amber-900 dark:bg-amber-950/80 dark:text-amber-300 font-semibold truncate">
-                          09:30 Insights
-                        </div>
-                        {idx % 2 === 0 && (
-                          <div className="p-1 rounded text-[10px] bg-indigo-100 text-indigo-900 dark:bg-indigo-950/80 dark:text-indigo-300 font-semibold truncate">
-                            14:00 News
-                          </div>
-                        )}
-                        {idx === 3 && (
-                          <div className="p-1 rounded text-[10px] bg-emerald-100 text-emerald-900 dark:bg-emerald-950/80 dark:text-emerald-300 font-semibold truncate">
-                            16:00 Promo
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+            </div>
           </div>
         </div>
       </section>
@@ -509,10 +622,11 @@ export function HomepageView({ content }: HomepageViewProps) {
               return (
                 <div
                   key={feature.id}
-                  className="p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 hover:bg-white dark:hover:bg-slate-900 shadow-xs hover:shadow-xl transition-all duration-300 group hover:-translate-y-1"
+                  className="relative p-7 rounded-2xl border border-slate-200/90 dark:border-slate-800/90 bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl hover:bg-white dark:hover:bg-slate-900/90 shadow-sm hover:shadow-xl hover:border-amber-400/60 dark:hover:border-amber-500/40 transition-all duration-300 group hover:-translate-y-1.5 overflow-hidden"
                 >
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-amber-500/10 via-transparent to-transparent rounded-bl-full pointer-events-none group-hover:scale-150 transition-transform duration-500" />
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="w-12 h-12 rounded-xl bg-amber-500/10 dark:bg-amber-500/15 text-amber-500 flex items-center justify-center group-hover:scale-110 group-hover:bg-amber-400 group-hover:text-slate-950 transition-all duration-300 shadow-2xs">
                       <Icon className="w-6 h-6" />
                     </div>
                     {feature.badge && (
